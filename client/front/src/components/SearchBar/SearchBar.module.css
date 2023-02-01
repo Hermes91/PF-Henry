@@ -1,0 +1,44 @@
+.backimg {
+    background-position: cover;}
+
+.searchBar{
+    border: 0.5px solid black;
+    width: fit-content;
+    overflow: hidden;
+    border-radius: 5rem;
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+    box-shadow: 0 0 0 #0000;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  .input{
+    width: 25vw;
+    background-color: #c3b48b;
+    font-family: sans-serif;
+    border: none;
+    color: var(--input-color-text);
+    padding: 10px 1rem;
+    
+  }
+  .input::placeholder{
+    color: var(--input-color-placeholder-text);
+    font-family: sans-serif;
+    font-weight: 300;
+  }
+  .input:focus{
+    outline: none;
+  }
+  .submit{
+    border: none;
+    border-left: black 1px solid;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #8d6e27;
+    height: 100%;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    object-fit: fill;
+    padding: 10px;
+  }
