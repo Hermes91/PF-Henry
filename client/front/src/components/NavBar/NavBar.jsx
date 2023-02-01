@@ -10,18 +10,13 @@ import home from './img/home_logo'
 
 export default function NavBar() {
     
- const dispatch = useDispatch();
  let history = useHistory ();
 
   const handleClickMarket = (e) => {
-    e.preventDefault();
-    dispatch(getDogos(e));
     history.push ('/market');
   };
 
   const handleClickHome = (e) => {
-    e.preventDefault();
-    dispatch(getDogos(e));
     history.push ('/home');
   };
 
