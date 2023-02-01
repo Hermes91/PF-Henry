@@ -1,7 +1,7 @@
 import { Link, useHistory } from 'react-router-dom'
 import React from "react";
 
-
+import SearchBar from '../SearchBar/SearchBar';
 
 // --import a images y style-- //
 import carrito from './img/carrito_logo.png'
@@ -21,6 +21,7 @@ export default function NavBar() {
   };
 
     return (
+      <div>
       <div className={style.background}>
         <div className={style.components}>
         <div className={style.NavBar}>
@@ -46,6 +47,8 @@ export default function NavBar() {
            </Link>
            </div>
            </div>
+           </div>
+           <SearchBar/>
            </div>
     )
 }
