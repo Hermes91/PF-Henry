@@ -1,12 +1,12 @@
 import { Link, useHistory } from 'react-router-dom'
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+
 
 
 // --import a images y style-- //
-import carrito from './img/carrito_logo'
-import home from './img/home_logo'
-
+import carrito from './img/carrito_logo.png'
+import home from './img/home_logo.png'
+import style from './NavBar.module.css'
 
 export default function NavBar() {
     
@@ -21,8 +21,10 @@ export default function NavBar() {
   };
 
     return (
+      <div className={style.background}>
+        <div className={style.components}>
         <div className={style.NavBar}>
-            <div className={style.components}>
+           
            <Link to = '/home' className={style.btn_left}>
             <img
             onClick={(e) => handleClickHome(e)}
@@ -42,6 +44,7 @@ export default function NavBar() {
             alt='Shopping cart logo'
             />
            </Link>
+           </div>
            </div>
            </div>
     )
