@@ -1,0 +1,43 @@
+.NavBar {
+    display: flex;
+    background-position: cover;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    background-color: rgb(50, 175, 50);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.208);
+    border-radius: 30px;
+      width: 100%;
+      padding: 15px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  .home {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px ;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  .shopping_cart {
+    width: 90px;
+    height: 90px;
+    border-radius: 5px ;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+
+  .btn_right{ 
+    border-radius: 6px;
+    border-width: 0;
+    box-sizing: border-box;
+    color: rgb(43, 38, 38);
+    cursor: pointer;
+    font-size: 100%;
+    height: 44px;
+    outline: none;
+    overflow: hidden;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
