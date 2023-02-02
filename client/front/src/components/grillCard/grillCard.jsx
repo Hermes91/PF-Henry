@@ -1,10 +1,17 @@
 import { React, useState, useEffect } from 'react'
 import Loading from '../loading/loading'
-import Card from './card'
+// import ProductCard from '../ProductCard/ProductCard'
+import Card from '../grillCard/card'
 import s from './grillCard.module.css'
+import Pagination from '../Pagination/pagination'
 
 export default function GrillCard() {
     const [loading, setLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postPage] = useState(15)
+
+    const plants = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6]
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -12,26 +19,50 @@ export default function GrillCard() {
         }, "2500")
     })
 
+    const lastPostIndex = currentPage * postPage
+    const firstPostIndex = lastPostIndex - postPage
+    var totalPages = Math.ceil(plants.length / postPage)
+
+    function pagination() {
+        return plants.slice(firstPostIndex, lastPostIndex)
+    }
+
+    const nextPage = () => {
+        if (currentPage < totalPages)
+            setCurrentPage(currentPage + 1)
+    }
+
+    const previousPage = () => {
+        if (currentPage > 1)
+            setCurrentPage(currentPage - 1)
+    }
 
     return (
         <div className={s.shopContainer} >
+
+            <div className={s.util}>
+                <div className={s.pag}>
+                    <button onClick={previousPage} className={s.prevNext}>Previous</button>
+                    <Pagination
+                        totalPost={plants.length}
+                        postPerPage={postPage}
+                        setCurrentPage={setCurrentPage}
+                        currentPage={currentPage} />
+                    <button onClick={nextPage} className={s.prevNext}>Next</button>
+                </div>
+            </div>
+
             {loading ? <div>
                 <Loading />
             </div> :
                 <div className={s.cardsGrid}>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    
+                    {plants && pagination().map((plants, idx) => {
+                        return <Card
+                            key={idx}
+                            data={plants}
+                        />
+                    })}
+
                     {/* <ProductCard /> */}
                 </div>}
         </div>
