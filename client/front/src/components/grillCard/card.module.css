@@ -1,0 +1,10 @@
+.card {
+    width: 220px;
+    height: 220px;
+    background-color: rgb(45, 73, 34);
+}
+
+.card h3 {
+    color: burlywood;
+    padding-left: 15px;
+}
