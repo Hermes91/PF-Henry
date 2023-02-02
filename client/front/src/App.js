@@ -1,9 +1,16 @@
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import GrillCard from './components/grillCard/grillCard';
+
 
 function App() {
   return (
     <div >
-      <h1>welcome home</h1>
+      <Routes>
+        <Route path='/' element={<GrillCard />}>
+        </Route>
+      </Routes>
+
     </div>
   );
 }
