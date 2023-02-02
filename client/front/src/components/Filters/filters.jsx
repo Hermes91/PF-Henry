@@ -11,13 +11,17 @@ export default function Filters() {
 
     // --Handels-- //
 
-    function handleFilterByName(e) {
-    e.preventDefault();
-   // dispatch(filterByName(e.target.value));
+     function handleFilterByName(e) {
+         e.preventDefault();
+         //dispatch(filterByName(e.target.value));
      }
-  function handleFilterByPrice(e) {
-    e.preventDefault();
-   // dispatch(filterByPrice(e.target.value));
+     function handleFilterByPrice(e) {
+         e.preventDefault();
+         //dispatch(filterByPrice(e.target.value));
+     }
+     function handleFilterByWeight(e) {
+          e.preventDefault();
+         //dispatch(filterByWeight(e.target.value));
      }
 
 
@@ -36,8 +40,13 @@ export default function Filters() {
                     <option value='maxPrice'>Max-Min</option>
                     <option value='minPrice'>Min-Max</option>
                 </select>
+                {/* --BY WEIGHT*/}
+                <select className={style.filters} onChange={(e) => handleFilterByWeight(e)}>
+                    <option hidden>By Weight</option>
+                    <option value='maxWeight'>Max-Min</option>
+                    <option value='minWeighr'>Min-Max</option>
+                </select>
             </div>
         </div>
      )
-
 }
