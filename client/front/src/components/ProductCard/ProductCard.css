@@ -3,7 +3,8 @@
     border-radius: 10px;
     min-width: 40%;
     padding: 5px;
-    text-decoration: none;
+    text-decoration: none; 
+    /* Borrar este comentario. */
     color: black;
     background-color:rgb(251, 195, 51); 
     border-color: black;
@@ -11,6 +12,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+       /* Borrar este comentario. */
     margin-bottom: 10px;
 }
 .card:hover {

@@ -1,24 +1,23 @@
-import "./productCard.css";
+import "./ProductCard.css";
 import { Link } from "react-router-dom";
-import "./card.css";
 import { useDispatch } from "react-redux";
 
-const Card = (props) => {
-  let { dog } = props;
-  let dispatch = useDispatch();
+const productCard = (props) => {
+  let { product } = props;
+  let dispatch = useDispatch(); // Borrar este comentario.
   return (
     <Link
       onClick={() => dispatch(clearData())}
       className="card"
-      to={`/details/${dog.id}`}
+      to={`/details/${plant.id}`}
     >
       <div className="card">
         <div>
           <img
-            // width="125"
+            width="125"
             height="100"
             src={plant.img || questionmark}
-            alt="⚠️ Img not found ⚠️"
+            alt="⚠️ Imagen del producto no encontrada ⚠️" // borrar este comentario.
           />
         </div>
         <h4>
