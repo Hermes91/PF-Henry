@@ -29,7 +29,7 @@ export default function ProductForm () {
       setErr(validate({...input, [e.target.name]: e.target.value}))
     }
   
-    const isButtonDisabled = () => (Object.keys(err).length)
+    const isButtonDisabled = () => (!!Object.keys(err).length)
   
     const handleSelectDiet = (e) => {
       if (!selectedCategory.includes(e.target.value)) setSelectedCat([...selectedCategory, e.target.value])
@@ -64,7 +64,7 @@ export default function ProductForm () {
     }, [dispatch])
   
     return (
-        <div className={styles.maindiv} >
+        <div>
           <h1>Complete the form below to create a new product!</h1>
           <h5>Complete all fields</h5>
   
@@ -90,7 +90,7 @@ export default function ProductForm () {
             {err.description && <p>{err.description}</p>}
 
             <label>Price</label>
-            <input name="price" placeholder="Price" value={input.price} type="" onChange={handleChange}/>
+            <input value={input.price}  name='price' onChange={handleChange} type='number' placeholder='Price' />
             {err.price && <p>{err.price}</p>}
 
             <label>Stock</label>
@@ -103,7 +103,7 @@ export default function ProductForm () {
   
             <label>Category</label>
             <select onChange={handleSelectDiet} defaultValue='DEFAULT'>
-              <option value="DEFAULT" disabled>--select category--</option>
+              <option value='DEFAULT' disabled>--select category--</option>
               {categories.map(category => <option value={category.name} key={category.id}>{category.name}</option>)}
             </select>
             <ul >
