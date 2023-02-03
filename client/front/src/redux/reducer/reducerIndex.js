@@ -7,7 +7,8 @@ import {
     FILTER_BY_NAME,
     FILTER_BY_PRICE,
     FILTER_BY_CATEGORY,
-    FILTER_BY_WEIGHT 
+    FILTER_BY_WEIGHT,
+    GET_CLEAN
 
 } from '../actions/actionIndex.js'
 
@@ -53,7 +54,7 @@ export default function reducer(state = initialState, action) {
     case GET_CATEGORIES: 
         return {
             ...state,
-            allCategories
+            allCategories: action.payload
         }
 
     // --filtrado alfabéticamente A-Z o Z-A-- //
