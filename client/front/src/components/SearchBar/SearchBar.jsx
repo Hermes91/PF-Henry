@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 
 // --importo actions que traiga by name-- //
+import {searchProduct} from '../../redux/actions/actionIndex.js'
 
 // --importo style-- //
 import style from '../SearchBar/SearchBar.module.css'
