@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import {filterByName, filterByPrice, filterByWeight} from '../../redux/actions/actionIndex.js'
 
 // --Importo styles-- //
 import style from './filters.module.css'
@@ -13,15 +14,15 @@ export default function Filters() {
 
      function handleFilterByName(e) {
          e.preventDefault();
-         //dispatch(filterByName(e.target.value));
+         dispatch(filterByName(e.target.value));
      }
      function handleFilterByPrice(e) {
          e.preventDefault();
-         //dispatch(filterByPrice(e.target.value));
+         dispatch(filterByPrice(e.target.value));
      }
      function handleFilterByWeight(e) {
           e.preventDefault();
-         //dispatch(filterByWeight(e.target.value));
+         dispatch(filterByWeight(e.target.value));
      }
 
 
