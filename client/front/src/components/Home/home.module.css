@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.home {
+    display: block;
+    align-items: center;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    gap: 55px;
+    margin-top: 30px;
+    justify-content: center;
+}
