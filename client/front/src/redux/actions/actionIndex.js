@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
@@ -9,6 +10,7 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = 'GET_CLEAN'
+export const GET_CLEAN = 'GET_CLEAN';
 
 export const getProducts = () => {
   return async function (dispatch) {

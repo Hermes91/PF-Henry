@@ -1,0 +1,45 @@
+.container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bar {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 70%;
+    top: 30%;
+}
+
+.h1 {
+    color: #f2e8cf;
+    font-size: 44pt;
+    width: 350px;
+    font-weight: bold;
+}
+
+.h2 {
+    color: #ff8001;
+    font-size: 84pt;
+    width: 350px;
+    font-weight: bold;
+    line-height: 85pt;
+    margin-top: -20px;
+}
+
+header {
+   
+    width: 100vw;
+    background: black;
+    overflow: hidden;
+}
+
+img {
+    position: relative;
+    object-fit: cover;
+    opacity: 0.3;
+}

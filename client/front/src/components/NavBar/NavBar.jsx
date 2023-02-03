@@ -1,54 +1,46 @@
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-import SearchBar from '../SearchBar/SearchBar';
 
-// --import a images y style-- //
-import carrito from './img/carrito_logo.png'
-import home from './img/home_logo.png'
+// --import style-- //
 import style from './NavBar.module.css'
 
 export default function NavBar() {
-    
- let history = useHistory ();
+
+  let navigate = useNavigate();
 
   const handleClickMarket = (e) => {
-    history.push ('/market');
+    navigate('/market');
   };
 
   const handleClickHome = (e) => {
-    history.push ('/home');
+    navigate('/home');
   };
 
-    return (
-      <div>
+  return (
+    <div>
       <div className={style.background}>
-        <div className={style.components}>
         <div className={style.NavBar}>
-           
-           <Link to = '/home' className={style.btn_left}>
-            <img
-            onClick={(e) => handleClickHome(e)}
-            className={style.home}
-            src={home}
-            alt='Home logo'
-            />
-           </Link>
-           <Link to = '/shop' className={style.btn_left}>Shop</Link>
-           <Link to = '/about-us' className={style.btn_left}>About Us</Link>
-           <Link to = '/login' className={style.btn_right}>Log In</Link>
-           <Link to = '/market' className={style.btn_right}>
-            <img
-            onClick={(e) => handleClickMarket(e)}
-            className={style.shopping_cart}
-            src={carrito}
-            alt='Shopping cart logo'
-            />
-           </Link>
-           </div>
-           </div>
-           </div>
-           <SearchBar/>
-           </div>
-    )
+
+          <div className={style.left}>
+            <Link to='/home' className={style.btn_left}>
+              <FontAwesomeIcon icon={faHome} className={style.icon} onClick={(e) => handleClickHome(e)} alt='Home icon' />
+            </Link>
+            <Link to='/shop' className={style.btn_left}>Shop</Link>
+            <Link to='/about-us' className={style.btn_left}>About Us</Link>
+          </div>
+
+          <div className={style.right}>
+            <Link to='/login' className={style.btn_right}>Log In</Link>
+            <Link to='/market' className={style.btn_right}>
+              <FontAwesomeIcon icon={faCartShopping} className={style.icon} onClick={(e) => handleClickMarket(e)} alt='Shopping cart icon' />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }

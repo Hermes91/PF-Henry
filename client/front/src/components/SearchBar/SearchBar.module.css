@@ -1,45 +1,59 @@
 .backimg {
-    background-position: cover;
+  display: flex;
+  flex-direction: row;
+  background-color: #f2e8cf;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 45px;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 10px 20px, rgba(0, 0, 0, 0.08) 0px 6px 6px;
 }
 
-.searchBar{
-    border: 0.5px solid black;
-    width: fit-content;
-    overflow: hidden;
-    border-radius: 5rem;
-    display: flex;
-    height: 2.5rem;
-    align-items: center;
-    box-shadow: 0 0 0 #0000;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  }
-  .input{
-    width: 25vw;
-    background-color: #c3b48b;
-    font-family: sans-serif;
-    border: none;
-    color: var(--input-color-text);
-    padding: 10px 1rem;
-    
-  }
-  .input::placeholder{
-    color: var(--input-color-placeholder-text);
-    font-family: sans-serif;
-    font-weight: 300;
-  }
-  .input:focus{
-    outline: none;
-  }
-  .submit{
-    border: none;
-    border-left: black 1px solid;
-    text-transform: uppercase;
-    cursor: pointer;
-    background-color: #8d6e27;
-    height: 100%;
-    font-weight: 700;
-    justify-content: center;
-    align-items: center;
-    object-fit: fill;
-    padding: 10px;
-  }
+.searchBar {
+  width: fit-content;
+  overflow: hidden;
+  border-radius: 5rem;
+  display: flex;
+  border: solid 2pt #386641;
+  height: 2rem;
+  align-items: center;
+  box-shadow: 0 0 0 #0000;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.20) 0px 6px 6px;
+}
+
+.input {
+  width: 15vw;
+  background-color: #f2e8cf;
+  font-family: sans-serif;
+  border: none;
+  color: var(--input-color-text);
+  padding: 15px;
+}
+
+.input::placeholder {
+  color: var(--input-color-placeholder-text);
+  font-family: sans-serif;
+  font-weight: 300;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.submit {
+  border: none;
+  color: #a7c957;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #386641;
+  height: 100%;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.backimg svg {
+  height: 25px;
+  color: #386641;
+}

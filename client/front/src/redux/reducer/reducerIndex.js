@@ -141,6 +141,14 @@ export default function reducer(state = initialState, action) {
           }
       
 
+    // --limpia el state-- //
+        case GET_CLEAN: {
+            return {
+              ...state,
+              dogsDetail: action.payload,
+            };
+          }
+      
     // --case default-- //
     default:
         return {
