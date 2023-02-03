@@ -8,15 +8,7 @@ import { Carousel } from "react-responsive-carousel";
 export default function Carouselle() {
     return (
         <div className={s.container}>
-            {/* <header>
-                <img src={background} alt="background"></img>
-            </header>
-            <div className={s.bar}>
-                <span className={s.h1}>Leave it in  </span>
-                <span className={s.h2}> our hands </span>
-            </div> */}
-
-
+          
             <Carousel showThumbs={false}  >
                 <div>
                     <div className={s.bar}>
