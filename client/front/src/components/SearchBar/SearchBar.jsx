@@ -21,7 +21,7 @@ export default function SearchBar() {
 
     const handleInputSubmit = (e) => {
         e.preventDefault();
-        // dispatch(getByName(name));
+        dispatch(searchProduct(name));
         navigate('/shop')
         setName({
             name: "",
@@ -31,7 +31,7 @@ export default function SearchBar() {
     return (
         <div className={style.backimg}>
             <div>
-            <FontAwesomeIcon icon={faBars} className={style.icon}  alt='Bars icon' />
+                <FontAwesomeIcon icon={faBars} className={style.icon} alt='Bars icon' />
             </div>
             <div className={style.components}>
                 <form className={style.searchBar}>
