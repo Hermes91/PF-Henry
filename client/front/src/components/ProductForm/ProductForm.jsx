@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // modificar nombre de las actions 
 // import {getCategories, postProduct} from "../../redux/actions"
 // import function validate
+import {getCategories, createProduct} from '../../redux/actions/actionIndex.js'
 
 export default function ProductForm () {
 
@@ -55,7 +56,7 @@ export default function ProductForm () {
         category: selectedCategory
       }
       // chequear nombre action 
-      dispatch(postProduct(newProduct))
+      dispatch(createProduct(newProduct))
     }
   
     useEffect(() => {
