@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 
 // --importo actions que traiga by name-- //
+import {searchProduct} from '../../redux/actions/actionIndex.js'
 
 // --importo style-- //
 import style from '../SearchBar/SearchBar.module.css'
@@ -19,7 +20,7 @@ export default function SearchBar() {
 
     const handleInputSubmit = (e) => {
         e.preventDefault();
-       // dispatch(getByName(name));
+       dispatch(searchProduct(name));
        history.push('/shop')
         setName({
           name: "",

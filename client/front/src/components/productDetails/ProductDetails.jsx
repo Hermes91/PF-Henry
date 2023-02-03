@@ -1,21 +1,31 @@
-//import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //import { useHistory } from "react-router-dom";
 import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
+import {getProduct, getClean} from '../../redux/actions/actionIndex.js'
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+  const dispatch = useDispatch(); 
   //const history = useHistory();
-  const productTest = {
+  /*const productTest = {
     id: "01",
     image: "../../assets/images/brocoli.jpg",
     name: "The best broccoli",
     price: "12.99",
     description:
       "Our broccoli plants have been cultivated with the highest quality standards, using 100% natural fertilizers and pesticides to guarantee a product that you can consume with complete safety. ",
-  };
-  const product = /*useSelector((state) => state.country) */ productTest;
+  }; */
+  const product = useSelector((state) => state.productDetail) //productTest;
+
+  useEffect(() => {
+    dispatch(getProduct(props.match.params.id)); 
+    return () => {
+      dispatch(getClean());
+    };
+  }, [dispatch, props.match.params.id]);
+
 
   return (
     <>
