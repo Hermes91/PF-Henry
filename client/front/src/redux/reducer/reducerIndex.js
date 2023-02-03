@@ -132,6 +132,14 @@ export default function reducer(state = initialState, action) {
             filterProducts: productsFilterByWeight
         }
 
+    // --limpia el state-- //
+        case GET_CLEAN: {
+            return {
+              ...state,
+              dogsDetail: action.payload,
+            };
+          }
+      
     // --case default-- //
     default:
         return {
