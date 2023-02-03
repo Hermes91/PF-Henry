@@ -1,0 +1,25 @@
+.mainDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    background: url("./ImageComponentCarroussel1.jpg");
+    object-fit: cover;
+  width: 90vw;
+  height: 490px;
+  display: grid;
+  justify-content: center;
+}
+.title{
+    position: absolute;
+    top: 190px;
+    left: 27%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    background-color: azure;
+}
+
+
+
