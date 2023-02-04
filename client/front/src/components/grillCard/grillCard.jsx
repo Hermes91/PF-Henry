@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import Loading from '../loading/loading'
-// import ProductCard from '../ProductCard/ProductCard'
+import ProductCard from '../ProductCard/ProductCard'
 import Card from '../grillCard/card'
 import s from './grillCard.module.css'
 import Pagination from '../Pagination/pagination'
@@ -68,7 +68,7 @@ export default function GrillCard() {
                             to={`/products/${e.id}`}
                             key={e.id}
                             >
-                            <ProductCar
+                            <ProductCard
                             key={e.id}
                             img={e.img}
                             name={e.name}
