@@ -1,45 +1,30 @@
 import "./productCard.css";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from "react";
 
-const ProductCard = (props) => {
-  let { product } = props;
-  let dispatch = useDispatch(); // Borrar este comentario.
+
+const ProductCard = (product) => {
+
   return (
-    <Link
-      // onClick={() => dispatch(clearData())}
-      className="card"
-      to={`/details/${plant.id}`}
-    >
       <div className="card">
-        <div>
           <img
             width="125"
             height="100"
-            src={plant.img || questionmark}
-            alt="⚠️ Imagen del producto no encontrada ⚠️" // borrar este comentario.
+            src={product.img}
+            alt="⚠️ Imagen del producto no encontrada ⚠️" 
           />
-        </div>
         <h4>
           <b>
             ∙ <u> Nombre</u>
           </b>
-          : {plant.name}.
+          : {product.name}.
         </h4>
         <h4>
           <b>
             ∙ <u> Precio</u>
           </b>
-          : {plant.price}.
-        </h4>
-        <h4>
-          <b>
-            ∙ <u> Descripcion</u>
-          </b>
-          : {plant.description}.
+          : {product.price}.
         </h4>
       </div>
-    </Link>
   );
 };
 
