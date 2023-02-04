@@ -1,158 +1,152 @@
 import {
-    GET_PRODUCTS,
-    GET_PRODUCT,
-    SEARCH_PRODUCT,
-    CREATE_PRODUCT,
-    GET_CATEGORIES,
-    FILTER_BY_NAME,
-    FILTER_BY_PRICE,
-    FILTER_BY_CATEGORY,
-    FILTER_BY_WEIGHT,
-    GET_CLEAN
-
-} from '../actions/actionIndex.js'
+  GET_PRODUCTS,
+  GET_PRODUCT,
+  SEARCH_PRODUCT,
+  CREATE_PRODUCT,
+  GET_CATEGORIES,
+  FILTER_BY_NAME,
+  FILTER_BY_PRICE,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_WEIGHT,
+  GET_CLEAN,
+} from "../actions/actionIndex.js";
 
 const initialState = {
-    allProducts: [],
-    allCategories: [],
-    productDetail: [],
-    filterProducts: []
-}
+  allProducts: [],
+  allCategories: [],
+  productDetail: [],
+  filterProducts: [],
+  categoriesChange: false,
+};
 
 export default function reducer(state = initialState, action) {
- switch(action.type) {
-
+  switch (action.type) {
     // --trae todos los productos-- //
-    case GET_PRODUCTS: 
-        return {
-            ...state,
-            allProducts: action.payload,
-            filterProducts: action.payload
-        }
+    case GET_PRODUCTS:
+      return {
+        ...state,
+        allProducts: action.payload,
+        filterProducts: action.payload,
+      };
 
     // --trae single producto by id --//
-    case GET_PRODUCT: 
-        return {
-            ...state,
-            productDetail: action.payload
-        }
+    case GET_PRODUCT:
+      return {
+        ...state,
+        productDetail: action.payload,
+      };
 
     // --busca por nombre --//
-    case SEARCH_PRODUCT: 
-        return {
-            ...state,
-            filterProducts: action.payload
-        }
+    case SEARCH_PRODUCT:
+      return {
+        ...state,
+        filterProducts: action.payload,
+      };
 
     // --crea un producto-- //
-    case CREATE_PRODUCT: 
-        return {
-            ...state // <--------  BUSCA EL ERROR AQUI!!!!!
-        }
+    case CREATE_PRODUCT:
+      return {
+        ...state, // <--------  BUSCA EL ERROR AQUI!!!!!
+      };
 
     // --trae las categories-- //
-    case GET_CATEGORIES: 
-        return {
-            ...state,
-            allCategories
-        }
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        allCategories: action.payload,
+      };
 
     // --filtrado alfabéticamente A-Z o Z-A-- //
-    case FILTER_BY_NAME: 
+    case FILTER_BY_NAME:
+      let productsFilterByName =
+        action.payload === "A-Z"
+          ? state.filterProducts.sort((a, b) => {
+              if (a.name > b.name) return 1;
+              if (a.name < b.name) return -1;
+              return 0;
+            })
+          : state.filterProducts.sort((a, b) => {
+              if (a.name < b.name) return -1;
+              if (a.name > b.name) return 1;
+              return 0;
+            });
 
-        let productsFilterByName =
-        action.payload === 'A-Z' 
-        ? state.filterProducts.sort((a,b) => {
-            if (a.name > b.name) return 1
-            if (a.name < b.name) return -1
-            return 0
-        })
-        : state.filterProducts.sort((a,b) => {
-            if (a.name < b.name) return -1
-            if (a.name > b.name) return 1
-            return 0
-        })
-
-        return {
-            ...state,
-            filterProducts: productsFilterByName
-        }
+      return {
+        ...state,
+        filterProducts: productsFilterByName,
+      };
 
     // --filtrado por precio de mayor a menor y al revés-- //
-    case FILTER_BY_PRICE: 
+    case FILTER_BY_PRICE:
+      let productsFilterByPrice =
+        action.payload === "Min-Max"
+          ? state.filterProducts.sort((a, b) => {
+              if (a.price > b.price) return 1;
+              if (a.price < b.price) return -1;
+              return 0;
+            })
+          : state.filterProducts.sort((a, b) => {
+              if (a.price < b.price) return -1;
+              if (a.price > b.price) return 1;
+              return 0;
+            });
 
-    let productsFilterByPrice =
-    action.payload === 'Min-Max' 
-    ? state.filterProducts.sort((a,b) => {
-        if (a.price > b.price) return 1
-        if (a.price < b.price) return -1
-        return 0
-    })
-    : state.filterProducts.sort((a,b) => {
-        if (a.price < b.price) return -1
-        if (a.price > b.price) return 1
-        return 0
-    })
-
-    return {
+      return {
         ...state,
-        filterProducts: productsFilterByPrice
-    }
+        filterProducts: productsFilterByPrice,
+      };
 
     // --filtrado por categoría-- //
-    case FILTER_BY_CATEGORY: 
-
-        const copyAllProducts = state.allProducts;
-        const productsFilterByCategory = copyAllProducts.filter((e) => {
-            let categoryFiltred = e.category.map((e => e.name));
-            return categoryFiltred.includes(action.payload);
-        })
-        return {
-            ...state,
-            filterProducts: productsFilterByCategory
-        }
+    case FILTER_BY_CATEGORY:
+      const copyAllProducts = state.allProducts;
+      const productsFilterByCategory = copyAllProducts.filter((e) => {
+        let categoryFiltred = e.category.map((e) => e.name);
+        return categoryFiltred.includes(action.payload);
+      });
+      return {
+        ...state,
+        filterProducts: productsFilterByCategory,
+      };
 
     // --filtrado por peso-- //
-    case FILTER_BY_WEIGHT: 
-        
-        let productsFilterByWeight = 
-        action.payload === 'Min-Max'
-        ? state.filterProducts.sort((a,b) => {
-            if (a.weight > b.weight) return 1
-            if (a.weight < b.weight) return -1
-            return 0
-        })
-        : state.filterProducts.sort((a,b) => {
-            if (a.weight < b.weight) return 1
-            if (a.weight > b.weight) return -1
-            return 0
-        })
+    case FILTER_BY_WEIGHT:
+      let productsFilterByWeight =
+        action.payload === "Min-Max"
+          ? state.filterProducts.sort((a, b) => {
+              if (a.weight > b.weight) return 1;
+              if (a.weight < b.weight) return -1;
+              return 0;
+            })
+          : state.filterProducts.sort((a, b) => {
+              if (a.weight < b.weight) return 1;
+              if (a.weight > b.weight) return -1;
+              return 0;
+            });
 
-        return {
-            ...state,
-            filterProducts: productsFilterByWeight
-        }
+      return {
+        ...state,
+        filterProducts: productsFilterByWeight,
+      };
 
-        case GET_CLEAN: {
-            return {
-              ...state,
-              dogsDetail: action.payload,
-            };
-          }
-      
+    case GET_CLEAN: {
+      return {
+        ...state,
+        dogsDetail: action.payload,
+      };
+    }
 
     // --limpia el state-- //
-        case GET_CLEAN: {
-            return {
-              ...state,
-              dogsDetail: action.payload,
-            };
-          }
-      
+    case GET_CLEAN: {
+      return {
+        ...state,
+        dogsDetail: action.payload,
+      };
+    }
+
     // --case default-- //
     default:
-        return {
-            ...state
-        }
- }
+      return {
+        ...state,
+      };
+  }
 }
