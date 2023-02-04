@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import Loading from '../loading/loading'
 import ProductCard from '../ProductCard/ProductCard'
-import Card from '../grillCard/card'
+//import Card from '../grillCard/card'
 import s from './grillCard.module.css'
 import Pagination from '../Pagination/pagination'
 import { useSelector } from "react-redux";
