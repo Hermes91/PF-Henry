@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import {getProduct, getClean} from '../../redux/actions/actionIndex.js'
+import React, { useEffect } from "react";
 
 const ProductDetails = (props) => {
   const dispatch = useDispatch(); 

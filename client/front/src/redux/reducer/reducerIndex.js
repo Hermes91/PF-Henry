@@ -54,7 +54,7 @@ export default function reducer(state = initialState, action) {
     case GET_CATEGORIES: 
         return {
             ...state,
-            allCategories
+            allCategories: action.payload
         }
 
     // --filtrado alfabéticamente A-Z o Z-A-- //
