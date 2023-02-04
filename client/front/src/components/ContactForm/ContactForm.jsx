@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import validate from './validate';
@@ -71,7 +72,7 @@ export default function CreateForm() {
                                         <input className={s.FormControl} placeholder="PHONE NUMBER  +XX XXX XXXXX'" value={input.phone} name='phone' onChange={handleChange} type='text' />
                                         {error.phone && <p>{error.phone}</p>}
                                     </div>
-                                    <div className={s.FormGroupMessage}>
+                                    <div className={s.FogitrmGroupMessage}>
                                         <textarea className={s.FormControl} placeholder="Write your message here..." value={input.message} name='message' onChange={handleChange} />
                                     </div>
                                     <div className={s.FormGroupButtons}>
