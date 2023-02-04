@@ -16,7 +16,6 @@ export default function ProdHome() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

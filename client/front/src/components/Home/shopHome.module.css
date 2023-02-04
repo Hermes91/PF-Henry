@@ -1,0 +1,17 @@
+.containerShop {
+    position: relative;
+    width: 400px;
+   
+    text-align: center;
+}
+
+.card {
+    margin: 10px;
+    background-color: #69b347;
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import validate from './validate';
+import s from "../ContactForm/ContactForm.module.css"
 
 export default function CreateForm() {
     const dispatch = useDispatch()
@@ -14,54 +15,74 @@ export default function CreateForm() {
     })
 
     const handleChange = (e) => {
-        setInput({...input, [e.target.name]: e.target.value})
-        setError(validate(({...input, [e.target.name]: e.target.value})))
-      }
-    console.log(error)
+        setInput({ ...input, [e.target.name]: e.target.value })
+        setError(validate(({ ...input, [e.target.name]: e.target.value })))
+    }
+
 
     const isButtonDisabled = () => Object.keys(error).length > 0
 
     const handleSubmit = (e) => {
         e.preventDefault()
-    
+
         const newMessage = {
-          name: input.name.trim(),
-          lastname: input.lastname.trim(),
-          phone: input.phone,
-          email: input.email,
-          message: input.message.trim(),
+            name: input.name.trim(),
+            lastname: input.lastname.trim(),
+            phone: input.phone,
+            email: input.email,
+            message: input.message.trim(),
         }
 
         //action? 
-        setInput({name: "", lastname: "", phone: "", email: "", message: ""})
+        setInput({ name: "", lastname: "", phone: "", email: "", message: "" })
         alert("Thank you! Your message was sent correctly")
     }
 
     return (
-        <div>
+        <div className={s.background}>
+            <div className={s.container}>
+                <div className={s.screen}>
 
-            <h3>Contact Us</h3>
-            <h5>Complete the form below to send us a message</h5>
+                    <div className={s.screenBody}>
+                        <div className={s.screenBodyItemLeft}>
+                            <div className={s.appTitle}>
+                                <span>CONTACT</span>
+                                <span>US</span>
+                            </div>
+                            <div className={s.appContact}>CONTACT INFO : +54 henry-vivero</div>
+                        </div>
 
-            <form onSubmit={handleSubmit}>
-                <label>Name</label>
-                <input value={input.name} name='name' onChange={handleChange} type='text' placeholder='Name' />
-                {error.name && <p>{error.name}</p>}
-                <label>Lastname</label>
-                <input value={input.lastname} name='lastname' onChange={handleChange} type='text' placeholder='Lastname' />
-                {error.lastname && <p>{error.lastname}</p>}
-                <label>Phone number</label>
-                <input value={input.phone} name='phone' onChange={handleChange} type='text' placeholder='+XX XXX XXXXX' />
-                {error.phone && <p>{error.phone}</p>}
-                <label>Email address</label>
-                <input value={input.email} name='email' onChange={handleChange} type='text' placeholder='email@example.com' />
-                {error.email && <p>{error.email}</p>}
-                <label>Message</label>
-                <textarea value={input.message} name='message' onChange={handleChange} placeholder='Write your message here...' />
-                {error.message && <p>{error.message}</p>}
-
-                <button disabled={isButtonDisabled()} type='submit'>Send</button>
-            </form>
-        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className={s.screenBodyItem}>
+                                <div className={s.appForm}>
+                                    <div className={s.FormGroup}>
+                                        <input className={s.FormControl} placeholder="NAME" value={input.name} name='name' onChange={handleChange} type='text' />
+                                        {error.name && <p>{error.name}</p>}
+                                    </div>
+                                    <div className={s.FormGroup}>
+                                        <input className={s.FormControl} placeholder="LASTNAME" value={input.lastname} name='lastname' onChange={handleChange} type='text' />
+                                        {error.lastname && <p>{error.lastname}</p>}
+                                    </div>
+                                    <div className={s.FormGroup}>
+                                        <input className={s.FormControl} placeholder="EMAIL@EXAMPLE.COM" value={input.email} name='email' onChange={handleChange} type='text' />
+                                        {error.email && <p>{error.email}</p>}
+                                    </div>
+                                    <div className={s.FormGroup}>
+                                        <input className={s.FormControl} placeholder="PHONE NUMBER  +XX XXX XXXXX'" value={input.phone} name='phone' onChange={handleChange} type='text' />
+                                        {error.phone && <p>{error.phone}</p>}
+                                    </div>
+                                    <div className={s.FormGroupMessage}>
+                                        <textarea className={s.FormControl} placeholder="Write your message here..." value={input.message} name='message' onChange={handleChange} />
+                                    </div>
+                                    <div className={s.FormGroupButtons}>
+                                        <button className={s.formButton}>SEND</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div >
     )
 }
