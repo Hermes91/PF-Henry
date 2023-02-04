@@ -4,6 +4,8 @@ import Loading from '../loading/loading'
 import Card from '../grillCard/card'
 import s from './grillCard.module.css'
 import Pagination from '../Pagination/pagination'
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 /*
 export default function GrillCard() {
@@ -94,7 +96,7 @@ export default function GrillCard() {
     }
 
     const nextPage = () => {
-        if (currentPage < totalPages)
+        if (currentPage < currentProducts)
             setCurrentPage(currentPage + 1)
     }
 
@@ -131,7 +133,6 @@ export default function GrillCard() {
                             />
                             </Link>
                     ))}
-
                     {/* <ProductCard /> */}
                 </div>}
        </div>
