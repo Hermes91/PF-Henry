@@ -23,10 +23,7 @@ export default function SearchBar() {
     const handleInputSubmit = (e) => {
         e.preventDefault();
         dispatch(searchProduct(name));
-        navigate('/shop')
-        setName({
-            name: "",
-        });
+        setName("");
     };
 
     return (
@@ -41,6 +38,7 @@ export default function SearchBar() {
                         onChange={(e) => handleInput(e)}
                         placeholder='Search...'
                         maxLength="30"
+                        value={name}
                     />
                     <input
                         onClick={(e) => handleInputSubmit(e)}
