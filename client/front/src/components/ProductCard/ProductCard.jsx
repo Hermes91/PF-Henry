@@ -1,4 +1,4 @@
-import "./productCard.css";
+import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -9,14 +9,14 @@ const ProductCard = (props) => {
     <Link
       // onClick={() => dispatch(clearData())}
       className="card"
-      to={`/details/${plant.id}`}
+      to={`/details/${product.id}`}
     >
       <div className="card">
         <div>
           <img
             width="125"
             height="100"
-            src={plant.img || questionmark}
+            src={product.img}
             alt="⚠️ Imagen del producto no encontrada ⚠️" // borrar este comentario.
           />
         </div>
@@ -24,19 +24,19 @@ const ProductCard = (props) => {
           <b>
             ∙ <u> Nombre</u>
           </b>
-          : {plant.name}.
+          : {product.name}.
         </h4>
         <h4>
           <b>
             ∙ <u> Precio</u>
           </b>
-          : {plant.price}.
+          : {product.price}.
         </h4>
         <h4>
           <b>
             ∙ <u> Descripcion</u>
           </b>
-          : {plant.description}.
+          : {product.description}.
         </h4>
       </div>
     </Link>

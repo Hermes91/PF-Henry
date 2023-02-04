@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import Loading from '../loading/loading'
 // import ProductCard from '../ProductCard/ProductCard'
-import Card from '../grillCard/card'
+import ProductCard from '../../components/ProductCard/ProductCard.jsx'
 import s from './grillCard.module.css'
 import Pagination from '../Pagination/pagination'
 import { Link } from "react-router-dom";
@@ -112,6 +112,7 @@ export default function GrillCard() {
                 <div className={s.pag}>
                     <button onClick={previousPage} className={s.prevNext}>Previous</button>
         <Pagination productsXPage={productsXPage} products={products.lenght} paginado={paginado}/>
+        <button onClick={nextPage} className={s.prevNext}>Next</button>
                 </div>
             </div>
             {loading ? <div>
@@ -127,7 +128,7 @@ export default function GrillCard() {
                             to={`/products/${e.id}`}
                             key={e.id}
                             >
-                            <Card
+                            <ProductCard
                             key={e.id}
                             product = {e}
                             />
