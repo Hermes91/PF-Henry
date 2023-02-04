@@ -56,6 +56,7 @@ export default function reducer(state = initialState, action) {
         allCategories: action.payload,
       };
 
+
     // --filtrado alfabéticamente A-Z o Z-A-- //
     case FILTER_BY_NAME:
       let productsFilterByName =
