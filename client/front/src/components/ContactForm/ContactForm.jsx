@@ -20,8 +20,7 @@ export default function CreateForm() {
         setError(validate(({ ...input, [e.target.name]: e.target.value })))
     }
 
-
-    const isButtonDisabled = () => Object.keys(error).length > 0
+    const isButtonDisabled = () => !(input.name && input.lastname) || (Object.keys(error).length)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -76,7 +75,7 @@ export default function CreateForm() {
                                         <textarea className={s.FormControl} placeholder="Write your message here..." value={input.message} name='message' onChange={handleChange} />
                                     </div>
                                     <div className={s.FormGroupButtons}>
-                                        <button className={s.formButton}>SEND</button>
+                                        <button disabled={isButtonDisabled()} type='submit' className={s.formButton}>SEND</button>
                                     </div>
                                 </div>
                             </div>
