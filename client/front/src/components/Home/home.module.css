@@ -28,3 +28,10 @@ body {
     background-color: #69b347;
     opacity: 0.4;
 }
+
+.discount {
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+    justify-content: center;
+}
