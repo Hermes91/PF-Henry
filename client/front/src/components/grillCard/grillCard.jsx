@@ -56,12 +56,24 @@ export default function GrillCard() {
                 <Loading />
             </div> :
                 <div className={s.cardsGrid}>
-                    {plants && pagination().map((plants, idx) => {
-                        return <Card
-                            key={idx}
-                            data={plants}
-                        />
-                    })}
+                    {plants && pagination().map( //cambiar a productsfilt
+                        (
+                            e
+                        ) => (
+                            <Link 
+                            s={{textDecoration: 'none', color: 'black'}}
+                            to={`/products/${e.id}`}
+                            key={e.id}
+                            >
+                            <ProductCar
+                            key={e.id}
+                            img={e.img}
+                            name={e.name}
+                            price={e.price}
+                            />
+                            </Link>
+                    )
+                    )}
 
                     {/* <ProductCard /> */}
                 </div>}
