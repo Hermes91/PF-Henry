@@ -1,9 +1,9 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-// import GrillCard from "./components/grillCard/grillCard";
+import GrillCard from "./components/grillCard/grillCard";
 import Home from "./components/Home/home";
-//import ProductDetails from "./components/productDetails/ProductDetails";
-import AboutUs from "./components/AboutUs/Abouts";
+import ProductDetails from "./components/productDetails/ProductDetails";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 function App() {
   return (
