@@ -6,11 +6,13 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import NavBar from "../NavBar/NavBar"
 
 export default function AboutUs() {
   return (
     <div>
       {" "}
+      <NavBar/>
       <h1 className={s.title}>
         <u>About Us</u>
         <div className={s.image}></div>
