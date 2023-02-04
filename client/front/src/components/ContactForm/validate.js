@@ -11,10 +11,10 @@ export default function validate({ name, lastname, phone, email, message }) {
         if (!lastname || isBlankSpace.test(lastname)) error.lastname = 'Insert your lastname'
         else if (lastname.trim().length > 50) error.lastname = `Maximum number of characters: 50 (${lastname.trim().length}/50)`
       
-        if (isBlankSpace.test(phone)) error.phone = 'Insert your phone number'
+        if (!phone || isBlankSpace.test(phone)) error.phone = 'Insert your phone number'
         else if (!isPhoneNumber.test(phone)) error.phone = 'Insert a valid phone number'
 
-        if (isBlankSpace.test(email)) error.email = 'Insert your email address'
+        if (!email || isBlankSpace.test(email)) error.email = 'Insert your email address'
         else if (!isEmailAddress.test(email)) error.email = 'Insert a valid email address'
       
         if (!message || isBlankSpace.test(message)) error.message = 'Write your message'

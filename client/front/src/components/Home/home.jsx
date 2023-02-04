@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Footer from '../Footer/Footer'
 import Contact from '../ContactForm/ContactForm'
 import ShopHome from '../Home/shopHome'
+import Discount from '../Discount/discount'
 
 export default function Home() {
 
@@ -18,6 +19,9 @@ export default function Home() {
                 <ProdHome />
                 <ProdHome />
                 <ShopHome />
+            </div>
+            <div className={s.discount}>
+                <Discount/>
             </div>
             <div className={s.contact}>
                 <Contact />

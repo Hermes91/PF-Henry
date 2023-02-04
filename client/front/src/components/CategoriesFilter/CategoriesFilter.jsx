@@ -27,8 +27,8 @@ const CategoriesFilter = () => {
 
   const categoriesList = allCategories.map((category, id) => {
     return (
-      <option key={id} value={category.name}>
-        {category.name}
+      <option key={id} value={category}>
+        {category}
       </option>
     );
   });

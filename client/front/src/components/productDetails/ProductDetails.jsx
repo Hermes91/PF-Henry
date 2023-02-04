@@ -4,11 +4,14 @@ import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import {getProduct, getClean} from '../../redux/actions/actionIndex.js'
+import { getProduct, getClean } from "../../redux/actions/actionIndex.js";
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const ProductDetails = (props) => {
-  const dispatch = useDispatch(); 
+const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const { productId } = useParams();
+  console.log(productId);
   //const history = useHistory();
   /*const productTest = {
     id: "01",
@@ -18,21 +21,20 @@ const ProductDetails = (props) => {
     description:
       "Our broccoli plants have been cultivated with the highest quality standards, using 100% natural fertilizers and pesticides to guarantee a product that you can consume with complete safety. ",
   }; */
-  const product = useSelector((state) => state.productDetail) //productTest;
+  const product = useSelector((state) => state.productDetail); //productTest;
 
   useEffect(() => {
-    dispatch(getProduct(props.match.params.id)); 
-    return () => {
-      dispatch(getClean());
-    };
-  }, [dispatch, props.match.params.id]);
-
+    dispatch(getProduct(productId));
+    // return () => {
+    //   dispatch(getClean());
+    // };
+  }, [dispatch, productId]);
 
   return (
     <>
       <div className={style.container}>
         <div className={style.imagecontainer}>
-          <img className={style.image} src={product.image} alt={product.name} />
+          <img className={style.image} src={product.img} alt={product.name} />
         </div>
         <div className={style.info}>
           <div className={style.titleandwish}>

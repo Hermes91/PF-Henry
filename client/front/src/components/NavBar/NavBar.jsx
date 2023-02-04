@@ -5,6 +5,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import AboutUs from "../AboutUs/AboutUs";
 
+
 // --import style-- //
 import style from "./NavBar.module.css";
 
