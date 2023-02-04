@@ -17,3 +17,14 @@ body {
     margin-top: 30px;
     justify-content: center;
 }
+
+.contact {
+    background-image: url(../../assets/formback.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.formBack {
+    background-color: #69b347;
+    opacity: 0.4;
+}
