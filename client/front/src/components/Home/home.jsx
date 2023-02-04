@@ -4,6 +4,7 @@ import Carousel from '../Carousel/carousel'
 import ProdHome from './prodHome'
 import s from '../Home/home.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Footer from '../Footer/Footer'
 
 
 export default function Home() {
@@ -16,6 +17,9 @@ export default function Home() {
                 <ProdHome />
                 <ProdHome />
                 <ProdHome />
+            </div>
+            <div>
+                <Footer />
             </div>
         </div>
     )
