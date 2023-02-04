@@ -25,24 +25,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding:5px 20px ;
+    padding: 5px 20px;
     min-height: 50px;
 }
 
-.cardbody h3{
+.cardbody h3 {
     font-size: 20pt;
 }
 
-.button{
+.button {
     background-color: #2A265F;
-	border: 0;
-	border-radius: 50px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	color: #fff;
-	font-size: 12pt;
-	padding: 4px 25px;
-	position: absolute;
-	bottom: 30px;
-	right: 30px;
-	letter-spacing: 1px;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: #69b347;
+    font-size: 12pt;
+    padding: 1px 25px;
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+    letter-spacing: 1px;
+    transition: padding 0.2s;
 }
+
+.button:hover {
+    padding: 5px 30px;
+    background-color: #151238;
+}
+

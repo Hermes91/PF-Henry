@@ -16,7 +16,7 @@ export default function Carouselle() {
                         <span className={s.h2}> our hands </span>
                     </div>
                     <header>
-                        <img alt="carousel1" src={background1} />
+                        <img className={s.imgCar} alt="carousel1" src={background1} />
                     </header>
                 </div>
                 <div>
@@ -24,7 +24,7 @@ export default function Carouselle() {
                         <span className={s.h1}>Explore our wide variety </span>
                     </div>
                     <header>
-                        <img alt="carousel2" src={background2} />
+                        <img className={s.imgCar} alt="carousel2" src={background2} />
                     </header>
                 </div>
                 <div>
@@ -34,7 +34,7 @@ export default function Carouselle() {
                         <span className={s.h1}>ever  </span>
                     </div>
                     <header>
-                        <img alt="carousel3" src={background3} />
+                        <img className={s.imgCar} alt="carousel3" src={background3} />
                     </header>
                 </div>
             </Carousel>
