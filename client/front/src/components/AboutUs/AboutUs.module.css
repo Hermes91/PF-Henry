@@ -1,0 +1,57 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+    height: 100px;
+    overflow: hidden;
+}
+
+footer {
+    color: aliceblue;
+    padding: 20px;
+    background: black;
+    margin-top: auto;
+}
+
+footer p {
+    margin-top: 25px;
+}
+
+.logos {
+    display: flex;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #69b347;
+}
+
+.logos svg {
+    height: 30px;
+    cursor: pointer;
+}
+
+
+footer a:visited {
+    color: #69b347;
+}
+
+.title1{
+    margin-top: 15px;
+     display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.title{
+    margin-top: 20px;
+}
+.image{
+    background: url("./ImageComponentAboutUs2.jpg");
+  width: 100vw;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  object-fit:contain;
+  background-repeat: no-repeat;
+}
