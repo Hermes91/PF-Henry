@@ -21,11 +21,11 @@ export default function GrillCard() {
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
 
   useEffect(() => {
-    !plants.length && dispatch(getProducts());
+    dispatch(getProducts());
     setTimeout(() => {
       setLoading(false);
     }, "2500");
-  });
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
