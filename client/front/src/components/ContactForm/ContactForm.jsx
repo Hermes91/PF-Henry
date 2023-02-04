@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import validate from './validate';
 import s from "../ContactForm/ContactForm.module.css"
+import axios from 'axios';
 
 export default function CreateForm() {
     const dispatch = useDispatch()
@@ -22,9 +23,15 @@ export default function CreateForm() {
 
     const isButtonDisabled = () => !(input.name && input.lastname) || (Object.keys(error).length)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
+        await postMessage()
+        setInput({ name: "", lastname: "", phone: "", email: "", message: "" })
+        alert("Thank you! Your message was sent correctly")
+    }
+
+    const postMessage = async() => {
         const newMessage = {
             name: input.name.trim(),
             lastname: input.lastname.trim(),
@@ -32,10 +39,11 @@ export default function CreateForm() {
             email: input.email,
             message: input.message.trim(),
         }
-
-        //action? 
-        setInput({ name: "", lastname: "", phone: "", email: "", message: "" })
-        alert("Thank you! Your message was sent correctly")
+        try {
+            const post = await axios.post("https://submit-form.com/RwQl1rfK", newMessage)
+        } catch(e) {
+            console.log(e)
+        }
     }
 
     return (
