@@ -2,11 +2,11 @@ import React from "react";
 import s from '../Pagination/pagination.module.css'
 
 
-const Pagination = ({ productsXPage, pagination, products }) => {
+const Pagination = ({ productsXPage, pagination, plants }) => {
     let pages = []
 
 
-    for (let i = 1; i <= Math.ceil(products / productsXPage); i++) {
+    for (let i = 1; i <= Math.ceil(plants / productsXPage); i++) {
         pages.push(i)
     }
 
