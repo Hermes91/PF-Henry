@@ -17,7 +17,7 @@ export default function NavBar() {
   };
 
   const handleClickHome = (e) => {
-    navigate('/home');
+    navigate('/');
   };
 
   return (
@@ -26,7 +26,7 @@ export default function NavBar() {
         <div className={style.NavBar}>
 
           <div className={style.left}>
-            <Link to='/home' className={style.btn_left}>
+            <Link to='/' className={style.btn_left}>
               <FontAwesomeIcon icon={faHome} className={style.icon} onClick={(e) => handleClickHome(e)} alt='Home icon' />
             </Link>
             <Link to='/shop' className={style.btn_left}>Shop</Link>
