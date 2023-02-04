@@ -9,12 +9,12 @@ export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
-export const GET_CLEAN = 'GET_CLEAN';
+export const GET_CLEAN = "GET_CLEAN";
 
 export const getProducts = () => {
   return async function (dispatch) {
     const productsResponse = await axios.get("/products");
-    dispatch({ type: GET_PRODUCTS, payload: productsResponse });
+    dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
 
