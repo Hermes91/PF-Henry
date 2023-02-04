@@ -21,7 +21,7 @@ export const getProducts = () => {
 export const getCategories = () => {
   return async function (dispatch) {
     const categoriesResponse = await axios.get("/categories");
-    dispatch({ type: GET_CATEGORIES, payload: categoriesResponse });
+    dispatch({ type: GET_CATEGORIES, payload: categoriesResponse.data });
   };
 };
 
