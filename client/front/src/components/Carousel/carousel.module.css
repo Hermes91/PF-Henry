@@ -38,7 +38,7 @@ header {
     overflow: hidden;
 }
 
-img {
+.imgCar {
     position: relative;
     object-fit: cover;
     opacity: 0.3;

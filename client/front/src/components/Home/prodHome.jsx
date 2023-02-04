@@ -1,4 +1,5 @@
 import { React } from 'react'
+import { Link } from 'react-router-dom'
 import s from '../Home/prodHome.module.css'
 
 
@@ -11,9 +12,12 @@ export default function ProdHome() {
                 </div>
                 <div className={s.cardbody}>
                     <h3>Product's name</h3>
-                    <div className={s.button}>
-                        <h4>Read More</h4>
-                    </div>
+                    <Link to='/ProductDetail{id}' > 
+                    {/* agregar la ruta al product detail */}
+                        <div className={s.button}>
+                            <h4>Read More</h4>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
