@@ -7,20 +7,13 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { getProduct, getClean } from "../../redux/actions/actionIndex.js";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Navbar from "../NavBar/NavBar";
+import Footer from '../Footer/Footer'
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { productId } = useParams();
-  console.log(productId);
-  //const history = useHistory();
-  /*const productTest = {
-    id: "01",
-    image: "../../assets/images/brocoli.jpg",
-    name: "The best broccoli",
-    price: "12.99",
-    description:
-      "Our broccoli plants have been cultivated with the highest quality standards, using 100% natural fertilizers and pesticides to guarantee a product that you can consume with complete safety. ",
-  }; */
+ 
   const product = useSelector((state) => state.productDetail); //productTest;
 
   useEffect(() => {
@@ -32,7 +25,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className={style.container}>
+        <Navbar />
+      <div className={style.containerP}>
         <div className={style.imagecontainer}>
           <img className={style.image} src={product.img} alt={product.name} />
         </div>
@@ -57,11 +51,7 @@ const ProductDetails = () => {
           </div>
 
           <button
-            // onClick={() => {
-            //   history.goBack();
-            // }}
-            className={style.myBtn}
-          >
+            className={style.myBtn} >
             Comprar
           </button>
         </div>
@@ -93,7 +83,7 @@ const ProductDetails = () => {
         ></textarea>
 
         <button
-          // onClick={() => {
+      // onClick={() => {
           //   history.goBack();
           // }}
           className={style.myBtnCalificar}
@@ -101,6 +91,7 @@ const ProductDetails = () => {
           Calificar
         </button>
       </div>
+      <Footer />
     </>
   );
 };
