@@ -1,5 +1,14 @@
 .topbar {
+  margin-top: 2%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  background: rgb(215, 255, 197);
+  background: linear-gradient(180deg, rgba(215, 255, 197, 1) 49%, rgba(148, 218, 116, 1) 100%);
+}
+
+
+.searchbar {
+  display: flex;
   justify-content: center;
 }
