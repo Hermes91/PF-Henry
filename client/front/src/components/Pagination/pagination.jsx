@@ -2,7 +2,7 @@ import React from "react";
 import s from '../Pagination/pagination.module.css'
 
 
-const Pagination = ({ productsXPage, pagination, plants }) => {
+const Pagination = ({ productsXPage, pagination, plants, currentPage }) => {
     let pages = []
 
 
