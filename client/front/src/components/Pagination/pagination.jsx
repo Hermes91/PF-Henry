@@ -12,6 +12,7 @@ export default function Pagination({ productsXPage, pagination, plants, currentP
 
     return (
         <div className={s.pagination}>
+
             {pages &&
             pages.map((number) => (
                 <button
@@ -22,6 +23,7 @@ export default function Pagination({ productsXPage, pagination, plants, currentP
                         {number}
                     </button>
             ))}
+
         </div>
     )
 }
