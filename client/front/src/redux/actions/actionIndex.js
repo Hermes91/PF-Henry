@@ -36,10 +36,10 @@ export const searchProduct = (searchTerm) => {
   return async function (dispatch) {
     try {
       const searchResponse = await axios.get(`/products/?name=${searchTerm}`);
-      dispatch({ type: SEARCH_PRODUCT, payload: searchResponse });
+      dispatch({ type: SEARCH_PRODUCT, payload: searchResponse.data });
     } catch (error) {
       console.log("Product not found...");
-      dispatch({ type: SEARCH_PRODUCT, payload: { data: [] } });
+      alert(`Product not found, try another name`);
     }
   };
 };

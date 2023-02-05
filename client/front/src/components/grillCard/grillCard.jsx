@@ -19,20 +19,22 @@ export default function GrillCard() {
   const iLastProduct = currentPage * productsXPage;
   const iFirstProduct = iLastProduct - productsXPage;
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
+  const currentPages =  plants.length / productsXPage
 
   useEffect(() => {
-    !plants.length && dispatch(getProducts());
+    dispatch(getProducts());
     setTimeout(() => {
       setLoading(false);
     }, "2500");
-  });
+  }, [dispatch]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const nextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPages > currentPage) setCurrentPage(currentPage + 1);
+   
   };
 
   const previousPage = () => {
@@ -48,8 +50,9 @@ export default function GrillCard() {
           </button>
           <Pagination
             productsXPage={productsXPage}
-            plants={plants}
+            plants={plants.length}
             pagination={pagination}
+            currentPage={currentPage}
           />
           <button onClick={nextPage} className={s.prevNext}>
             Next
@@ -63,8 +66,7 @@ export default function GrillCard() {
         </div>
       ) : (
         <div className={s.cardsGrid}>
-          {plants &&
-            plants.map(
+          {currentProducts.map(
               //cambiar a productsfilt
               (e) => (
                 <Link
