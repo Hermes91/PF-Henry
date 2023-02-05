@@ -16,7 +16,6 @@ const initialState = {
   allCategories: [],
   productDetail: [],
   filterProducts: [],
-  categoriesChange: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -100,10 +99,10 @@ export default function reducer(state = initialState, action) {
     // --filtrado por categoría-- //
     case FILTER_BY_CATEGORY:
       const copyAllProducts = state.allProducts;
-      const productsFilterByCategory = copyAllProducts.filter((e) => {
-        let categoryFiltred = e.category.map((e) => e.name);
-        return categoryFiltred.includes(action.payload);
-      });
+      const productsFilterByCategory =
+       action.payload === "Todas"
+      ? copyAllProducts
+      : copyAllProducts.filter((e) => e.category?.includes(action.payload));
       return {
         ...state,
         filterProducts: productsFilterByCategory,
