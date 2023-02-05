@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  margin: 0 10% 0 10%;
+  margin: 2% 10% 0 10%;
 }
 
 .containerdescription {
