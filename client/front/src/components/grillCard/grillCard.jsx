@@ -15,7 +15,6 @@ export default function GrillCard() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [productsXPage] = useState(9);
 
 
