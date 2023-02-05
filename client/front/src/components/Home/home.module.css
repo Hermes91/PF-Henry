@@ -9,7 +9,7 @@ body {
     align-items: center;
 }
 
-.cards {
+.cardsH {
     display: flex;
     flex-direction: row;
     vertical-align: middle;

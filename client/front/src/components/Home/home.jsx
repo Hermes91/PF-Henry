@@ -15,7 +15,7 @@ export default function Home() {
         <div className={s.home}>
             <Navbar />
             <Carousel />
-            <div className={s.cards}>
+            <div className={s.cardsH}>
                 <ProdHome />
                 <ProdHome />
                 <ShopHome />

@@ -38,6 +38,7 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
+    background-color: #b9c5a9;
 }
 
 .cardsGrid {
@@ -46,8 +47,8 @@
     display: grid;
     max-width: 100%;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 20px;
-    grid-column-gap: 20px;
+    row-gap: 30px;
+    grid-column-gap: 70px;
     justify-items: center;
     justify-content: center;
     margin-left: auto;
