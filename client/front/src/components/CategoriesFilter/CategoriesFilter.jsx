@@ -19,7 +19,6 @@ const CategoriesFilter = () => {
   }, [dispatch /*, categoriesChange*/]);
 
   const handleFilteredProduct = (event) => {
-    dispatch(getProducts());
     dispatch(filterByCategory(event.target.value));
     //dispatch(setCurrent(1));
     //dispatch(setPage(1));
