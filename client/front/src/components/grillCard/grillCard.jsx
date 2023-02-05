@@ -50,6 +50,7 @@ export default function GrillCard() {
             productsXPage={productsXPage}
             plants={plants.lenght}
             pagination={pagination}
+        
           />
           <button onClick={nextPage} className={s.prevNext}>
             Next

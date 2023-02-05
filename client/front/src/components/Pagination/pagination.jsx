@@ -16,7 +16,7 @@ const Pagination = ({ productsXPage, pagination, plants }) => {
                 <button
                     key={number}
                         onClick={() => pagination(number)}
-                        className={number === currentPage ? 'active' : ''}>
+                        >
                         {number}
                     </button>
             })}
