@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action) {
     // --filtrado por precio de mayor a menor y al revés-- //
     case FILTER_BY_PRICE:
       let productsFilterByPrice =
-        action.payload === "Min-Max"
+        action.payload === "minPrice"
           ? state.filterProducts.sort((a, b) => {
               if (a.price > b.price) return 1;
               if (a.price < b.price) return -1;
@@ -112,7 +112,7 @@ export default function reducer(state = initialState, action) {
     // --filtrado por peso-- //
     case FILTER_BY_WEIGHT:
       let productsFilterByWeight =
-        action.payload === "Min-Max"
+        action.payload === "minWeight"
           ? state.filterProducts.sort((a, b) => {
               if (a.weight > b.weight) return 1;
               if (a.weight < b.weight) return -1;
