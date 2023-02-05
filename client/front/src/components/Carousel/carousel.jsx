@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 
 export default function Carouselle() {
     return (
-        <div className={s.container}>
+        <div className={s.containerH}>
           
             <Carousel showThumbs={false}  >
                 <div>

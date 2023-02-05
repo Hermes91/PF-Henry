@@ -20,6 +20,7 @@ export const getProducts = () => {
   };
 };
 
+
 export const getCategories = () => {
   return async function (dispatch) {
     const categoriesResponse = await axios.get("/categories");
