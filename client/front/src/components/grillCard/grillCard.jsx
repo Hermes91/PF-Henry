@@ -6,17 +6,19 @@ import Pagination from "../Pagination/pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../redux/actions/actionIndex";
+import Footer from '../Footer/Footer'
+
 
 export default function GrillCard() {
   const plants = useSelector((state) => state.filterProducts);
   const orderedChange = useSelector((state) => state.orderedChange);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [productsXPage] = useState(15);
 
-  // const plants = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6]
+
   const iLastProduct = currentPage * productsXPage;
   const iFirstProduct = iLastProduct - productsXPage;
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
@@ -24,9 +26,9 @@ export default function GrillCard() {
 
   useEffect(() => {
     !plants.length && dispatch(getProducts());
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, "2500");
+    setTimeout(() => {
+      setLoading(false);
+    }, "1500");
   }, [dispatch, orderedChange]);
 
   const pagination = (pageNumber) => {
@@ -83,10 +85,9 @@ export default function GrillCard() {
               </Link>
             )
           )}
-
-          {/* <ProductCard /> */}
         </div>
       )}
+      <Footer />
     </div>
   );
 }

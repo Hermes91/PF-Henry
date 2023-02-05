@@ -15,7 +15,8 @@
 .pag .prevNext {
     width: 80px;
     border-radius: 4px;
-    background-color: #5aff7e;
+    color: #8ae414;
+    background-color: #386641;
 }
 
 .pag button {
