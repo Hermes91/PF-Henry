@@ -26,6 +26,7 @@ export default function GrillCard() {
 
   useEffect(() => {
     !plants.length && dispatch(getProducts());
+    setCurrentPage(1)
     setTimeout(() => {
       setLoading(false);
     }, "1500");
