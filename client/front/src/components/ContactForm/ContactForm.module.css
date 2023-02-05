@@ -19,7 +19,7 @@
     box-shadow: 10px 22px 33px -12px rgba(0, 0, 0, 0.51);
 }
 
-div > p {
+.error {
     color: #cf3476
 }
 
