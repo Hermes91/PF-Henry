@@ -15,7 +15,6 @@ export default function GrillCard() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [productsXPage] = useState(9);
 
 
@@ -26,6 +25,7 @@ export default function GrillCard() {
 
   useEffect(() => {
     !plants.length && dispatch(getProducts());
+    setCurrentPage(1)
     setTimeout(() => {
       setLoading(false);
     }, "1500");
