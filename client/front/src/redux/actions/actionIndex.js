@@ -10,6 +10,8 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = "GET_CLEAN";
+export const SET_CURRENT = "SET_CURRENT";
+export const SET_PAGE = "SET_PAGE";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -98,3 +100,15 @@ export function getClean() {
     payload: [],
   };
 }
+
+export const setCurrent = (current) => {
+  return async function (dispatch) {
+    await dispatch({ type: SET_CURRENT, payload: current });
+  };
+};
+
+export const setPage = (page) => {
+  return async function (dispatch) {
+    await dispatch({ type: SET_PAGE, payload: page });
+  };
+};

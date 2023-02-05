@@ -9,6 +9,8 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_WEIGHT,
   GET_CLEAN,
+  SET_CURRENT,
+  SET_PAGE,
 } from "../actions/actionIndex.js";
 
 const initialState = {
@@ -16,6 +18,9 @@ const initialState = {
   allCategories: [],
   productDetail: [],
   filterProducts: [],
+  current: 1,
+  page: 1,
+  orderedChange: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -55,7 +60,6 @@ export default function reducer(state = initialState, action) {
         allCategories: action.payload,
       };
 
-
     // --filtrado alfabéticamente A-Z o Z-A-- //
     case FILTER_BY_NAME:
       let productsFilterByName =
@@ -66,14 +70,15 @@ export default function reducer(state = initialState, action) {
               return 0;
             })
           : state.filterProducts.sort((a, b) => {
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
+              if (a.name < b.name) return 1;
+              if (a.name > b.name) return -1;
               return 0;
             });
 
       return {
         ...state,
         filterProducts: productsFilterByName,
+        orderedChange: !state.orderedChange,
       };
 
     // --filtrado por precio de mayor a menor y al revés-- //
@@ -86,26 +91,28 @@ export default function reducer(state = initialState, action) {
               return 0;
             })
           : state.filterProducts.sort((a, b) => {
-              if (a.price < b.price) return -1;
-              if (a.price > b.price) return 1;
+              if (a.price < b.price) return 1;
+              if (a.price > b.price) return -1;
               return 0;
             });
 
       return {
         ...state,
         filterProducts: productsFilterByPrice,
+        orderedChange: !state.orderedChange,
       };
 
     // --filtrado por categoría-- //
     case FILTER_BY_CATEGORY:
       const copyAllProducts = state.allProducts;
       const productsFilterByCategory =
-       action.payload === "Todas"
-      ? copyAllProducts
-      : copyAllProducts.filter((e) => e.category?.includes(action.payload));
+        action.payload === "Todas"
+          ? copyAllProducts
+          : copyAllProducts.filter((e) => e.category?.includes(action.payload));
       return {
         ...state,
         filterProducts: productsFilterByCategory,
+        orderedChange: !state.orderedChange,
       };
 
     // --filtrado por peso-- //
@@ -126,6 +133,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         filterProducts: productsFilterByWeight,
+        orderedChange: !state.orderedChange,
       };
 
     case GET_CLEAN: {
@@ -142,6 +150,18 @@ export default function reducer(state = initialState, action) {
         dogsDetail: action.payload,
       };
     }
+
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: action.payload,
+      };
+
+    case SET_PAGE:
+      return {
+        ...state,
+        page: action.payload,
+      };
 
     // --case default-- //
     default:

@@ -9,8 +9,9 @@ import { getProducts } from "../../redux/actions/actionIndex";
 
 export default function GrillCard() {
   const plants = useSelector((state) => state.filterProducts);
+  const orderedChange = useSelector((state) => state.orderedChange);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [productsXPage] = useState(15);
@@ -19,14 +20,14 @@ export default function GrillCard() {
   const iLastProduct = currentPage * productsXPage;
   const iFirstProduct = iLastProduct - productsXPage;
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
-  const currentPages =  plants.length / productsXPage
+  const currentPages = plants.length / productsXPage;
 
   useEffect(() => {
-    dispatch(getProducts());
-    setTimeout(() => {
-      setLoading(false);
-    }, "2500");
-  }, [dispatch]);
+    !plants.length && dispatch(getProducts());
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, "2500");
+  }, [dispatch, orderedChange]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -34,7 +35,6 @@ export default function GrillCard() {
 
   const nextPage = () => {
     if (currentPages > currentPage) setCurrentPage(currentPage + 1);
-   
   };
 
   const previousPage = () => {
@@ -67,22 +67,22 @@ export default function GrillCard() {
       ) : (
         <div className={s.cardsGrid}>
           {currentProducts.map(
-              //cambiar a productsfilt
-              (e) => (
-                <Link
-                  s={{ textDecoration: "none", color: "black" }}
-                  to={`/products/${e.id}`}
+            //cambiar a productsfilt
+            (e) => (
+              <Link
+                s={{ textDecoration: "none", color: "black" }}
+                to={`/products/${e.id}`}
+                key={e.id}
+              >
+                <ProductCard
                   key={e.id}
-                >
-                  <ProductCard
-                    key={e.id}
-                    img={e.img}
-                    name={e.name}
-                    price={e.price}
-                  />
-                </Link>
-              )
-            )}
+                  img={e.img}
+                  name={e.name}
+                  price={e.price}
+                />
+              </Link>
+            )
+          )}
 
           {/* <ProductCard /> */}
         </div>
