@@ -12,14 +12,15 @@ const Pagination = ({ productsXPage, pagination, plants, currentPage }) => {
 
     return (
         <div className={s.pagination}>
-            {pages.map((number) => {
+            {pages && pages.map(number => (
                 <button
-                    key={number}
-                        onClick={() => pagination(number)}
-                        className={number === currentPage ? 'active' : ''}>
-                        {number}
-                    </button>
-            })}
+                key={number}
+                    onClick={() => pagination(number)}
+                    className={number === currentPage ? 'active' : ''}>
+                    {number}
+                </button>
+            )
+            )}
         </div>
     )
 }

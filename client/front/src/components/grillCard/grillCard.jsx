@@ -48,7 +48,7 @@ export default function GrillCard() {
           </button>
           <Pagination
             productsXPage={productsXPage}
-            plants={plants.lenght}
+            plants={plants.length}
             pagination={pagination}
             currentPage={currentPage}
           />
