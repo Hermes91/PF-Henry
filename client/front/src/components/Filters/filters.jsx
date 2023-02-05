@@ -1,53 +1,70 @@
 import { useDispatch } from "react-redux";
-import {filterByName, filterByPrice, filterByWeight} from '../../redux/actions/actionIndex.js'
+import {
+  filterByName,
+  filterByPrice,
+  filterByWeight,
+  setCurrent,
+  setPage,
+} from "../../redux/actions/actionIndex.js";
 
 // --Importo styles-- //
-import style from './filters.module.css'
-
+import style from "./filters.module.css";
 
 export default function Filters() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  // --Handels-- //
 
+  function handleFilterByName(e) {
+    e.preventDefault();
+    dispatch(filterByName(e.target.value));
+    dispatch(setCurrent(1));
+    dispatch(setPage(1));
+  }
+  function handleFilterByPrice(e) {
+    e.preventDefault();
+    dispatch(filterByPrice(e.target.value));
+    dispatch(setCurrent(1));
+    dispatch(setPage(1));
+  }
+  function handleFilterByWeight(e) {
+    e.preventDefault();
+    dispatch(filterByWeight(e.target.value));
+    dispatch(setCurrent(1));
+    dispatch(setPage(1));
+  }
 
-    // --Handels-- //
-
-     function handleFilterByName(e) {
-         e.preventDefault();
-         dispatch(filterByName(e.target.value));
-     }
-     function handleFilterByPrice(e) {
-         e.preventDefault();
-         dispatch(filterByPrice(e.target.value));
-     }
-     function handleFilterByWeight(e) {
-          e.preventDefault();
-         dispatch(filterByWeight(e.target.value));
-     }
-
-
-    return (
-        <div className={style.content}>
-            <div className={style.filters}>
-                {/* -- BY NAME-- */}
-                <select className={style.filters} onChange={(e) => handleFilterByName(e)}>
-                    <option hidden>By Name</option>   
-                    <option value='A-Z'>By A-Z</option>
-                    <option value='Z-A'>By Z-A</option>
-                    </select>
-                {/* --BY PRICE-- */}
-                <select className={style.filters} onChange={(e) => handleFilterByPrice(e)}>
-                    <option hidden>By Price</option>
-                    <option value='maxPrice'>Max-Min</option>
-                    <option value='minPrice'>Min-Max</option>
-                </select>
-                {/* --BY WEIGHT*/}
-                <select className={style.filters} onChange={(e) => handleFilterByWeight(e)}>
-                    <option hidden>By Weight</option>
-                    <option value='maxWeight'>Max-Min</option>
-                    <option value='minWeighr'>Min-Max</option>
-                </select>
-            </div>
-        </div>
-     )
+  return (
+    <div className={style.content}>
+      <div className={style.filters}>
+        {/* -- BY NAME-- */}
+        <select
+          className={style.filters}
+          onChange={(e) => handleFilterByName(e)}
+        >
+          <option hidden>By Name</option>
+          <option value="A-Z">By A-Z</option>
+          <option value="Z-A">By Z-A</option>
+        </select>
+        {/* --BY PRICE-- */}
+        <select
+          className={style.filters}
+          onChange={(e) => handleFilterByPrice(e)}
+        >
+          <option hidden>By Price</option>
+          <option value="maxPrice">Max-Min</option>
+          <option value="minPrice">Min-Max</option>
+        </select>
+        {/* --BY WEIGHT*/}
+        <select
+          className={style.filters}
+          onChange={(e) => handleFilterByWeight(e)}
+        >
+          <option hidden>By Weight</option>
+          <option value="maxWeight">Max-Min</option>
+          <option value="minWeight">Min-Max</option>
+        </select>
+      </div>
+    </div>
+  );
 }
