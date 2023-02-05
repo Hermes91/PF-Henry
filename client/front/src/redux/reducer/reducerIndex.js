@@ -62,7 +62,7 @@ export default function reducer(state = initialState, action) {
 
     // --filtrado alfabéticamente A-Z o Z-A-- //
     case FILTER_BY_NAME:
-      let productsFilterByName =
+      const productsFilterByName =
         action.payload === "A-Z"
           ? state.filterProducts.sort((a, b) => {
               if (a.name > b.name) return 1;
@@ -83,7 +83,7 @@ export default function reducer(state = initialState, action) {
 
     // --filtrado por precio de mayor a menor y al revés-- //
     case FILTER_BY_PRICE:
-      let productsFilterByPrice =
+      const productsFilterByPrice =
         action.payload === "minPrice"
           ? state.filterProducts.sort((a, b) => {
               if (a.price > b.price) return 1;
@@ -117,7 +117,7 @@ export default function reducer(state = initialState, action) {
 
     // --filtrado por peso-- //
     case FILTER_BY_WEIGHT:
-      let productsFilterByWeight =
+      const productsFilterByWeight =
         action.payload === "minWeight"
           ? state.filterProducts.sort((a, b) => {
               if (a.weight > b.weight) return 1;

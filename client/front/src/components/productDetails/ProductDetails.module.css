@@ -1,10 +1,7 @@
 .containerP {
   display: flex;
   flex-direction: row;
-  margin: 0 10% 0 10%;
-  background-color: #d4ffb1;
-  padding: 3%;
-  width: 1000px;
+  margin: 2% 10% 0 10%;
 }
 
 .containerdescription {

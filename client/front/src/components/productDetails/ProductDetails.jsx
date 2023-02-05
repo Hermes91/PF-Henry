@@ -41,6 +41,16 @@ const ProductDetails = () => {
               <p className={style.p}>
                 <span className={style.span}>Código:</span> {product.id}
               </p>
+              <p className={style.p}>
+                <span className={style.span}>Altura:</span> {product.height} cm
+              </p>
+              <p className={style.p}>
+                <span className={style.span}>Peso:</span> {product.weight} gr
+              </p>
+              <p className={style.p}>
+                <span className={style.span}>Cantidad disponible:</span>{" "}
+                {product.stock}
+              </p>
               <p className={style.price}>
                 <span className={style.span}>Precio: $ {product.price}</span>
               </p>
@@ -51,7 +61,11 @@ const ProductDetails = () => {
           </div>
 
           <button
-            className={style.myBtn} >
+            onClick={() => {
+              alert("Product added to cart!");
+            }}
+            className={style.myBtn}
+          >
             Comprar
           </button>
         </div>

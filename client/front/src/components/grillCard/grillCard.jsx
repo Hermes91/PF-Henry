@@ -16,7 +16,7 @@ export default function GrillCard() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [productsXPage] = useState(15);
+  const [productsXPage] = useState(9);
 
 
   const iLastProduct = currentPage * productsXPage;
