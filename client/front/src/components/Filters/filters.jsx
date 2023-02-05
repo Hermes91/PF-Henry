@@ -5,15 +5,23 @@ import {
   filterByWeight,
   setCurrent,
   setPage,
+  getProducts
 } from "../../redux/actions/actionIndex.js";
 
 // --Importo styles-- //
 import style from "./filters.module.css";
+import reloader from './img/reload.png'
 
 export default function Filters() {
   const dispatch = useDispatch();
 
   // --Handels-- //
+
+  function handleClick(e) {
+    e.preventDefault(); 
+    dispatch(getProducts()); 
+  }
+
 
   function handleFilterByName(e) {
     e.preventDefault();
@@ -65,6 +73,14 @@ export default function Filters() {
           <option value="maxWeight">Max-Min</option>
           <option value="minWeight">Min-Max</option>
         </select>
+        <button
+            className={style.refreshButton}
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            <img className={style.reloader} src={reloader} alt="reload_BTN" />
+          </button>
       </div>
     </div>
   );
