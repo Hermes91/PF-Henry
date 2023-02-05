@@ -16,6 +16,8 @@ footer p {
     margin-top: 25px;
 }
 
+
+
 .logos {
     display: flex;
     width: 30%;
@@ -31,6 +33,9 @@ footer p {
     cursor: pointer;
 }
 
+footer a:link {
+    color: #69b347;
+}
 
 footer a:visited {
     color: #69b347;
