@@ -3,3 +3,9 @@
   align-items: center;
   justify-content: center;
 }
+
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+}

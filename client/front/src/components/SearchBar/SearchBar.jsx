@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 
 // --importo actions que traiga by name-- //
-import {searchProduct} from '../../redux/actions/actionIndex.js'
+import { searchProduct } from '../../redux/actions/actionIndex.js'
 
 // --importo style-- //
 import style from '../SearchBar/SearchBar.module.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function SearchBar() {
     const dispatch = useDispatch();
@@ -28,10 +27,9 @@ export default function SearchBar() {
 
     return (
         <div className={style.backimg}>
-            <div>
-                <FontAwesomeIcon icon={faBars} className={style.icon} alt='Bars icon' />
-            </div>
+
             <div className={style.components}>
+                <h3 className={style.searchTitle}>Searching for some flowers?</h3>
                 <form className={style.searchBar}>
                     <input
                         className={style.input}
