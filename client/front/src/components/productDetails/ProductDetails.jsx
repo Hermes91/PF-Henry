@@ -7,7 +7,8 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { getProduct, getClean } from "../../redux/actions/actionIndex.js";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { productId } = useParams();
@@ -32,6 +33,7 @@ const ProductDetails = () => {
 
   return (
     <>
+      <NavBar />
       <div className={style.container}>
         <div className={style.imagecontainer}>
           <img className={style.image} src={product.img} alt={product.name} />
@@ -47,6 +49,16 @@ const ProductDetails = () => {
               <p className={style.p}>
                 <span className={style.span}>Código:</span> {product.id}
               </p>
+              <p className={style.p}>
+                <span className={style.span}>Altura:</span> {product.height} cm
+              </p>
+              <p className={style.p}>
+                <span className={style.span}>Peso:</span> {product.weight} gr
+              </p>
+              <p className={style.p}>
+                <span className={style.span}>Cantidad disponible:</span>{" "}
+                {product.stock}
+              </p>
               <p className={style.price}>
                 <span className={style.span}>Precio: $ {product.price}</span>
               </p>
@@ -57,9 +69,9 @@ const ProductDetails = () => {
           </div>
 
           <button
-            // onClick={() => {
-            //   history.goBack();
-            // }}
+            onClick={() => {
+              alert("Product added to cart!");
+            }}
             className={style.myBtn}
           >
             Comprar
@@ -101,6 +113,7 @@ const ProductDetails = () => {
           Calificar
         </button>
       </div>
+      <Footer />
     </>
   );
 };
