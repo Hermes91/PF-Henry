@@ -36,7 +36,8 @@ export default function Filters() {
 
   return (
     <div className={style.content}>
-      <div className={style.filters}>
+      <div className={style.filterContainer}>
+        <h2>Filters</h2>
         {/* -- BY NAME-- */}
         <select
           className={style.filters}
