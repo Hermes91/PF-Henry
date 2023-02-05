@@ -19,6 +19,7 @@ export default function GrillCard() {
   const iLastProduct = currentPage * productsXPage;
   const iFirstProduct = iLastProduct - productsXPage;
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
+  const currentPages =  plants.length / productsXPage
 
   useEffect(() => {
     dispatch(getProducts());
@@ -32,7 +33,8 @@ export default function GrillCard() {
   };
 
   const nextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPages > currentPage) setCurrentPage(currentPage + 1);
+   
   };
 
   const previousPage = () => {

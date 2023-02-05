@@ -2,7 +2,7 @@ import React from "react";
 import s from '../Pagination/pagination.module.css'
 
 
-const Pagination = ({ productsXPage, pagination, plants, currentPage }) => {
+export default function Pagination({ productsXPage, pagination, plants, currentPage }) {
     let pages = []
 
 
@@ -12,17 +12,18 @@ const Pagination = ({ productsXPage, pagination, plants, currentPage }) => {
 
     return (
         <div className={s.pagination}>
-            {pages && pages.map(number => (
+
+            {pages &&
+            pages.map((number) => (
                 <button
-                key={number}
-                    onClick={() => pagination(number)}
-                    className={number === currentPage ? 'active' : ''}>
-                    {number}
-                </button>
-            )
-            )}
+                    key={number}
+                        onClick={() => pagination(number)}
+                        className={number === currentPage ? 'active' : ''}
+                        >
+                        {number}
+                    </button>
+            ))}
+
         </div>
     )
 }
-
-export default Pagination
