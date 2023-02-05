@@ -40,3 +40,13 @@
   width: 30px;
   height: 30px;
 }
+
+.refreshButton {
+  background-color: transparent;
+  border: none;
+
+}
+
+.reloader:hover {
+  cursor: pointer;
+}
