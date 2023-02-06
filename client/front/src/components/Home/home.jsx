@@ -22,7 +22,7 @@ export default function Home() {
             <Navbar />
             </Auth0Provider>
             <Carousel />
-            <div className={s.cards}>
+            <div className={s.cardsH}>
                 <ProdHome id="7" name="Bromelia guzmania" style="0"/>
                 <ProdHome id="8" name="Bromelia lindenii" style="1"/>
                 <ShopHome />
