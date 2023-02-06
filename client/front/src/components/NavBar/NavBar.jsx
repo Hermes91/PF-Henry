@@ -4,12 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import AboutUs from "../AboutUs/AboutUs";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../Login/Login";
+import LogoutButton from "../Logout/Logout";
 
 
 // --import style-- //
 import style from "./NavBar.module.css";
 
 export default function NavBar() {
+  const { isAuthenticated } = useAuth0();
   let navigate = useNavigate();
 
   const handleClickMarket = (e) => {
@@ -42,16 +46,15 @@ export default function NavBar() {
           </div>
 
           <div className={style.right}>
-            <Link to="/login" className={style.btn_right}>
-              Log In
-            </Link>
+            {isAuthenticated? <LogoutButton className={style.btn_right}/> 
+            :<LoginButton className={style.btn_right}/>}
             <Link to="/market" className={style.btn_right}>
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={style.icon}
                 onClick={(e) => handleClickMarket(e)}
                 alt="Shopping cart icon"
-              />
+                />
             </Link>
           </div>
         </div>
