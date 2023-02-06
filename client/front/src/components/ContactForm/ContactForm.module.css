@@ -20,6 +20,7 @@
 }
 
 .error {
+    font-size: 14px;
     color: #cf3476
 }
 
@@ -105,7 +106,7 @@ form {
     border: none;
     border-bottom: 1px solid #666;
     color: #ddd;
-    font-size: 14px;
+    font-size: 18px;
     text-transform: uppercase;
     outline: none;
     transition: border-color .2s;
