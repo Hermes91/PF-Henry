@@ -31,6 +31,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
         filterProducts: action.payload,
+        orderedChange: !state.orderedChange
       };
 
     // --trae single producto by id --//
@@ -45,6 +46,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         filterProducts: action.payload,
+        orderedChange: !state.orderedChange
       };
 
     // --crea un producto-- //

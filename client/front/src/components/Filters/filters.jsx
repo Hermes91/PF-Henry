@@ -3,8 +3,6 @@ import {
   filterByName,
   filterByPrice,
   filterByWeight,
-  setCurrent,
-  setPage,
   getProducts
 } from "../../redux/actions/actionIndex.js";
 
@@ -26,20 +24,14 @@ export default function Filters() {
   function handleFilterByName(e) {
     e.preventDefault();
     dispatch(filterByName(e.target.value));
-    dispatch(setCurrent(1));
-    dispatch(setPage(1));
   }
   function handleFilterByPrice(e) {
     e.preventDefault();
     dispatch(filterByPrice(e.target.value));
-    dispatch(setCurrent(1));
-    dispatch(setPage(1));
   }
   function handleFilterByWeight(e) {
     e.preventDefault();
     dispatch(filterByWeight(e.target.value));
-    dispatch(setCurrent(1));
-    dispatch(setPage(1));
   }
 
   return (
