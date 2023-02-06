@@ -2,6 +2,7 @@
     text-align: center;
     margin-top: 70px;
     height: 100px;
+    height: 130px;
     overflow: hidden;
 }
 
@@ -15,6 +16,8 @@ footer {
 footer p {
     margin-top: 25px;
 }
+
+
 
 .logos {
     display: flex;
@@ -31,6 +34,9 @@ footer p {
     cursor: pointer;
 }
 
+footer a:link {
+    color: #69b347;
+}
 
 footer a:visited {
     color: #69b347;

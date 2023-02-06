@@ -1,8 +1,8 @@
-import { React } from 'react'
-import Navbar from '../NavBar/NavBar'
-import Carousel from '../Carousel/carousel'
-import ProdHome from './prodHome'
-import s from '../Home/home.module.css'
+import { React } from "react";
+import Navbar from "../NavBar/NavBar";
+import Carousel from "../Carousel/carousel";
+import ProdHome from "./prodHome";
+import s from "../Home/home.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Footer from '../Footer/Footer'
 import Contact from '../ContactForm/ContactForm'
@@ -23,8 +23,8 @@ export default function Home() {
             </Auth0Provider>
             <Carousel />
             <div className={s.cards}>
-                <ProdHome />
-                <ProdHome />
+                <ProdHome id="7" name="Bromelia guzmania" style="0"/>
+                <ProdHome id="8" name="Bromelia lindenii" style="1"/>
                 <ShopHome />
             </div>
             <div className={s.discount}>
@@ -39,3 +39,4 @@ export default function Home() {
         </div>
     )
 }
+

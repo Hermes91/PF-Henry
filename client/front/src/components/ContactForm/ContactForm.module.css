@@ -19,6 +19,10 @@
     box-shadow: 10px 22px 33px -12px rgba(0, 0, 0, 0.51);
 }
 
+.error {
+    font-size: 14px;
+    color: #cf3476
+}
 
 .screen:after {
     content: '';
@@ -102,7 +106,7 @@ form {
     border: none;
     border-bottom: 1px solid #666;
     color: #ddd;
-    font-size: 14px;
+    font-size: 18px;
     text-transform: uppercase;
     outline: none;
     transition: border-color .2s;

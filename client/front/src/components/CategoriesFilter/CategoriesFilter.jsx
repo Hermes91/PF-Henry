@@ -35,7 +35,7 @@ const CategoriesFilter = () => {
   return (
     <>
       <div className={style.filtercontainer}>
-        <p className={style.title}>Categorías</p>
+        <h3>Categories</h3>
         <select
           className={style.select}
           onChange={(event) => handleFilteredProduct(event)}

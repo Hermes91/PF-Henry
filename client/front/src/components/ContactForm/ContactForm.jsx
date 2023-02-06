@@ -65,19 +65,19 @@ export default function CreateForm() {
                                 <div className={s.appForm}>
                                     <div className={s.FormGroup}>
                                         <input className={s.FormControl} placeholder="NAME" value={input.name} name='name' onChange={handleChange} type='text' />
-                                        {error.name && <p>{error.name}</p>}
+                                        {error.name && <p className={s.error}>{error.name}</p>}
                                     </div>
                                     <div className={s.FormGroup}>
                                         <input className={s.FormControl} placeholder="LASTNAME" value={input.lastname} name='lastname' onChange={handleChange} type='text' />
-                                        {error.lastname && <p>{error.lastname}</p>}
+                                        {error.lastname && <p className={s.error}>{error.lastname}</p>}
                                     </div>
                                     <div className={s.FormGroup}>
                                         <input className={s.FormControl} placeholder="EMAIL@EXAMPLE.COM" value={input.email} name='email' onChange={handleChange} type='text' />
-                                        {error.email && <p>{error.email}</p>}
+                                        {error.email && <p className={s.error}>{error.email}</p>}
                                     </div>
                                     <div className={s.FormGroup}>
                                         <input className={s.FormControl} placeholder="PHONE NUMBER  +XX XXX XXXXX'" value={input.phone} name='phone' onChange={handleChange} type='text' />
-                                        {error.phone && <p>{error.phone}</p>}
+                                        {error.phone && <p className={s.error}>{error.phone}</p>}
                                     </div>
                                     <div className={s.FogitrmGroupMessage}>
                                         <textarea className={s.FormControl} placeholder="Write your message here..." value={input.message} name='message' onChange={handleChange} />
