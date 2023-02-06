@@ -45,6 +45,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         filterProducts: action.payload,
+        orderedChange: !state.orderedChange
       };
 
     // --crea un producto-- //
