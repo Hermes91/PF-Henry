@@ -29,7 +29,7 @@ export default function GrillCard() {
     setTimeout(() => {
       setLoading(false);
     }, "1500");
-  }, [dispatch, orderedChange]);
+  }, [dispatch, orderedChange,plants.length]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
