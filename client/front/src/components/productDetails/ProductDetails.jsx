@@ -4,7 +4,7 @@ import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { getProduct, getClean } from "../../redux/actions/actionIndex.js";
+import { getProduct,/* getClean */} from "../../redux/actions/actionIndex.js";
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
@@ -47,20 +47,20 @@ const ProductDetails = () => {
             <div className={style.infoblockcontainer}>
               <div className={style.infoblock}>
                 <p className={style.p}>
-                  <span className={style.span}>Código:</span> {product.id}
+                  <span className={style.span}>Code:</span> {product.id}
                 </p>
                 <p className={style.p}>
-                  <span className={style.span}>Altura:</span> {product.height} cm
+                  <span className={style.span}>Height:</span> {product.height} cm
                 </p>
                 <p className={style.p}>
-                  <span className={style.span}>Peso:</span> {product.weight} gr
+                  <span className={style.span}>Weight:</span> {product.weight} gr
                 </p>
                 <p className={style.p}>
-                  <span className={style.span}>Cantidad disponible:</span>{" "}
+                  <span className={style.span}>Quantity Available:</span>{" "}
                   {product.stock}
                 </p>
                 <p className={style.price}>
-                  <span className={style.span}>Precio: $ {product.price}</span>
+                  <span className={style.span}>Price: $ {product.price}</span>
                 </p>
                 <button className={style.minusBtn}>-</button>
                 <input className={style.input} value="1"></input>
@@ -74,7 +74,7 @@ const ProductDetails = () => {
               }}
               className={style.myBtn}
             >
-              Comprar
+              Buy
             </button>
           </div>
         </div>
@@ -86,13 +86,13 @@ const ProductDetails = () => {
         </div>
         <div className={style.containerdescription}>
           <p className={style.p}>
-            <span className={style.descriptiontitle}>Descripción:</span>
+            <span className={style.descriptiontitle}>Description:</span>
           </p>
           <p className={style.p}>{product.description}</p>
         </div>
         <div className={style.containerreview}>
           <div className={style.titleandwish}>
-            <span className={style.descriptiontitle}>Reseña:</span>
+            <span className={style.descriptiontitle}>Review:</span>
             <div className={style.stars}>
               <FontAwesomeIcon icon={faStar} className={style.icon} />
               <FontAwesomeIcon icon={faStar} className={style.icon} />
@@ -116,7 +116,7 @@ const ProductDetails = () => {
             // }}
             className={style.myBtnCalificar}
           >
-            Calificar
+            Qualify
           </button>
         </div>
       </div>
