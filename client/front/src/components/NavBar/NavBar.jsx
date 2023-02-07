@@ -3,7 +3,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import AboutUs from "../AboutUs/AboutUs";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Login/Login";
 import LogoutButton from "../Logout/Logout";
@@ -14,6 +13,8 @@ import style from "./NavBar.module.css";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
+
   let navigate = useNavigate();
 
   const handleClickMarket = (e) => {
@@ -46,7 +47,12 @@ export default function NavBar() {
           </div>
 
           <div className={style.right}>
-            {isAuthenticated? <LogoutButton className={style.btn_right}/> 
+            {isAuthenticated? <>
+              <div className={style.userName}> Hello, {user.name}! </div>
+              
+            <LogoutButton className={style.btn_right}/> 
+           
+            </>
             :<LoginButton className={style.btn_right}/>}
             <Link to="/market" className={style.btn_right}>
               <FontAwesomeIcon
