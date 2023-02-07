@@ -14,6 +14,8 @@ import style from "./NavBar.module.css";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
+
   let navigate = useNavigate();
 
   const handleClickMarket = (e) => {
@@ -46,7 +48,11 @@ export default function NavBar() {
           </div>
 
           <div className={style.right}>
-            {isAuthenticated? <LogoutButton className={style.btn_right}/> 
+            {isAuthenticated? <>
+              <div className={style.userName}> Hello, {user.name}! </div>
+            <LogoutButton className={style.btn_right}/> 
+           
+            </>
             :<LoginButton className={style.btn_right}/>}
             <Link to="/market" className={style.btn_right}>
               <FontAwesomeIcon
