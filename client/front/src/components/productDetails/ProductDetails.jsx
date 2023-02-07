@@ -9,9 +9,12 @@ import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from '../Footer/Footer'
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
+  const { user } = useAuth0();
   const { productId } = useParams();
 
   const product = useSelector((state) => state.productDetail); //productTest;
@@ -70,11 +73,15 @@ const ProductDetails = () => {
 
             <button
               onClick={() => {
+                if(!user) {
+                  window.alert("You must be logged in to buy")
+                } else {
                 alert("Product added to cart!");
+                }
               }}
               className={style.myBtn}
             >
-              Buy
+              Buy now
             </button>
           </div>
         </div>
