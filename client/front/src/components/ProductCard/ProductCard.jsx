@@ -14,9 +14,22 @@ const ProductCard = (product) => {
       <div className={s.card}>
 
         <div className={s.cardImg}>
+        <Link s={{ textDecoration: "none", color: "black" }}
+                to={`/shop`}
+              >
           <div className={s.topCard}>
-            <FontAwesomeIcon icon={faHeart} className={s.icon} />
+         
+            <FontAwesomeIcon icon={faHeart} className={s.icon} onClick={() => {
+                if(!user) {
+                  window.alert("You have to be logged in to add products to the wishlist")
+                } else {
+                alert("Product added to the wishlist!");
+                //dispatch action addToWishList
+                }
+              }}/>
+             
           </div>
+          </Link>
           <img
             src={product.img}
             alt="⚠️ Imagen del producto no encontrada ⚠️"
@@ -39,7 +52,7 @@ const ProductCard = (product) => {
             <div className={s.cardfoot}>
               <span  onClick={() => {
                 if(!user) {
-                  window.alert("You must be logged in to buy")
+                  window.alert("You have to be logged in to add to cart")
                 } else {
                 alert("Product added to cart!");
                 //dispatch action addToCart
