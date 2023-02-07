@@ -2,8 +2,12 @@ import s from "./ProductCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 const ProductCard = (product) => {
+  const { user } = useAuth0();
+
   return (
     <div className={s.container}>
 
@@ -28,11 +32,25 @@ const ProductCard = (product) => {
               ${product.price}
             </h4>
           </div>
+          <Link s={{ textDecoration: "none", color: "black" }}
+                to={`/shop`}
+              >
           <div className={s.info2}>
             <div className={s.cardfoot}>
-              <span>Add to cart</span>
+              <span  onClick={() => {
+                if(!user) {
+                  window.alert("You must be logged in to buy")
+                } else {
+                alert("Product added to cart!");
+                //dispatch action addToCart
+                }
+              }}>
+                Add to cart
+              </span>
+           
             </div>
           </div>
+          </Link>
         </div>
       </div>
     </div>
