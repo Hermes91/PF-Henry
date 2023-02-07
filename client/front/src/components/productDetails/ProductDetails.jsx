@@ -44,7 +44,14 @@ const ProductDetails = () => {
           <div className={style.info}>
             <div className={style.titleandwish}>
               <h2 className={style.title}>{product.name}</h2>
-              <FontAwesomeIcon icon={faHeart} className={style.icon} />
+              <FontAwesomeIcon icon={faHeart} className={style.icon} onClick={() => {
+                if(!user) {
+                  window.alert("You have to be logged in to add products to the wishlist")
+                } else {
+                alert("Product added to the wishlist!");
+                //dispatch action addToWishList
+                }
+              }}/>
             </div>
 
             <div className={style.infoblockcontainer}>
@@ -74,14 +81,15 @@ const ProductDetails = () => {
             <button
               onClick={() => {
                 if(!user) {
-                  window.alert("You must be logged in to buy")
+                  window.alert("You have to be logged in to add to cart")
+                  //dispatch action addToCart
                 } else {
                 alert("Product added to cart!");
                 }
               }}
               className={style.myBtn}
             >
-              Buy now
+              Buy
             </button>
           </div>
         </div>

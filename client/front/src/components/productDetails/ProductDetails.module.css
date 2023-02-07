@@ -78,6 +78,7 @@
   display: flex;
   align-items: flex-start;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .price {
