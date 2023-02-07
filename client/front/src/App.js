@@ -17,6 +17,7 @@ function App() {
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/user" element={<UserBar />} />
+        {/* path /user para testear componentes */}
       </Routes>
     </div>
   );

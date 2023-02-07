@@ -14,7 +14,7 @@ export default function UserSidebar() {
                         <li class={s.listItem}>Edit Account</li>
                         <li class={s.listItem}> Change Password</li>
                         <li class={s.listItem}>Wish List</li>
-                        <li class={s.listItem}>Order History</li>
+                        <li class={s.listItem}>My reviews</li>
                         <li class={s.listItem}>Logout</li>
                     </ul>
                 </div>
