@@ -80,6 +80,12 @@ const ProductDetails = () => {
         </div>
         <div className={style.containerdescription}>
           <p className={style.p}>
+            <span className={style.descriptiontitle}>Categories:</span>
+          </p>
+          <p className={style.p}>{product.category}</p>
+        </div>
+        <div className={style.containerdescription}>
+          <p className={style.p}>
             <span className={style.descriptiontitle}>Descripción:</span>
           </p>
           <p className={style.p}>{product.description}</p>
