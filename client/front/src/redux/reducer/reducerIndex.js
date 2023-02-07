@@ -8,9 +8,7 @@ import {
   FILTER_BY_PRICE,
   FILTER_BY_CATEGORY,
   FILTER_BY_WEIGHT,
-  GET_CLEAN,
-  SET_CURRENT,
-  SET_PAGE,
+  GET_CLEAN
 } from "../actions/actionIndex.js";
 
 const initialState = {
@@ -18,8 +16,6 @@ const initialState = {
   allCategories: [],
   productDetail: [],
   filterProducts: [],
-  current: 1,
-  page: 1,
   orderedChange: false,
 };
 
@@ -138,13 +134,7 @@ export default function reducer(state = initialState, action) {
         orderedChange: !state.orderedChange,
       };
 
-    case GET_CLEAN: {
-      return {
-        ...state,
-        dogsDetail: action.payload,
-      };
-    }
-
+      
     // --limpia el state-- //
     case GET_CLEAN: {
       return {
@@ -152,18 +142,6 @@ export default function reducer(state = initialState, action) {
         dogsDetail: action.payload,
       };
     }
-
-    case SET_CURRENT:
-      return {
-        ...state,
-        current: action.payload,
-      };
-
-    case SET_PAGE:
-      return {
-        ...state,
-        page: action.payload,
-      };
 
     // --case default-- //
     default:

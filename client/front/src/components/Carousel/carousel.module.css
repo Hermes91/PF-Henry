@@ -31,7 +31,6 @@
 }
 
 header {
-
     width: 100vw;
     background: black;
     overflow: hidden;
@@ -40,5 +39,5 @@ header {
 .imgCar {
     position: relative;
     object-fit: cover;
-    opacity: 0.3;
+    opacity: 0.6;
 }
