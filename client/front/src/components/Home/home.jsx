@@ -17,8 +17,8 @@ export default function Home() {
             <Navbar />
             <Carousel />
             <div className={s.cardsH}>
-                <ProdHome id="7" name="Bromelia guzmania" style="0"/>
-                <ProdHome id="8" name="Bromelia lindenii" style="1"/>
+                <ProdHome id="7" name="Bromelia guzmania" s="0"/>
+                <ProdHome id="8" name="Bromelia lindenii" s="1"/>
                 <ShopHome />
             </div>
             <div className={s.discount}>
