@@ -3,7 +3,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import AboutUs from "../AboutUs/AboutUs";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Login/Login";
 import LogoutButton from "../Logout/Logout";
@@ -50,6 +49,7 @@ export default function NavBar() {
           <div className={style.right}>
             {isAuthenticated? <>
               <div className={style.userName}> Hello, {user.name}! </div>
+              
             <LogoutButton className={style.btn_right}/> 
            
             </>
