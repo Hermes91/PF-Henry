@@ -7,7 +7,6 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import UserBar from "./components/User/userSidebar"
 
-
 function App() {
   return (
     <div>
