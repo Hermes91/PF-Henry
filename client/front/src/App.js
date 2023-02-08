@@ -5,7 +5,8 @@ import Home from "./components/Home/home";
 import ProductDetails from "./components/productDetails/ProductDetails";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
-import UserBar from "./components/User/userSidebar"
+import UserBar from "./components/User/userSidebar";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/user" element={<UserBar />} />
+        <Route path="/admin" element={<Dashboard />} />
         {/* path /user para testear componentes */}
       </Routes>
     </div>

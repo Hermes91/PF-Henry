@@ -3,6 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Login/Login";
 import LogoutButton from "../Logout/Logout";
@@ -10,6 +11,7 @@ import LogoutButton from "../Logout/Logout";
 
 // --import style-- //
 import style from "./NavBar.module.css";
+import BurgerMenu from "./Burger";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
@@ -47,21 +49,21 @@ export default function NavBar() {
           </div>
 
           <div className={style.right}>
-            {isAuthenticated? <>
-              <div className={style.userName}> Hello, {user.name}! </div>
-              
-            <LogoutButton className={style.btn_right}/> 
-           
-            </>
-            :<LoginButton className={style.btn_right}/>}
-            <Link to="/market" className={style.btn_right}>
+
+          <Link to="/market" className={style.btn_right}>
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={style.icon}
                 onClick={(e) => handleClickMarket(e)}
                 alt="Shopping cart icon"
-                />
+              />
             </Link>
+            {isAuthenticated ? <>
+              <div className={style.userName}> Hello, {user.name}!
+                <BurgerMenu /></div>
+            </>
+              : <LoginButton className={style.btn_right} />}
+           
           </div>
         </div>
       </div>
