@@ -16,12 +16,14 @@
 }
 
 .userName{
- 
+  display: flex;
+  gap: 15px;
   color: #69b347;
   margin-right: 15px;
   padding: 10px 40px;
   font-weight: bold;
   font-size: large;
+  align-items: center;
 }
 
 .btn_right {

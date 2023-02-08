@@ -14,15 +14,17 @@ export default function Home() {
 
     return (
         <div className={s.home}>
-            <Navbar />
+            <div className={s.nbar}>
+                <Navbar />
+            </div>
             <Carousel />
             <div className={s.cardsH}>
-                <ProdHome id="7" name="Bromelia guzmania" s="0"/>
-                <ProdHome id="8" name="Bromelia lindenii" s="1"/>
+                <ProdHome id="7" name="Bromelia guzmania" s="0" />
+                <ProdHome id="8" name="Bromelia lindenii" s="1" />
                 <ShopHome />
             </div>
             <div className={s.discount}>
-                <Discount/>
+                <Discount />
             </div>
             <div className={s.contact}>
                 <Contact />
