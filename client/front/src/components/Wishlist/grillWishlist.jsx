@@ -1,19 +1,23 @@
 import s from './grillWishlist.module.css'
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import Pagination from "../Pagination/pagination";
 //import { getWishlistProducts } from "../../redux/actions/actionIndex";
+import { getProducts } from "../../redux/actions/actionIndex";
 import ProductCard from "../ProductCard/ProductCard";
 import Loading from "../loading/loading";
 import { React, useState, useEffect } from "react";
 import Footer from '../Footer/Footer'
+import { Link } from "react-router-dom";
 
 
-export default function wishlistProducts() {
+export default function WishlistProducts() {
 
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const productsWishlist = useSelector((state) => state.productsWishlist);
+   // const productsWishlist = useSelector((state) => state.productsWishlist);
+   const productsWishlist = useSelector((state) => state.filterProducts);
     const [productsXPage] = useState(9);
+    const dispatch = useDispatch();
 
 
     const iLastProduct = currentPage * productsXPage;
@@ -23,7 +27,7 @@ export default function wishlistProducts() {
 
 
     useEffect(() => {
-      //  dispatch(getWishlistProducts());
+      dispatch(getProducts());
         setCurrentPage(1)
         setTimeout(() => {
           setLoading(false);
@@ -87,8 +91,8 @@ return (
           )}
         </div>
         : 
-        <div className={notAddedContainer}> 
-          <div className={notAddedMessage}>  
+        <div className={s.notAddedContainer}> 
+          <div className={s.notAddedMessage}>  
             Ups... It seems that you have not added products to your wishlist  
           </div>
         </div>

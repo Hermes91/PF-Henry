@@ -7,6 +7,7 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import UserBar from "./components/User/userSidebar";
 import Dashboard from "./components/dashboard/Dashboard";
+import WishlistComponent from './components/Wishlist/wishlistComponent';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/user" element={<UserBar />} />
         <Route path="/admin" element={<Dashboard />} />
+        <Route path='/wishlist' element={<WishlistComponent/>}/>
         {/* path /user para testear componentes */}
       </Routes>
     </div>
