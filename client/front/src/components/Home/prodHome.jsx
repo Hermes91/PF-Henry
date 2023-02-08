@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import s from "../Home/prodHome.module.css";
 
 export default function ProdHome(props) {
-  const style = props.style;
+  const style = props.s;
   return (
     <div className={s.container}>
       <div className={s.card}>
@@ -11,7 +11,6 @@ export default function ProdHome(props) {
         <div className={s.cardbody}>
           <h3>{props.name}</h3>
           <Link to={`/products/${props.id}`}>
-            {/* agregar la ruta al product detail */}
             <div className={s.button}>
               <h4>Read More</h4>
             </div>
