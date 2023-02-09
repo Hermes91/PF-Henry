@@ -15,7 +15,6 @@ const ProductDetails = () => {
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
   const { productId } = useParams();
-  console.log(review);
   const product = useSelector((state) => state.productDetail); //productTest;
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -28,8 +27,19 @@ const ProductDetails = () => {
   };
 
   const handleQuantity = (quantity) => {
-    if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
+    if (quantity >= 1) {
+      setQuantity(quantity);
+    }
+    // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
   };
+
+  let [error, setError] = useState({
+    heightErr: "",
+    weightErr: "",
+    ageErr: "",
+    generalErr: "",
+  });
+
   return (
     <>
       <Navbar />
@@ -100,7 +110,7 @@ const ProductDetails = () => {
 
             <button
               onClick={() => {
-                alert("Product added to cart!");
+                alert("Producto añadido al carrito!");
               }}
               className={style.myBtn}
             >
@@ -133,11 +143,12 @@ const ProductDetails = () => {
             type="textarea"
             rows={5}
             cols={5}
+            maxlength="100"
           ></textarea>
 
           <button
             onClick={() => {
-              alert("Se ha enviado su reseña");
+              alert("Su reseña ha sido enviada!");
             }}
             className={style.myBtnCalificar}
           >
