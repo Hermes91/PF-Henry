@@ -5,11 +5,8 @@ import ProductDetails from "./components/productDetails/ProductDetails";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import Dashboard from "./components/dashboard/Dashboard";
-import WishlistComponent from './components/Wishlist/wishlistComponent';
-import UserComponent from './components/User/userSidebar'
-import ShopCart from "./components/Cart/cart";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-
+import WishlistComponent from './components/Wishlist/wishlistComponent';
 
 
 function App() {
@@ -29,7 +26,8 @@ function App() {
         <Route path="/user" element={<UserComponent />} />
         <Route path="/admin" element={<Dashboard />} />
         <Route path='/wishlist' element={<WishlistComponent />} />
-        <Route path='/cart' element={<ShopCart />} />
+       {/* <Route path='/cart' element={<ShopCart />} />*/}
+
         {/* path /user para testear componentes */}
       </Routes>
     </div>
