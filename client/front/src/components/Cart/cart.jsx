@@ -13,9 +13,6 @@ const ShopCart = () => {
     ];
 
 
-    const delFromCart = () => { }
-
-
 
     function totalPrice(array) {
         let sum = array.reduce((x, y) => {

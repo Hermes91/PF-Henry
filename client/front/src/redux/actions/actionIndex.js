@@ -11,16 +11,9 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = "GET_CLEAN";
 
-<<<<<<< HEAD
-export const ADD_TO_CART = "ADD_TO_CART";
-export const REMOVE_ONE_CART = "REMOVE_ONE_CART";
-export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
-export const CLEAN_CART = "CLEAN_CART";
-=======
 export const ADD_CART = "ADD_CART";
 export const REMOVE_1_CART = "REMOVE_1_CART";
 export const CLEAR_CART = "CLEAR_CART"
->>>>>>> 7b7af8658cdc5d602629cdc81b222ad6e66f214d
 
 export const getProducts = () => {
   return async function (dispatch) {
