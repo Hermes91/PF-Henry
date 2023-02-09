@@ -14,7 +14,8 @@ function App() {
   return (
     <PayPalScriptProvider
       options={{
-        "client-id": process.env.PAYPAL_CLIENT_ID,
+        "client-id":
+          "ASf_ehya4e5o-44-Fe7bkZbl3X1Er6aF3Uj5tgz31XOGe6CM6GeqAUGpuJd4dDQNJsT05SwKZRPToRFj",
       }}
     >
       <div>

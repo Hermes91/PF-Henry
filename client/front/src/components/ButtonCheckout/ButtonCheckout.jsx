@@ -2,12 +2,12 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
 
 const ButtonCheckout = (props) => {
-  const props = { props };
-
+  const productsend = props.product;
+  console.log("Productsend", productsend);
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleApprove = (orderId) => {
+  const handleApprove = (orderID) => {
     //We need to create and call here the action and reducer for setOrder in the DB :o
 
     setPaidFor(true); //If the payment was successfull
@@ -23,13 +23,13 @@ const ButtonCheckout = (props) => {
 
   return (
     <PayPalButtons
-      style={{
-        color: "green",
-        layout: "horizontal",
-        height: 48,
-        tagline: false,
-        shape: "pill",
-      }}
+      //   style={{
+      //     color: "green",
+      //     layout: "horizontal",
+      //     height: 48,
+      //     tagline: false,
+      //     shape: "pill",
+      //   }}
       onClick={(data, actions) => {
         //We can validate some here
         const nosequevalidar = false;
@@ -44,8 +44,10 @@ const ButtonCheckout = (props) => {
         return actions.order.create({
           purchase_units: [
             {
-              description: product.description,
-              amount: product.amount,
+              description: productsend.description,
+              amount: {
+                value: productsend.price,
+              },
             },
           ],
         });
@@ -53,7 +55,7 @@ const ButtonCheckout = (props) => {
       onApprove={async (data, actions) => {
         const order = await actions.order.capture();
         console.log("order: ", order);
-        handleApprove(data.orderId);
+        handleApprove(data.orderID);
       }}
       onError={(error) => {
         setError(error);
