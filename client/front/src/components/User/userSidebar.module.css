@@ -17,6 +17,12 @@
     font-size: 21pt;
 }
 
+.list h3 {
+    font-size: 14pt;
+    cursor: pointer;
+    font-weight: normal;
+}
+
 .list ul {
     list-style: none;
     padding: 0.5em 0;
@@ -24,15 +30,14 @@
 }
 
 .list li {
-    padding: 0.5em 6em 0.5em 3em;
+    padding: 0.1em 6em 0.1em 3em;
     line-height: 3em;
-    font-size: 0.95em;
-    font-weight: regular;
+
     background-repeat: no-repeat;
     background-position: left 15px center;
     background-size: auto 20px;
     transition: all 0.15s linear;
-    cursor: pointer;
+
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 12pt;
 }
@@ -43,4 +48,9 @@
 
 .listItem:hover {
     background-color: #91bb5b;
+}
+
+.list button {
+    all: unset;
+    cursor: pointer;
 }
