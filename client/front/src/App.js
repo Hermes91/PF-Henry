@@ -5,11 +5,18 @@ import ProductDetails from "./components/productDetails/ProductDetails";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import Dashboard from "./components/dashboard/Dashboard";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import WishlistComponent from './components/Wishlist/wishlistComponent';
 import UserComponent from './components/User/UserComponent'
 
 function App() {
   return (
+  <PayPalScriptProvider
+      options={{
+        "client-id":
+          "ASf_ehya4e5o-44-Fe7bkZbl3X1Er6aF3Uj5tgz31XOGe6CM6GeqAUGpuJd4dDQNJsT05SwKZRPToRFj",
+      }}
+    >
     <div>
       <Routes>
         <Route path="/about-us" element={<AboutUs />}></Route>
@@ -22,6 +29,8 @@ function App() {
         {/* path /user para testear componentes */}
       </Routes>
     </div>
+    
+    </PayPalScriptProvider>
   );
 }
 
