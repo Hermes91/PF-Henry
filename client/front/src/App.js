@@ -5,7 +5,8 @@ import ProductDetails from "./components/productDetails/ProductDetails";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import Dashboard from "./components/dashboard/Dashboard";
-import UserComponent from "./components/User/UserComponent";
+import WishlistComponent from './components/Wishlist/wishlistComponent';
+import UserComponent from './components/User/UserComponent'
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/user" element={<UserComponent />} />
         <Route path="/admin" element={<Dashboard />} />
-
+        <Route path='/wishlist' element={<WishlistComponent/>}/>
+        {/* path /user para testear componentes */}
       </Routes>
     </div>
   );

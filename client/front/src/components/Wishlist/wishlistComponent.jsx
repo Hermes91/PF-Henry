@@ -1,19 +1,29 @@
-import grillWishlist from './grillWishlist.jsx'
+import WishlistProducts from './grillWishlist'
 import Navbar from "../NavBar/NavBar";
 import s from './wishlistComponent.module.css'
+import { Link } from "react-router-dom";
 
-export default function wishlistComponent() {
-
+const WishlistComponent = () => {
 
     return (
         <>
             <div className={s.navbar}>
                 <Navbar/>
             </div>
-            <div className={s.grid}>
-            <grillWishlist/>
-            </div>
+           <div className={s.container}>
+           <Link to={`/`}>
+                <div className={s.backButton}>
+                    <h3>Back</h3>
+                </div>
+            </Link>
+            <div className={s.title}>MY LIST ♥</div>
+           </div>
+            
+                <div className={s.grid}>
+                    <WishlistProducts/>
+                </div>
         </>
     )
 
 }
+export default WishlistComponent
