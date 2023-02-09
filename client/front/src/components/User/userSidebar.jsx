@@ -1,6 +1,6 @@
 import React from "react";
 import s from './userSidebar.module.css'
-
+import LogoutButton from "../Logout/Logout";
 
 export default function UserSidebar() {
 
@@ -11,11 +11,11 @@ export default function UserSidebar() {
                 <div className={s.list}>
                     <h4>My Account </h4>
                     <ul>
-                        <li class={s.listItem}>Edit Account</li>
-                        <li class={s.listItem}> Change Password</li>
-                        <li class={s.listItem}>Wish List</li>
-                        <li class={s.listItem}>My reviews</li>
-                        <li class={s.listItem}>Logout</li>
+                        <li className={s.listItem}><h3>Edit Account</h3></li>
+                        <li className={s.listItem}><h3> Change Password</h3></li>
+                        <li className={s.listItem}><h3>Wish List</h3></li>
+                        <li className={s.listItem}><h3>My Reviews</h3></li>
+                        <li className={s.listItem}> <LogoutButton /></li>
                     </ul>
                 </div>
             </div>
