@@ -8,21 +8,27 @@ import Footer from '../Footer/Footer';
 import Contact from '../ContactForm/ContactForm';
 import ShopHome from '../Home/shopHome';
 import Discount from '../Discount/discount';
+import { Link } from "react-router-dom";
 
 
 export default function Home() {
 
     return (
         <div className={s.home}>
-            <Navbar />
+            <div className={s.nbar}>
+                <Navbar />
+            </div>
             <Carousel />
             <div className={s.cardsH}>
-                <ProdHome id="7" name="Bromelia guzmania" s="0"/>
-                <ProdHome id="8" name="Bromelia lindenii" s="1"/>
+                <ProdHome id="7" name="Bromelia guzmania" s="0" />
+                <ProdHome id="8" name="Bromelia lindenii" s="1" />
+                <Link s={{ textDecoration: "none"}}
+                to={'/wishlist'}>
                 <ShopHome />
+                </Link>
             </div>
             <div className={s.discount}>
-                <Discount/>
+                <Discount />
             </div>
             <div className={s.contact}>
                 <Contact />
