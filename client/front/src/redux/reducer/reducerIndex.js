@@ -145,7 +145,7 @@ export default function reducer(state = initialState, action) {
     case GET_CLEAN: {
       return {
         ...state,
-        dogsDetail: action.payload,
+        productDetail: action.payload,
       };
     }
 
