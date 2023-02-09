@@ -33,13 +33,6 @@ const ProductDetails = () => {
     // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
   };
 
-  let [error, setError] = useState({
-    heightErr: "",
-    weightErr: "",
-    ageErr: "",
-    generalErr: "",
-  });
-
   return (
     <>
       <Navbar />
