@@ -7,6 +7,8 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import UserBar from "./components/User/userSidebar";
 import Dashboard from "./components/dashboard/Dashboard";
+import ShoppingCart from './components/Cart/shoppingCart'
+
 
 function App() {
   return (
@@ -18,7 +20,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/user" element={<UserBar />} />
         <Route path="/admin" element={<Dashboard />} />
-        {/* path /user para testear componentes */}
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
     </div>
   );
