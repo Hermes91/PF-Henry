@@ -50,6 +50,14 @@ export default function NavBar() {
 
           <div className={style.right}>
 
+          
+            {isAuthenticated ? <>
+              <div className={style.userName}> Hello, {user.name}!
+                <BurgerMenu /></div>
+            </>
+              : <LoginButton className={style.btn_right} />}
+           
+          </div>
           <Link to="/market" className={style.btn_right}>
               <FontAwesomeIcon
                 icon={faCartShopping}
@@ -58,13 +66,6 @@ export default function NavBar() {
                 alt="Shopping cart icon"
               />
             </Link>
-            {isAuthenticated ? <>
-              <div className={style.userName}> Hello, {user.name}!
-                <BurgerMenu /></div>
-            </>
-              : <LoginButton className={style.btn_right} />}
-           
-          </div>
         </div>
       </div>
     </div>
