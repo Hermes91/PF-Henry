@@ -78,6 +78,7 @@
   display: flex;
   align-items: flex-start;
   font-size: 24px;
+  cursor:pointer;
 }
 
 .price {
@@ -236,7 +237,19 @@
 }
 
 .stars {
-  display: flex;
+  display: center;
   align-items: flex-end;
   align-self: flex-end;
+  cursor:pointer;
 }
+
+.star {
+ color: rgb(0, 0, 0);
+}
+
+.star:hover{
+color: #475c81;
+
+
+} 
+
