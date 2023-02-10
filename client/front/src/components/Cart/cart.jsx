@@ -3,10 +3,13 @@ import s from './cart.module.css'
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { clearCart, deletCartProduct } from '../../redux/actions/actionIndex';
+import { useDispatch, useSelector } from "react-redux";
+import { React, useState, useEffect } from "react";
 import ButtonCheckout from '../ButtonCheckout/ButtonCheckout'
 
 const ShopCart = () => {
-
+    // const buyOrder = useSelector((state) => state.buyOrder);
+    // const cart = useSelector((state) => state.cart);
 
     const buyOrder = [
         { id: 1, name: "Bonsai Pino rastrero", price: 11, quantity: 1 },
@@ -14,7 +17,9 @@ const ShopCart = () => {
     ];
 
 
-    const delFromCart = () => { }
+    const delFromCart = () => {
+      //  dispatchEvent(deletCartProduct)
+     }
 
 
 
