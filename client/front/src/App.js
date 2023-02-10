@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/products/:productId" element={<ProductDetails />} />
-        <Route path="/user" element={<UserComponent />} />
+      {  /*<Route path="/user" element={<UserComponent />} /> */}
         <Route path="/admin" element={<Dashboard />} />
         <Route path='/wishlist' element={<WishlistComponent />} />
        {/* <Route path='/cart' element={<ShopCart />} />*/}

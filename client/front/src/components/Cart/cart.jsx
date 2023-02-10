@@ -2,7 +2,8 @@
 import s from './cart.module.css'
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
-import { clearCart } from '../../redux/actions/actionIndex';
+import { clearCart, deletCartProduct } from '../../redux/actions/actionIndex';
+import ButtonCheckout from '../ButtonCheckout/ButtonCheckout'
 
 const ShopCart = () => {
 
@@ -18,8 +19,9 @@ const ShopCart = () => {
 
 
     function totalPrice(array) {
-        let sum = array.reduce((x, y) => {
-            return x + y
+        var sum = 0 
+        array.map((e) => {
+            sum +=e.price*e.quantity
         })
         return sum
     }
@@ -34,7 +36,7 @@ const ShopCart = () => {
                 </div>
 
                 <article className={s.box}>
-                    {!buyOrder.length ? <h3>there's nothing in your cart</h3> : buyOrder.map((p, idx) => {
+                    {!buyOrder.length ? <h3>There's nothing in your cart</h3> : buyOrder.map((p, idx) => {
                         return (
                             <ul className={s.boxList}>
                                 <li key={idx}>
@@ -45,9 +47,10 @@ const ShopCart = () => {
                             </ul>
                         )
                     })}
-                    <h3>total:${totalPrice(buyOrder.map(p => p.price))}.00 </h3>
+                    <h3>total:${totalPrice(buyOrder.map(p => p))}.00 </h3>
                     <div className={s.checkoutText}>Proceed to Checkout
-                        <button className={s.checkout}>PayPal</button></div>
+                        <ButtonCheckout/>
+                        </div>
                 </article>
             </div>
         </div>
