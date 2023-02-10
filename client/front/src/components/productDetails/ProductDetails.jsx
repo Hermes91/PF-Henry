@@ -4,7 +4,7 @@ import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { getProduct,/* getClean */} from "../../redux/actions/actionIndex.js";
+import { getProduct, postFavorite,/* getClean */} from "../../redux/actions/actionIndex.js";
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
@@ -14,7 +14,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
 
   const product = useSelector((state) => state.productDetail); //productTest;
@@ -45,8 +45,12 @@ const ProductDetails = () => {
             <div className={style.titleandwish}>
               <h2 className={style.title}>{product.name}</h2>
               <FontAwesomeIcon icon={faHeart} className={style.icon} onClick={() => {
-                if(!user) {
-                  window.alert("You have to be logged in to add products to the wishlist")
+                if(isAuthenticated) {
+                  dispatch(postFavorite({
+                    email: user.email,
+                    productId: product.id
+                    }
+                  ))
                 } else {
                 alert("Product added to the wishlist!");
                 //dispatch action addToWishList

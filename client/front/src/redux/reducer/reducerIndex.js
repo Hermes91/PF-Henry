@@ -11,7 +11,8 @@ import {
   GET_CLEAN,
   ADD_CART,
   REMOVE_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  GET_FAVORITES
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -19,6 +20,7 @@ export const initialState = {
   allCategories: [],
   productDetail: [],
   filterProducts: [],
+  wishlistProducts: [],
   orderedChange: false,
   buyOrder: [],
   cart: []
@@ -179,6 +181,13 @@ export default function reducer(state = initialState, action) {
     case CLEAR_CART: {
       return {
         cart: []
+      }
+    }
+
+    case GET_FAVORITES: {
+      return{
+        ...state,
+        wishlistProducts: action.payload
       }
     }
 
