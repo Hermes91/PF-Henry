@@ -6,17 +6,20 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import Dashboard from "./components/dashboard/Dashboard";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 import WishlistComponent from './components/Wishlist/wishlistComponent';
 import AuthenticationGuard from "./components/PrivateRoutes/PrivateRoute";
 
+
 function App() {
   return (
-  <PayPalScriptProvider
+    <PayPalScriptProvider
       options={{
         "client-id":
           "ASf_ehya4e5o-44-Fe7bkZbl3X1Er6aF3Uj5tgz31XOGe6CM6GeqAUGpuJd4dDQNJsT05SwKZRPToRFj",
       }}
     >
+
     <div>
       <Routes>
         <Route path="/about-us" element={<AboutUs />}></Route>
@@ -28,13 +31,13 @@ function App() {
         <Route path='/wishlist' element={<AuthenticationGuard component={WishlistComponent} />} />
        {/* <Route path='/cart' element={<ShopCart />} />*/}
 
-        {/* path /user para testear componentes */}
-      </Routes>
-    </div>
-    
+
+
+          {/* path /user para testear componentes */}
+        </Routes>
+      </div>
     </PayPalScriptProvider>
   );
 }
 
 export default App;
-
