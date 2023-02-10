@@ -11,6 +11,7 @@ const ShopCart = () => {
     // const buyOrder = useSelector((state) => state.buyOrder);
     // const cart = useSelector((state) => state.cart);
     const [product,SetProduct] = useState({})
+
     const buyOrder = [
         { id: 1, name: "Bonsai Pino rastrero", price: 11, quantity: 1 },
         { id: 2, name: "Cactus", price: 10, quantity: 2 },
@@ -21,6 +22,7 @@ const ShopCart = () => {
     const delFromCart = () => {
       //  dispatchEvent(deletCartProduct)
      }
+
 
      useEffect(() => {
         SetProduct({
@@ -34,6 +36,7 @@ const ShopCart = () => {
         var sum = 0 
         array.map((e) => {
             sum += e.price*e.quantity
+
         })
         return sum
     }
@@ -61,9 +64,11 @@ const ShopCart = () => {
                             </ul>
                         )
                     })}
+
                     <h3>total:${total}.00 </h3>
                     <div className={s.checkoutText}>Proceed to Checkout
                         <ButtonCheckout product={product}/>
+
                         </div>
                 </article>
             </div>
