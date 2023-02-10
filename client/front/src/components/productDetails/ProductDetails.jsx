@@ -15,18 +15,22 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
-  const product = useSelector((state) => state.productDetail); //productTest;
+  const product = useSelector((state) => state.productDetail); 
   const cart = useSelector((state) => state.cart);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const getRating = (rating) => {
     setRating(rating);
   };
   const handleQuantity = (quantity) => {
-    if (quantity >= 1) {
-      setQuantity(quantity);
-    }
+    if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
+      if(quantity === product.stock){ 
+        quantity = product.stock 
+        window.alert('Stock limit') 
+      }
+      
+    
     // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
   };
 
@@ -130,20 +134,20 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* <button
+           <button
               onClick={() => {
                 if (!user) {
                   window.alert("You have to be logged in to add to cart");
                   //dispatch action addToCart
                 } else {
-                  addToCart();
+                //  addToCart();
                   alert("Product added to cart!");
                 }
               }}
               className={style.myBtn}
             >
               Buy
-            </button> */}
+            </button> 
           </div>
         </div>
         <div className={style.containerdescription}>
