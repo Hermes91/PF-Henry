@@ -15,30 +15,31 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
-  const product = useSelector((state) => state.productDetail); //productTest;
-  const cart = useSelector((state) => state.cart);
-  const [quantity, setQuantity] = useState(0);
+  const product = useSelector((state) => state.productDetail); 
+  const [quantity, setQuantity] = useState(1);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+
+
   const getRating = (rating) => {
     setRating(rating);
   };
+  
   const handleQuantity = (quantity) => {
-    if (quantity >= 1) {
-      setQuantity(quantity);
-    }
-    // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
+    if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
+      if(quantity === product.stock){ 
+        quantity = product.stock 
+        window.alert('Stock limit') 
+      }
   };
 
-  // const addToCart = () => {
-  //   let existingItemInCart = null;
-  //   if (cart.length)
-  //     existingItemInCart = cart.find((item) => item.productId === productId);
-  //   if (existingItemInCart)
-  //     window.alert("This item has already been added to your cart!");
-  //   if (productId && !existingItemInCart)
-  //     dispatch(addCartProduct({ productId, quantity }));
-  // };
+  const [cart, setCart] = useState([])
+
+   useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+    console.log(cart)
+  },[cart])
+   
 
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -50,7 +51,6 @@ const ProductDetails = () => {
   return (
     <>
       <Navbar />
-
       <Link to={`/shop`}>
         <div className={style.backButton}>
           <h3>Back</h3>
@@ -76,8 +76,9 @@ const ProductDetails = () => {
                     productId: product.id
                     }
                   ))
+                  alert.window('Product added to your wishlist!')
                 } else {
-                alert("Product added to the wishlist!");
+                alert("You have to be logged in to add products to your wishlist");
                 //dispatch action addToWishList
                 }
               }}/>
@@ -130,20 +131,24 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* <button
+           <button
               onClick={() => {
                 if (!user) {
                   window.alert("You have to be logged in to add to cart");
-                  //dispatch action addToCart
                 } else {
-                  addToCart();
+                  setCart({
+                    id: product.id ,
+                    name: product.name,
+                    price: product.price,
+                    quantity: quantity
+                  })
                   alert("Product added to cart!");
                 }
               }}
               className={style.myBtn}
             >
               Buy
-            </button> */}
+            </button> 
           </div>
         </div>
         <div className={style.containerdescription}>
