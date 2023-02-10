@@ -16,13 +16,13 @@ export const CLEAR_CART = "CLEAR_CART"
 export const GET_FAVORITES = "GET_FAVORITES"
 
 
+
 export const getProducts = () => {
   return async function (dispatch) {
     const productsResponse = await axios.get("/products");
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
-
 
 export const getCategories = () => {
   return async function (dispatch) {
@@ -130,6 +130,7 @@ export function clearCart(payload) {
     type: CLEAR_CART,
     payload
   }
+
 }
 
 export function postUser(payload) {
