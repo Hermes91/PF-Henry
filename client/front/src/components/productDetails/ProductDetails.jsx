@@ -4,8 +4,8 @@ import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { getProduct /* getClean */ } from "../../redux/actions/actionIndex.js";
-import React, { useEffect, useState } from "react";
+import { getProduct, postFavorite,/* getClean */} from "../../redux/actions/actionIndex.js";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
@@ -15,7 +15,7 @@ import { addCartProduct } from "../../redux/actions/actionCart";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
   const product = useSelector((state) => state.reducer.productDetail); //productTest;
   const cart = useSelector((state) => state.reducerCart.cart);
@@ -70,21 +70,19 @@ const ProductDetails = () => {
           </div>
           <div className={style.info}>
             <div className={style.titleandwish}>
-              <h2 className={style.title}>{product?.name}</h2>
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={style.icon}
-                onClick={() => {
-                  if (!user) {
-                    window.alert(
-                      "You have to be logged in to add products to the wishlist"
-                    );
-                  } else {
-                    alert("Product added to the wishlist!");
-                    //dispatch action addToWishList
-                  }
-                }}
-              />
+              <h2 className={style.title}>{product.name}</h2>
+              <FontAwesomeIcon icon={faHeart} className={style.icon} onClick={() => {
+                if(isAuthenticated) {
+                  dispatch(postFavorite({
+                    email: user.email,
+                    productId: product.id
+                    }
+                  ))
+                } else {
+                alert("Product added to the wishlist!");
+                //dispatch action addToWishList
+                }
+              }}/>
             </div>
 
             <div className={style.infoblockcontainer}>

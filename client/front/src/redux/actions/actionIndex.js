@@ -13,6 +13,8 @@ export const GET_CLEAN = "GET_CLEAN";
 export const ADD_CART = "ADD_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART"
+export const GET_FAVORITES = "GET_FAVORITES"
+
 
 
 export const getProducts = () => {
@@ -139,4 +141,23 @@ export function postUser(payload) {
       console.log(error.message)
     }
   }
+}
+
+export function postFavorite(payload){
+  return async function(dispatch){
+    try{
+      console.log(payload)
+      const response = await axios.post("/favorites", payload)
+      return response
+    }catch (error){
+      console.log(error)
+    }
+  }
+}
+
+export function getFavorites(email) {
+  return async function (dispatch) {
+    const productsResponse = await axios.get(`/favorites/${email}`);
+    dispatch({ type: GET_FAVORITES, payload: productsResponse.data })
+    }
 }
