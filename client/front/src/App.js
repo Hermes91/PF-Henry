@@ -26,9 +26,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/shop" element={<Shop />}></Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
-          <Route path="/user" element={<AuthenticationGuard component={<UserComponent />} />} />
-          <Route path="/admin" element={<AuthenticationGuard component={<Dashboard />} />} />
-          <Route path='/wishlist' element={<AuthenticationGuard component={<WishlistComponent />} />} />
+          <Route path="/user" element={<AuthenticationGuard component={UserComponent} />} />
+          <Route path="/admin" element={<AuthenticationGuard component={Dashboard } />} />
+          <Route path='/wishlist' element={<AuthenticationGuard component={WishlistComponent} />} />
           {/* <Route path='/cart' element={<ShopCart />} />*/}
 
           {/* path /user para testear componentes */}
