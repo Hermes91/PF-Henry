@@ -10,6 +10,10 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = "GET_CLEAN";
+export const ADD_CART = "ADD_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const CLEAR_CART = "CLEAR_CART"
+
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -97,4 +101,32 @@ export function getClean() {
     type: GET_CLEAN,
     payload: [],
   };
+};
+
+////////////////////////***CART ACTIONS***/////////////////////////
+
+export const addToCart = (id) => {
+  return async function (dispatch) {
+    dispatch({
+      type: ADD_CART,
+      payload: id
+    })
+  }
+}
+
+export const deletCartProduct = (id) => {
+  return async function (dispatch) {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      payload: id
+    })
+  }
+}
+
+export function clearCart(payload) {
+  return {
+    type: CLEAR_CART,
+    payload
+  }
+
 }

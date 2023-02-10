@@ -27,6 +27,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistComponent />} />
           {/* <Route path='/cart' element={<ShopCart />} />*/}
 
+
           {/* path /user para testear componentes */}
         </Routes>
       </div>
