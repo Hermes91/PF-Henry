@@ -16,13 +16,15 @@ const ProductDetails = () => {
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
   const product = useSelector((state) => state.productDetail); 
-  const cart = useSelector((state) => state.cart);
   const [quantity, setQuantity] = useState(1);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+
+
   const getRating = (rating) => {
     setRating(rating);
   };
+  
   const handleQuantity = (quantity) => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
       if(quantity === product.stock){ 
@@ -31,15 +33,13 @@ const ProductDetails = () => {
       }
   };
 
-  // const addToCart = () => {
-  //   let existingItemInCart = null;
-  //   if (cart.length)
-  //     existingItemInCart = cart.find((item) => item.productId === productId);
-  //   if (existingItemInCart)
-  //     window.alert("This item has already been added to your cart!");
-  //   if (productId && !existingItemInCart)
-  //     dispatch(addCartProduct({ productId, quantity }));
-  // };
+  const [cart, setCart] = useState([])
+
+   useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+    console.log(cart)
+  },[cart])
+   
 
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -135,9 +135,13 @@ const ProductDetails = () => {
               onClick={() => {
                 if (!user) {
                   window.alert("You have to be logged in to add to cart");
-                  //dispatch action addToCart
                 } else {
-                //  addToCart();
+                  setCart({
+                    id: product.id ,
+                    name: product.name,
+                    price: product.price,
+                    quantity: quantity
+                  })
                   alert("Product added to cart!");
                 }
               }}
