@@ -8,6 +8,7 @@ import store from "./redux/store/storeIndex";
 import { Provider } from "react-redux";
 import axios from 'axios';
 import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderHistory from "./auth0-provider-history";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -16,13 +17,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-      <Auth0Provider 
-                domain="dev-qbpt8eaprzg0wfvf.eu.auth0.com" 
-                clientId="JlEe3AB9FZaRWMcClP6ykipsPweRhPBg" 
-                authorizationParams={{
-                redirect_uri: window.location.origin}}>
+      <Auth0ProviderHistory>
             <App />
-        </Auth0Provider>
+        </Auth0ProviderHistory>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

@@ -129,3 +129,13 @@ export function clearCart(payload) {
     payload
   }
 }
+
+export function postUser(payload) {
+  return async function (dispatch){
+    try{
+      const response = await axios.post("/users", payload)
+    } catch (error){
+      console.log(error.message)
+    }
+  }
+}
