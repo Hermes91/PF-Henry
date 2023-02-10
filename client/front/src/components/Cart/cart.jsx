@@ -10,7 +10,7 @@ import ButtonCheckout from '../ButtonCheckout/ButtonCheckout'
 const ShopCart = () => {
     // const buyOrder = useSelector((state) => state.buyOrder);
     // const cart = useSelector((state) => state.cart);
-
+    const [product,SetProduct] = useState({})
     const buyOrder = [
         { id: 1, name: "Bonsai Pino rastrero", price: 11, quantity: 1 },
         { id: 2, name: "Cactus", price: 10, quantity: 2 },
@@ -21,15 +21,22 @@ const ShopCart = () => {
       //  dispatchEvent(deletCartProduct)
      }
 
+     useEffect(() => {
+        SetProduct({
+            price:total,
+            description: `Purchase from Vivero Henry at a price of $${product.price} USD`
+        })
+     },[total])
 
-
-    function totalPrice(array) {
+    const totalPrice = (array) => {
         var sum = 0 
         array.map((e) => {
-            sum +=e.price*e.quantity
+            sum += e.price*e.quantity
         })
         return sum
     }
+
+    var total = totalPrice(buyOrder.map(p => p))
 
     return (<>
         <NavBar />
@@ -52,9 +59,9 @@ const ShopCart = () => {
                             </ul>
                         )
                     })}
-                    <h3>total:${totalPrice(buyOrder.map(p => p))}.00 </h3>
+                    <h3>total:${total}.00 </h3>
                     <div className={s.checkoutText}>Proceed to Checkout
-                        <ButtonCheckout/>
+                        <ButtonCheckout product={product}/>
                         </div>
                 </article>
             </div>
