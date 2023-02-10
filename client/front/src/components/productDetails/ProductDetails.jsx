@@ -29,9 +29,6 @@ const ProductDetails = () => {
         quantity = product.stock 
         window.alert('Stock limit') 
       }
-      
-    
-    // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
   };
 
   // const addToCart = () => {
@@ -54,7 +51,6 @@ const ProductDetails = () => {
   return (
     <>
       <Navbar />
-
       <Link to={`/shop`}>
         <div className={style.backButton}>
           <h3>Back</h3>
@@ -80,8 +76,9 @@ const ProductDetails = () => {
                     productId: product.id
                     }
                   ))
+                  alert.window('Product added to your wishlist!')
                 } else {
-                alert("Product added to the wishlist!");
+                alert("You have to be logged in to add products to your wishlist");
                 //dispatch action addToWishList
                 }
               }}/>
