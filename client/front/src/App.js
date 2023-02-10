@@ -19,23 +19,21 @@ function App() {
           "ASf_ehya4e5o-44-Fe7bkZbl3X1Er6aF3Uj5tgz31XOGe6CM6GeqAUGpuJd4dDQNJsT05SwKZRPToRFj",
       }}
     >
-
-    <div>
-      <Routes>
-        <Route path="/about-us" element={<AboutUs />}></Route>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/products/:productId" element={<ProductDetails />} />
-      {  /*<Route path="/user" element={<UserComponent />} /> */}
-        <Route path="/admin" element={<AuthenticationGuard component={Dashboard} />} />
-        <Route path='/wishlist' element={<AuthenticationGuard component={WishlistComponent} />} />
-       {/* <Route path='/cart' element={<ShopCart />} />*/}
-
-
+      <div>
+        <Routes>
+          <Route path="/about-us" element={<AboutUs />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/shop" element={<Shop />}></Route>
+          <Route path="/products/:productId" element={<ProductDetails />} />
+          <Route path="/user" element={<UserComponent />} />
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path='/wishlist' element={<WishlistComponent />} />
+          {/* <Route path='/cart' element={<ShopCart />} />*/}
 
           {/* path /user para testear componentes */}
         </Routes>
       </div>
+
     </PayPalScriptProvider>
   );
 }

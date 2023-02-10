@@ -1,0 +1,45 @@
+.UserContainer {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.EditContainer {
+    width: 1200px;
+    margin-left: 10%;
+    background-color: rgb(155, 199, 130);
+    height: 600px;
+    margin-top: 40px;
+}
+
+.PassContainer {
+    width: 1200px;
+    margin-left: 10%;
+    background-color: rgb(130, 199, 184);
+    height: 600px;
+    margin-top: 40px;
+}
+
+.WishContainer {
+    width: 1200px;
+    margin-left: 10%;
+    background-color: rgb(199, 130, 130);
+    height: 600px;
+    margin-top: 40px;
+}
+
+.ReviewContainer {
+    width: 1200px;
+    margin-left: 10%;
+    background-color: rgb(194, 199, 130);
+    height: 600px;
+    margin-top: 40px;
+}
+
+.foot {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}

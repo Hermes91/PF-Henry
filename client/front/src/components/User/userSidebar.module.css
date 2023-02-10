@@ -1,5 +1,8 @@
+.all {
+    display: flex;
+}
+
 .sbContainer {
-    width: 15%;
     background-color: #c7ec96;
     height: 700px;
 }
