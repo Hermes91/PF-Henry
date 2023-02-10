@@ -8,7 +8,6 @@ import Dashboard from "./components/dashboard/Dashboard";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import WishlistComponent from './components/Wishlist/wishlistComponent';
 
-
 function App() {
   return (
   <PayPalScriptProvider

@@ -14,7 +14,7 @@ import {
   CLEAR_CART
 } from "../actions/actionIndex.js";
 
-const initialState = {
+export const initialState = {
   allProducts: [],
   allCategories: [],
   productDetail: [],
@@ -23,6 +23,7 @@ const initialState = {
   buyOrder: [],
   cart: []
 };
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
