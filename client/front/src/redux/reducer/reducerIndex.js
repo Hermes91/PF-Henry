@@ -10,7 +10,7 @@ import {
   FILTER_BY_WEIGHT,
   GET_CLEAN,
   ADD_CART,
-  REMOVE_1_CART,
+  REMOVE_FROM_CART,
   CLEAR_CART
 } from "../actions/actionIndex.js";
 
@@ -164,6 +164,15 @@ export default function reducer(state = initialState, action) {
         cart: [...state.cart, { ...newItem, quantity: 1 }]
       }
     };
+
+    case REMOVE_FROM_CART: {
+      const deletedProductCart = state.cart.filter((p) => p.id !== action.payload);
+
+      return {
+        ...state,
+        cart: deletedProductCart
+      }
+    }
 
     // --quita todo del carro-- //
     case CLEAR_CART: {
