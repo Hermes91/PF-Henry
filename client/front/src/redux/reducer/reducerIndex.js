@@ -10,8 +10,9 @@ import {
   FILTER_BY_WEIGHT,
   GET_CLEAN,
   ADD_CART,
-  REMOVE_1_CART,
-  CLEAR_CART
+  REMOVE_FROM_CART,
+  CLEAR_CART,
+  GET_FAVORITES
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -19,6 +20,7 @@ export const initialState = {
   allCategories: [],
   productDetail: [],
   filterProducts: [],
+  wishlistProducts: [],
   orderedChange: false,
   buyOrder: [],
   cart: []
@@ -166,10 +168,26 @@ export default function reducer(state = initialState, action) {
       }
     };
 
+    case REMOVE_FROM_CART: {
+      const deletedProductCart = state.cart.filter((p) => p.id !== action.payload);
+
+      return {
+        ...state,
+        cart: deletedProductCart
+      }
+    }
+
     // --quita todo del carro-- //
     case CLEAR_CART: {
       return {
         cart: []
+      }
+    }
+
+    case GET_FAVORITES: {
+      return{
+        ...state,
+        wishlistProducts: action.payload
       }
     }
 

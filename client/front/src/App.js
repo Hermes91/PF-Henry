@@ -6,8 +6,10 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import Dashboard from "./components/dashboard/Dashboard";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 import WishlistComponent from './components/Wishlist/wishlistComponent';
-import UserComponent from './components/User/UserComponent'
+import AuthenticationGuard from "./components/PrivateRoutes/PrivateRoute";
+
 
 function App() {
   return (

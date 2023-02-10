@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import Navbar from "../NavBar/NavBar";
 import Carousel from "../Carousel/carousel";
 import ProdHome from "./prodHome";
@@ -11,11 +11,26 @@ import Discount from '../Discount/discount';
 import { Link } from "react-router-dom";
 import Map from '../Map/map'
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useDispatch} from "react-redux";
+import { postUser } from "../../redux/actions/actionIndex";
 
 
 export default function Home() {
-    const { user } = useAuth0();
+
+    const dispatch = useDispatch()
+    const {isAuthenticated, user} = useAuth0()
+
+    useEffect( () => {
+        isAuthenticated && dispatch(
+            postUser({
+                email: user.email,
+                fullName: user.name || user.nickname,
+                picture: user.picture
+            }))
+    }, [isAuthenticated, dispatch])
+
+
+
     return (
         <div className={s.home}>
             <div className={s.nbar}>

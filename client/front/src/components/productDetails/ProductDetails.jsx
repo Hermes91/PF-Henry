@@ -4,20 +4,43 @@ import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { getProduct,/* getClean */} from "../../redux/actions/actionIndex.js";
+import { getProduct, postFavorite,/* getClean */} from "../../redux/actions/actionIndex.js";
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
-import Footer from '../Footer/Footer'
+import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import StarRating from "./StarRating";
+import { addCartProduct } from "../../redux/actions/actionCart";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
+  const product = useSelector((state) => state.reducer.productDetail); //productTest;
+  const cart = useSelector((state) => state.reducerCart.cart);
+  const [quantity, setQuantity] = useState(0);
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
+  const getRating = (rating) => {
+    setRating(rating);
+  };
+  const handleQuantity = (quantity) => {
+    if (quantity >= 1) {
+      setQuantity(quantity);
+    }
+    // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
+  };
 
-  const product = useSelector((state) => state.productDetail); //productTest;
+  const addToCart = () => {
+    let existingItemInCart = null;
+    if (cart.length)
+      existingItemInCart = cart.find((item) => item.productId === productId);
+    if (existingItemInCart)
+      window.alert("This item has already been added to your cart!");
+    if (productId && !existingItemInCart)
+      dispatch(addCartProduct({ productId, quantity }));
+  };
 
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -39,14 +62,22 @@ const ProductDetails = () => {
       <div className={style.detailBody}>
         <div className={style.containerP}>
           <div className={style.imagecontainer}>
-            <img className={style.image} src={product.img} alt={product.name} />
+            <img
+              className={style.image}
+              src={product?.img}
+              alt={product?.name}
+            />
           </div>
           <div className={style.info}>
             <div className={style.titleandwish}>
               <h2 className={style.title}>{product.name}</h2>
               <FontAwesomeIcon icon={faHeart} className={style.icon} onClick={() => {
-                if(!user) {
-                  window.alert("You have to be logged in to add products to the wishlist")
+                if(isAuthenticated) {
+                  dispatch(postFavorite({
+                    email: user.email,
+                    productId: product.id
+                    }
+                  ))
                 } else {
                 alert("Product added to the wishlist!");
                 //dispatch action addToWishList
@@ -57,34 +88,58 @@ const ProductDetails = () => {
             <div className={style.infoblockcontainer}>
               <div className={style.infoblock}>
                 <p className={style.p}>
-                  <span className={style.span}>Code:</span> {product.id}
+                  <span className={style.span}>
+                    • <u> Code:</u>
+                  </span>{" "}
+                  {product?.id}
                 </p>
                 <p className={style.p}>
-                  <span className={style.span}>Height:</span> {product.height} cm
+                  <span className={style.span}>
+                    • <u> Height:</u>
+                  </span>{" "}
+                  {product?.height} cm
                 </p>
                 <p className={style.p}>
-                  <span className={style.span}>Weight:</span> {product.weight} gr
+                  <span className={style.span}>
+                    • <u> Weight:</u>
+                  </span>{" "}
+                  {product?.weight} gr
                 </p>
                 <p className={style.p}>
-                  <span className={style.span}>Quantity Available:</span>{" "}
-                  {product.stock}
+                  <span className={style.span}>
+                    • <u>Quantity Available:</u>
+                  </span>{" "}
+                  {product?.stock}
                 </p>
                 <p className={style.price}>
-                  <span className={style.span}>Price: $ {product.price}</span>
+                  <span className={style.span}>
+                    • <u>Price:</u> $ {product?.price}
+                  </span>
                 </p>
-                <button className={style.minusBtn}>-</button>
-                <input className={style.input} value="1"></input>
-                <button className={style.plusBtn}>+</button>
+                <button
+                  onClick={() => handleQuantity(quantity - 1)}
+                  className={style.minusBtn}
+                >
+                  -
+                </button>
+                <input className={style.input} value={quantity}></input>
+                <button
+                  onClick={() => handleQuantity(quantity + 1)}
+                  className={style.plusBtn}
+                >
+                  +
+                </button>
               </div>
             </div>
 
             <button
               onClick={() => {
-                if(!user) {
-                  window.alert("You have to be logged in to add to cart")
+                if (!user) {
+                  window.alert("You have to be logged in to add to cart");
                   //dispatch action addToCart
                 } else {
-                alert("Product added to cart!");
+                  addToCart();
+                  alert("Product added to cart!");
                 }
               }}
               className={style.myBtn}
@@ -95,40 +150,55 @@ const ProductDetails = () => {
         </div>
         <div className={style.containerdescription}>
           <p className={style.p}>
-            <span className={style.descriptiontitle}>Categories:</span>
+            <span className={style.descriptiontitle}>
+              • <u>Categories:</u>
+            </span>
           </p>
-          <p className={style.p}>{product.category}</p>
+          <p className={style.p}>{product?.category}</p>
         </div>
         <div className={style.containerdescription}>
           <p className={style.p}>
-            <span className={style.descriptiontitle}>Description:</span>
+            <span className={style.descriptiontitle}>
+              {" "}
+              • <u>Description:</u>
+            </span>
           </p>
-          <p className={style.p}>{product.description}</p>
+          <p className={style.p}>{product?.description}</p>
         </div>
         <div className={style.containerreview}>
           <div className={style.titleandwish}>
-            <span className={style.descriptiontitle}>Review:</span>
+            <span className={style.descriptiontitle}>
+              <u>Review:</u>
+            </span>
             <div className={style.stars}>
-              <FontAwesomeIcon icon={faStar} className={style.icon} />
-              <FontAwesomeIcon icon={faStar} className={style.icon} />
-              <FontAwesomeIcon icon={faStar} className={style.icon} />
-              <FontAwesomeIcon icon={faStar} className={style.icon} />
-              <FontAwesomeIcon icon={faStar} className={style.icon} />
+              <StarRating getRating={getRating} />
             </div>
           </div>
 
           <textarea
+            // onChange={(e) => setReview(e.target.value)}
+            onChange={(e) => setReview(e.target.value)}
+            value={review}
             className={style.textarea}
-            placeholder="Califica este producto"
+            placeholder="Rate this product!"
             type="textarea"
             rows={5}
             cols={5}
+            maxLength="100"
           ></textarea>
 
           <button
             // onClick={() => {
             //   history.goBack();
             // }}
+            onClick={() => {
+              if (!user) {
+                window.alert("You have to log in to rate this product");
+              } else {
+                alert("You just rated this product!");
+                //dispatch action addToWishList
+              }
+            }}
             className={style.myBtnCalificar}
           >
             Qualify

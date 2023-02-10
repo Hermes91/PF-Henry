@@ -2,20 +2,21 @@ import s from './grillWishlist.module.css'
 import {useSelector, useDispatch} from "react-redux";
 import Pagination from "../Pagination/pagination";
 //import { getWishlistProducts } from "../../redux/actions/actionIndex";
-import { getProducts } from "../../redux/actions/actionIndex";
+import { getFavorites, getProducts } from "../../redux/actions/actionIndex";
 import ProductCard from "../ProductCard/ProductCard";
 import Loading from "../loading/loading";
 import { React, useState, useEffect } from "react";
 import Footer from '../Footer/Footer'
 import { Link } from "react-router-dom";
+import {useAuth0} from "@auth0/auth0-react"
 
 
 export default function WishlistProducts() {
-
+  const {user} = useAuth0()
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
    // const productsWishlist = useSelector((state) => state.productsWishlist);
-   const productsWishlist = useSelector((state) => state.filterProducts);
+   const productsWishlist = useSelector((state) => state.wishlistProducts);
     const [productsXPage] = useState(9);
     const dispatch = useDispatch();
 
@@ -27,7 +28,7 @@ export default function WishlistProducts() {
 
 
     useEffect(() => {
-      dispatch(getProducts());
+      dispatch(getFavorites(user.email));
         setCurrentPage(1)
         setTimeout(() => {
           setLoading(false);

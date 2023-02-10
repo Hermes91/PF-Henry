@@ -10,10 +10,12 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = "GET_CLEAN";
-
 export const ADD_CART = "ADD_CART";
-export const REMOVE_1_CART = "REMOVE_1_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART"
+export const GET_FAVORITES = "GET_FAVORITES"
+
+
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -21,7 +23,6 @@ export const getProducts = () => {
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
-
 
 export const getCategories = () => {
   return async function (dispatch) {
@@ -115,9 +116,48 @@ export const addToCart = (id) => {
   }
 }
 
+export const deletCartProduct = (id) => {
+  return async function (dispatch) {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      payload: id
+    })
+  }
+}
+
 export function clearCart(payload) {
   return {
     type: CLEAR_CART,
     payload
   }
+
+}
+
+export function postUser(payload) {
+  return async function (dispatch){
+    try{
+      const response = await axios.post("/users", payload)
+    } catch (error){
+      console.log(error.message)
+    }
+  }
+}
+
+export function postFavorite(payload){
+  return async function(dispatch){
+    try{
+      console.log(payload)
+      const response = await axios.post("/favorites", payload)
+      return response
+    }catch (error){
+      console.log(error)
+    }
+  }
+}
+
+export function getFavorites(email) {
+  return async function (dispatch) {
+    const productsResponse = await axios.get(`/favorites/${email}`);
+    dispatch({ type: GET_FAVORITES, payload: productsResponse.data })
+    }
 }
