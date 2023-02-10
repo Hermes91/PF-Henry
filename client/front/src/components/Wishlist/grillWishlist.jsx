@@ -15,8 +15,8 @@ export default function WishlistProducts() {
   const {user} = useAuth0()
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-   // const productsWishlist = useSelector((state) => state.productsWishlist);
-   const productsWishlist = useSelector((state) => state.wishlistProducts);
+    const productsWishlist = useSelector((state) => state.filterProducts);
+  //  const productsWishlist = useSelector((state) => state.wishlistProducts);
     const [productsXPage] = useState(9);
     const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ export default function WishlistProducts() {
         setTimeout(() => {
           setLoading(false);
         }, "1500");
-      }, [dispatch, productsWishlist.length]);
+      }, [dispatch, currentProducts.length]);
 
       const pagination = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -71,7 +71,7 @@ return (
           <Loading />
         </div>
       ) : ( 
-        productsWishlist 
+        currentProducts 
         ?
         <div className={s.wishlistGrid}>
           {currentProducts.map(

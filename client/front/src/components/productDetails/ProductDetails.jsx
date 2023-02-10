@@ -10,15 +10,13 @@ import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
-import StarRating from "./StarRating";
-import { addCartProduct } from "../../redux/actions/actionCart";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
-  const product = useSelector((state) => state.reducer.productDetail); //productTest;
-  const cart = useSelector((state) => state.reducerCart.cart);
+  const product = useSelector((state) => state.productDetail); //productTest;
+  const cart = useSelector((state) => state.cart);
   const [quantity, setQuantity] = useState(0);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
@@ -32,15 +30,15 @@ const ProductDetails = () => {
     // } && quantity <= product?.stock)  setQuantity(quantity); Al conectar con el stock, imposibilita a comprar mas de la cantidad disponible en el mismo.
   };
 
-  const addToCart = () => {
-    let existingItemInCart = null;
-    if (cart.length)
-      existingItemInCart = cart.find((item) => item.productId === productId);
-    if (existingItemInCart)
-      window.alert("This item has already been added to your cart!");
-    if (productId && !existingItemInCart)
-      dispatch(addCartProduct({ productId, quantity }));
-  };
+  // const addToCart = () => {
+  //   let existingItemInCart = null;
+  //   if (cart.length)
+  //     existingItemInCart = cart.find((item) => item.productId === productId);
+  //   if (existingItemInCart)
+  //     window.alert("This item has already been added to your cart!");
+  //   if (productId && !existingItemInCart)
+  //     dispatch(addCartProduct({ productId, quantity }));
+  // };
 
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -132,7 +130,7 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <button
+            {/* <button
               onClick={() => {
                 if (!user) {
                   window.alert("You have to be logged in to add to cart");
@@ -145,7 +143,7 @@ const ProductDetails = () => {
               className={style.myBtn}
             >
               Buy
-            </button>
+            </button> */}
           </div>
         </div>
         <div className={style.containerdescription}>
@@ -171,7 +169,7 @@ const ProductDetails = () => {
               <u>Review:</u>
             </span>
             <div className={style.stars}>
-              <StarRating getRating={getRating} />
+              {/* <StarRating getRating={getRating} /> */}
             </div>
           </div>
 
