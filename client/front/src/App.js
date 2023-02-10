@@ -6,9 +6,10 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Shop from "./components/Shop/Shop";
 import Dashboard from "./components/dashboard/Dashboard";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-
 import WishlistComponent from './components/Wishlist/wishlistComponent';
 import AuthenticationGuard from "./components/PrivateRoutes/PrivateRoute";
+import UserComponent from "./components/User/UserComponent"
+
 
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/shop" element={<Shop />}></Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
-          <Route path="/user" element={<UserComponent />} />
-          <Route path="/admin" element={<Dashboard />} />
-          <Route path='/wishlist' element={<WishlistComponent />} />
+          <Route path="/user" element={<AuthenticationGuard component={<UserComponent />} />} />
+          <Route path="/admin" element={<AuthenticationGuard component={<Dashboard />} />} />
+          <Route path='/wishlist' element={<AuthenticationGuard component={<WishlistComponent />} />} />
           {/* <Route path='/cart' element={<ShopCart />} />*/}
 
           {/* path /user para testear componentes */}

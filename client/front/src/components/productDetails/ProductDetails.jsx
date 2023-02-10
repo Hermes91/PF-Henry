@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { getProduct, postFavorite,/* getClean */} from "../../redux/actions/actionIndex.js";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
