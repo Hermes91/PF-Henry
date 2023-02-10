@@ -11,14 +11,12 @@ export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = "GET_CLEAN";
 
-
 export const getProducts = () => {
   return async function (dispatch) {
     const productsResponse = await axios.get("/products");
     dispatch({ type: GET_PRODUCTS, payload: productsResponse.data });
   };
 };
-
 
 export const getCategories = () => {
   return async function (dispatch) {
@@ -100,4 +98,3 @@ export function getClean() {
     payload: [],
   };
 }
-
