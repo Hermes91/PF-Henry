@@ -15,7 +15,7 @@
   padding-bottom: 8px;
 }
 
-.userName{
+.userName {
   display: flex;
   gap: 15px;
   color: #69b347;
@@ -44,6 +44,10 @@
 
 .right {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-end;
 }
 
 .left {

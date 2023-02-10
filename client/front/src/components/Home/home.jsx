@@ -9,10 +9,13 @@ import Contact from '../ContactForm/ContactForm';
 import ShopHome from '../Home/shopHome';
 import Discount from '../Discount/discount';
 import { Link } from "react-router-dom";
+import Map from '../Map/map'
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 export default function Home() {
-
+    const { user } = useAuth0();
     return (
         <div className={s.home}>
             <div className={s.nbar}>
@@ -22,15 +25,20 @@ export default function Home() {
             <div className={s.cardsH}>
                 <ProdHome id="7" name="Bromelia guzmania" s="0" />
                 <ProdHome id="8" name="Bromelia lindenii" s="1" />
-                <Link s={{ textDecoration: "none"}}
+                
+               { user ? <Link s={{ textDecoration: "none"}}
                 to={'/wishlist'}>
                 <ShopHome />
                 </Link>
+                : ''
+                }
+                
             </div>
             <div className={s.discount}>
                 <Discount />
             </div>
             <div className={s.contact}>
+                <Map/>
                 <Contact />
             </div>
             <div>

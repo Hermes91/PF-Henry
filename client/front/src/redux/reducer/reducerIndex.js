@@ -8,16 +8,22 @@ import {
   FILTER_BY_PRICE,
   FILTER_BY_CATEGORY,
   FILTER_BY_WEIGHT,
-  GET_CLEAN
+  GET_CLEAN,
+  ADD_CART,
+  REMOVE_1_CART,
+  CLEAR_CART
 } from "../actions/actionIndex.js";
 
-const initialState = {
+export const initialState = {
   allProducts: [],
   allCategories: [],
   productDetail: [],
   filterProducts: [],
   orderedChange: false,
+  buyOrder: [],
+  cart: []
 };
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -63,15 +69,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByName =
         action.payload === "A-Z"
           ? state.filterProducts.sort((a, b) => {
-              if (a.name > b.name) return 1;
-              if (a.name < b.name) return -1;
-              return 0;
-            })
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+            return 0;
+          })
           : state.filterProducts.sort((a, b) => {
-              if (a.name < b.name) return 1;
-              if (a.name > b.name) return -1;
-              return 0;
-            });
+            if (a.name < b.name) return 1;
+            if (a.name > b.name) return -1;
+            return 0;
+          });
 
       return {
         ...state,
@@ -84,15 +90,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByPrice =
         action.payload === "minPrice"
           ? state.filterProducts.sort((a, b) => {
-              if (a.price > b.price) return 1;
-              if (a.price < b.price) return -1;
-              return 0;
-            })
+            if (a.price > b.price) return 1;
+            if (a.price < b.price) return -1;
+            return 0;
+          })
           : state.filterProducts.sort((a, b) => {
-              if (a.price < b.price) return 1;
-              if (a.price > b.price) return -1;
-              return 0;
-            });
+            if (a.price < b.price) return 1;
+            if (a.price > b.price) return -1;
+            return 0;
+          });
 
       return {
         ...state,
@@ -118,15 +124,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByWeight =
         action.payload === "minWeight"
           ? state.filterProducts.sort((a, b) => {
-              if (a.weight > b.weight) return 1;
-              if (a.weight < b.weight) return -1;
-              return 0;
-            })
+            if (a.weight > b.weight) return 1;
+            if (a.weight < b.weight) return -1;
+            return 0;
+          })
           : state.filterProducts.sort((a, b) => {
-              if (a.weight < b.weight) return 1;
-              if (a.weight > b.weight) return -1;
-              return 0;
-            });
+            if (a.weight < b.weight) return 1;
+            if (a.weight > b.weight) return -1;
+            return 0;
+          });
 
       return {
         ...state,
@@ -134,13 +140,37 @@ export default function reducer(state = initialState, action) {
         orderedChange: !state.orderedChange,
       };
 
-      
+
     // --limpia el state-- //
     case GET_CLEAN: {
       return {
         ...state,
-        dogsDetail: action.payload,
+        productDetail: action.payload,
       };
+    }
+
+    // --agrega producto al carro-- //
+    case ADD_CART: {
+      let newItem = state.buyOrder.find(p => p.id === action.payload);
+
+      let itemInCart = state.cart.find(i => i.id === newItem.id)
+      return itemInCart ? {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === newItem.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item)
+      } : {
+        ...state,
+        cart: [...state.cart, { ...newItem, quantity: 1 }]
+      }
+    };
+
+    // --quita todo del carro-- //
+    case CLEAR_CART: {
+      return {
+        cart: []
+      }
     }
 
     // --case default-- //
