@@ -17,9 +17,11 @@ const ShopCart = () => {
     ];
 
 
+
     const delFromCart = () => {
       //  dispatchEvent(deletCartProduct)
      }
+
 
 
 
