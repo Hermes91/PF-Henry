@@ -17,6 +17,7 @@ const ShopCart = () => {
     ];
 
 
+
     const delFromCart = () => {
       //  dispatchEvent(deletCartProduct)
      }
@@ -27,6 +28,7 @@ const ShopCart = () => {
             description: `Purchase from Vivero Henry at a price of $${product.price} USD`
         })
      },[total])
+
 
     const totalPrice = (array) => {
         var sum = 0 

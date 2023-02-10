@@ -101,7 +101,7 @@ export function getClean() {
     type: GET_CLEAN,
     payload: [],
   };
-}
+};
 
 ////////////////////////***CART ACTIONS***/////////////////////////
 
