@@ -9,7 +9,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import WishlistComponent from './components/Wishlist/wishlistComponent';
 import AuthenticationGuard from "./components/PrivateRoutes/PrivateRoute";
 import UserComponent from "./components/User/UserComponent";
-import ShopCart from './components/Cart/cart'
+import ShopCart from './components/Cart/cart';
 
 
 
