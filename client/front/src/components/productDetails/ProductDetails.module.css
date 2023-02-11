@@ -241,3 +241,10 @@
   align-items: flex-end;
   align-self: flex-end;
 }
+
+.rating{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: start;
+}
