@@ -11,10 +11,10 @@ const ProductCard = (product) => {
   const { user } = useAuth0();
   const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
-  const userEmail = user.email;
   
   const handleFavorite = () => {
-    const payload = {productId: product.id, email: userEmail}
+    if(user.email) {
+      const payload = {productId: product.id, email: user.email}
     if (isFav) {
       dispatch(deleteFavorites(payload))
       setIsFav(false)
@@ -24,6 +24,10 @@ const ProductCard = (product) => {
       setIsFav(true)
       alert("Product added to your wishlist")
     }
+    } else {
+      alert('You have to be logged in to add products to your wishlist')
+    }
+    
   }
 
   return (
@@ -68,7 +72,7 @@ const ProductCard = (product) => {
           <div className={s.info2}>
             <div className={s.cardfoot}>
               <span  onClick={() => {
-                if(!userEmail) {
+                if(!user.email) {
                   window.alert("You have to be logged in to add to cart")
                 } else {
                   handleFavorite()
