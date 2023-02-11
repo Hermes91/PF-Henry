@@ -4,7 +4,11 @@ import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { getProduct, postFavorite,/* getClean */} from "../../redux/actions/actionIndex.js";
+import Rating from "@mui/material/Rating";
+import {
+  getProduct,
+  postFavorite /* getClean */,
+} from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
@@ -15,34 +19,29 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
-  const product = useSelector((state) => state.productDetail); 
+  const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
 
-
   const getRating = (rating) => {
     setRating(rating);
   };
-  
+
   const handleQuantity = (quantity) => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
-      if(quantity === product.stock){ 
-        quantity = product.stock 
-        window.alert('Stock limit') 
-      }
+    if (quantity === product.stock) {
+      quantity = product.stock;
+      window.alert("Stock limit");
+    }
   };
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
 
-  
-     useEffect(() => {
-      const newCart = JSON.parse(localStorage.getItem('cart')).concat(cart)
-     localStorage.setItem('cart', JSON.stringify(newCart))
-    },[cart])
-     
-
-   
+  useEffect(() => {
+    const newCart = JSON.parse(localStorage.getItem("cart")).concat(cart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  }, [cart]);
 
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -72,19 +71,27 @@ const ProductDetails = () => {
           <div className={style.info}>
             <div className={style.titleandwish}>
               <h2 className={style.title}>{product.name}</h2>
-              <FontAwesomeIcon icon={faHeart} className={style.icon} onClick={() => {
-                if(isAuthenticated) {
-                  dispatch(postFavorite({
-                    email: user.email,
-                    productId: product.id
-                    }
-                  ))
-                  alert.window('Product added to your wishlist!')
-                } else {
-                alert("You have to be logged in to add products to your wishlist");
-                //dispatch action addToWishList
-                }
-              }}/>
+
+              <FontAwesomeIcon
+                icon={faHeart}
+                className={style.icon}
+                onClick={() => {
+                  if (isAuthenticated) {
+                    dispatch(
+                      postFavorite({
+                        email: user.email,
+                        productId: product.id,
+                      })
+                    );
+                    alert.window("Product added to your wishlist!");
+                  } else {
+                    alert(
+                      "You have to be logged in to add products to your wishlist"
+                    );
+                    //dispatch action addToWishList
+                  }
+                }}
+              />
             </div>
 
             <div className={style.infoblockcontainer}>
@@ -134,24 +141,24 @@ const ProductDetails = () => {
               </div>
             </div>
 
-           <button
+            <button
               onClick={() => {
                 if (!user) {
                   window.alert("You have to be logged in to add to cart");
                 } else {
                   setCart({
-                    id: product.id ,
+                    id: product.id,
                     name: product.name,
                     price: product.price,
-                    quantity: quantity
-                  })
+                    quantity: quantity,
+                  });
                   alert("Product added to cart!");
                 }
               }}
               className={style.myBtn}
             >
               Buy
-            </button> 
+            </button>
           </div>
         </div>
         <div className={style.containerdescription}>
@@ -172,13 +179,18 @@ const ProductDetails = () => {
           <p className={style.p}>{product?.description}</p>
         </div>
         <div className={style.containerreview}>
-          <div className={style.titleandwish}>
+          <div className={style.rating}>
             <span className={style.descriptiontitle}>
-              <u>Review:</u>
+              •<u> Review:</u>
             </span>
-            <div className={style.stars}>
-              {/* <StarRating getRating={getRating} /> */}
-            </div>
+            <Rating
+              name="RateReview"
+              value={rating}
+              onChange={(event, newValue) => {
+                getRating(newValue);
+              }}
+            />
+            <p>Your review is {rating} stars</p>
           </div>
 
           <textarea
