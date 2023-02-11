@@ -181,3 +181,13 @@ export function deleteFavorites(payload){
     }
   }
 }
+export function postReview(payload) {
+  return async function(){
+    try{
+      const response = await axios.post("/reviews", payload)
+      console.log(response) 
+    }catch (error){
+      console.log(error)
+    }
+  }
+}
