@@ -19,6 +19,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
+  const orderDetail = useSelector((state) => state.orderDetail);
   const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
   const [review, setReview] = useState("");
@@ -26,6 +27,14 @@ const ProductDetails = () => {
 
   const getRating = (rating) => {
     setRating(rating);
+  };
+  const productAlreadyBought = () => {
+    let productAlreadyBought = false;
+    if (orderDetail.length)
+      productAlreadyBought = orderDetail.find(
+        (order) => order.productId === productId
+      );
+    return productAlreadyBought;
   };
 
   const handleQuantity = (quantity) => {
@@ -178,50 +187,53 @@ const ProductDetails = () => {
           </p>
           <p className={style.p}>{product?.description}</p>
         </div>
-        <div className={style.containerreview}>
-          <div className={style.rating}>
-            <span className={style.descriptiontitle}>
-              •<u> Review:</u>
-            </span>
-            <Rating
-              name="RateReview"
-              value={rating}
-              onChange={(event, newValue) => {
-                getRating(newValue);
+
+        {orderDetail?.length && productAlreadyBought() ? (
+          <div className={style.containerreview}>
+            <div className={style.rating}>
+              <span className={style.descriptiontitle}>
+                •<u> Review:</u>
+              </span>
+              <Rating
+                name="RateReview"
+                value={rating}
+                onChange={(event, newValue) => {
+                  getRating(newValue);
+                }}
+              />
+              <p>Your review is {rating} stars</p>
+            </div>
+
+            <textarea
+              // onChange={(e) => setReview(e.target.value)}
+              onChange={(e) => setReview(e.target.value)}
+              value={review}
+              className={style.textarea}
+              placeholder="Rate this product!"
+              type="textarea"
+              rows={5}
+              cols={5}
+              maxLength="100"
+            ></textarea>
+
+            <button
+              // onClick={() => {
+              //   history.goBack();
+              // }}
+              onClick={() => {
+                if (!user) {
+                  window.alert("You have to log in to rate this product");
+                } else {
+                  alert("You just rated this product!");
+                  //dispatch action addToWishList
+                }
               }}
-            />
-            <p>Your review is {rating} stars</p>
+              className={style.myBtnCalificar}
+            >
+              Qualify
+            </button>
           </div>
-
-          <textarea
-            // onChange={(e) => setReview(e.target.value)}
-            onChange={(e) => setReview(e.target.value)}
-            value={review}
-            className={style.textarea}
-            placeholder="Rate this product!"
-            type="textarea"
-            rows={5}
-            cols={5}
-            maxLength="100"
-          ></textarea>
-
-          <button
-            // onClick={() => {
-            //   history.goBack();
-            // }}
-            onClick={() => {
-              if (!user) {
-                window.alert("You have to log in to rate this product");
-              } else {
-                alert("You just rated this product!");
-                //dispatch action addToWishList
-              }
-            }}
-            className={style.myBtnCalificar}
-          >
-            Qualify
-          </button>
-        </div>
+        ) : null}
       </div>
       <Footer />
     </>
