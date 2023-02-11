@@ -19,7 +19,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const { productId } = useParams();
-  const orderDetail = useSelector((state) => state.orderDetail);
+  const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
   const [review, setReview] = useState("");
@@ -30,9 +30,9 @@ const ProductDetails = () => {
   };
   const productAlreadyBought = () => {
     let productAlreadyBought = false;
-    if (orderDetail.length)
-      productAlreadyBought = orderDetail.find(
-        (order) => order.productId === productId
+    if (orders.length)
+      productAlreadyBought = orders.find(
+        (orders) => orders.productId === productId
       );
     return productAlreadyBought;
   };
@@ -188,7 +188,7 @@ const ProductDetails = () => {
           <p className={style.p}>{product?.description}</p>
         </div>
 
-        {orderDetail?.length && productAlreadyBought() ? (
+        {orders?.length && productAlreadyBought() ? (
           <div className={style.containerreview}>
             <div className={style.rating}>
               <span className={style.descriptiontitle}>

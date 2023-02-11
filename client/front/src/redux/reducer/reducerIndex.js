@@ -26,7 +26,7 @@ export const initialState = {
   orderedChange: false,
   buyOrder: [],
   cart: [],
-  orderDetail: [],
+  orders: [],
 };
 
 export default function reducer(state = initialState, action) {
