@@ -78,6 +78,7 @@ export default function GrillCard() {
               >
                 <ProductCard
                   key={e.id}
+                  id={e.id}
                   img={e.img}
                   name={e.name}
                   price={e.price}

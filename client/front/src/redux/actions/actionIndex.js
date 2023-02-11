@@ -12,8 +12,10 @@ export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const GET_CLEAN = "GET_CLEAN";
 export const ADD_CART = "ADD_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const CLEAR_CART = "CLEAR_CART"
-export const GET_FAVORITES = "GET_FAVORITES"
+export const CLEAR_CART = "CLEAR_CART";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const ADD_FAVORITES = "ADD_FAVORITES";
+export const DELETE_FAVORITES = "DELETE_FAVORITES";
 
 
 
@@ -145,8 +147,11 @@ export function postUser(payload) {
 
 export function postFavorite(payload){
   return async function(dispatch){
+    dispatch({
+      type: ADD_FAVORITES,
+      payload: payload
+    })
     try{
-      console.log(payload)
       const response = await axios.post("/favorites", payload)
       return response
     }catch (error){
@@ -160,4 +165,19 @@ export function getFavorites(email) {
     const productsResponse = await axios.get(`/favorites/${email}`);
     dispatch({ type: GET_FAVORITES, payload: productsResponse.data })
     }
+}
+
+export function deleteFavorites(payload){
+  return async function(dispatch){
+    dispatch({
+      type: DELETE_FAVORITES,
+      payload: payload
+    })
+    try{
+      const response = await axios.delete("/favorites", {data: payload})
+      return response
+    }catch (error){
+      console.log(error)
+    }
+  }
 }

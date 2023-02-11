@@ -1,12 +1,30 @@
 import s from "./ProductCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex"
 
 const ProductCard = (product) => {
   const { user } = useAuth0();
+  const [isFav, setIsFav] = useState(false);
+  const dispatch = useDispatch();
+  const userEmail = user.email;
+  
+  const handleFavorite = () => {
+    const payload = {productId: product.id, email: userEmail}
+    if (isFav) {
+      dispatch(deleteFavorites(payload))
+      setIsFav(false)
+      alert("Product removed from your wishlist")
+    } else {
+      dispatch(postFavorite(payload))
+      setIsFav(true)
+      alert("Product added to your wishlist")
+    }
+  }
 
   return (
     <div className={s.container}>
@@ -23,8 +41,7 @@ const ProductCard = (product) => {
                 if(!user) {
                   window.alert("You have to be logged in to add products to the wishlist")
                 } else {
-                alert("Product added to the wishlist!");
-                //dispatch action addToWishList
+                handleFavorite()
                 }
               }}/>
              
@@ -51,11 +68,10 @@ const ProductCard = (product) => {
           <div className={s.info2}>
             <div className={s.cardfoot}>
               <span  onClick={() => {
-                if(!user) {
+                if(!userEmail) {
                   window.alert("You have to be logged in to add to cart")
                 } else {
-                alert("Product added to cart!");
-                //dispatch action addToCart
+                  handleFavorite()
                 }
               }}>
                 Add to cart
