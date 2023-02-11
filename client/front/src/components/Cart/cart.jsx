@@ -12,11 +12,12 @@ const ShopCart = () => {
     // const cart = useSelector((state) => state.cart);
     const [product,SetProduct] = useState({})
 
-    const buyOrder = [
+   /* const buyOrder = [
         { id: 1, name: "Bonsai Pino rastrero", price: 11, quantity: 1 },
         { id: 2, name: "Cactus", price: 10, quantity: 2 },
-    ];
+    ]; */
 
+    const buyOrder = JSON.parse(localStorage.getItem('cart'))
 
 
     const delFromCart = () => {
