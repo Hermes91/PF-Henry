@@ -12,7 +12,9 @@ import {
   ADD_CART,
   REMOVE_FROM_CART,
   CLEAR_CART,
-  GET_FAVORITES
+  GET_FAVORITES,
+  ADD_FAVORITES,
+  DELETE_FAVORITES
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -183,13 +185,28 @@ export default function reducer(state = initialState, action) {
         cart: []
       }
     }
-
+    
     case GET_FAVORITES: {
       return{
         ...state,
         wishlistProducts: action.payload
       }
     }
+
+    case ADD_FAVORITES: {
+      return{
+        ...state,
+        wishlistProducts: [...state.wishlistProducts, action.payload.productId]
+      }
+    }
+
+    case DELETE_FAVORITES: {
+      return {
+        ...state, 
+        wishlistProducts: state.wishlistProducts.filter(fav => fav.productId !== action.payload.productId)
+      }
+    }
+
 
     // --case default-- //
     default:
