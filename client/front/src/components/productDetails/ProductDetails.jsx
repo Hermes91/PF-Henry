@@ -35,10 +35,13 @@ const ProductDetails = () => {
 
   const [cart, setCart] = useState([])
 
-   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-    console.log(cart)
-  },[cart])
+  
+     useEffect(() => {
+      const newCart = JSON.parse(localStorage.getItem('cart')).concat(cart)
+     localStorage.setItem('cart', JSON.stringify(newCart))
+    },[cart])
+     
+
    
 
   useEffect(() => {
