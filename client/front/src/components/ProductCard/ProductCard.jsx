@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useLocalStorage } from "./../productDetails/useLocalStorage";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex"
@@ -11,7 +12,9 @@ const ProductCard = (product) => {
   const { user } = useAuth0();
   const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
-  
+  const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useLocalStorage("cart")
+
   const handleFavorite = () => {
     if(user.email) {
       const payload = {productId: product.id, email: user.email}
@@ -72,11 +75,26 @@ const ProductCard = (product) => {
           <div className={s.info2}>
             <div className={s.cardfoot}>
               <span  onClick={() => {
-                if(!user.email) {
-                  window.alert("You have to be logged in to add to cart")
+                const oldCart = JSON.parse(window.localStorage.getItem("cart"))
+                const toCart = [{
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  quantity: quantity
+                }]
+                if (oldCart === null) {
+                  const toCartStringify = [...toCart]
+                  console.log(toCartStringify)
+                  setCart(toCartStringify)
                 } else {
-                  handleFavorite()
+                  const toCartStringify = [...toCart].concat(oldCart)
+                  console.log(toCartStringify)
+                  console.log( JSON.parse(window.localStorage.getItem("cart")))
+                  setCart(toCartStringify)
                 }
+
+                alert("Product added to cart!");
+              
               }}>
                 Add to cart
               </span>
