@@ -207,7 +207,7 @@ const ProductDetails = () => {
               • <u>Categories:</u>
             </span>
           </p>
-          <p className={style.p}>{product?.category}</p>
+          <p className={style.p}>{product.category?.map(c => ` ${c.charAt(0).toUpperCase() + c.slice(1)} `)}</p>
         </div>
         <div className={style.containerdescription}>
           <p className={style.p}>
