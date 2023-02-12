@@ -3,7 +3,7 @@ import { useState } from "react";
 import  {useAuth0} from '@auth0/auth0-react'
 
 const ButtonCheckout = (props) => {
-  const {isAuthenticated} = useAuth0()
+  const {isAuthenticated, user} = useAuth0()
   const productsend = props.product;
   //console.log("Productsend", productsend);
   const [paidFor, setPaidFor] = useState(false);
@@ -36,7 +36,7 @@ const ButtonCheckout = (props) => {
         //We can validate some here
       //  const nosequevalidar = true;
 
-        if (!isAuthenticated) {
+        if (!user.email) {
           setError("Authentication error");
           return actions.reject;
         } else {
