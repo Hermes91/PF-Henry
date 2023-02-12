@@ -8,7 +8,7 @@ import Rating from "@mui/material/Rating";
 import {
   getProduct,
   postFavorite /* getClean */,
-  postReview
+  postReview,
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
 import { useParams, Link, json } from "react-router-dom";
@@ -20,7 +20,7 @@ import { useLocalStorage } from "./useLocalStorage";
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
-  const [cart, setCart] = useLocalStorage("cart")
+  const [cart, setCart] = useLocalStorage("cart");
   const { productId } = useParams();
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
@@ -31,26 +31,31 @@ const ProductDetails = () => {
   const getRating = (rating) => {
     setRating(rating);
   };
-  const productAlreadyBought = () => {
-    let productAlreadyBought = false;
-    if (orders.length)
-      productAlreadyBought = orders.find(
-        (orders) => orders.productId === productId
-      );
-    return productAlreadyBought;
-  };
+  // const productAlreadyBought = () => {
+  //   let productAlreadyBought = false;
+  //   if (orders.length)
+  //     productAlreadyBought = orders.find(
+  //       (orders) => orders.productId === productId
+  //     );
+  //   return productAlreadyBought;
+  // };
 
   const handleQualify = (e) => {
-    const payload = { email: user.email, productId: productId, rating: rating, text: review }
+    const payload = {
+      email: user.email,
+      productId: productId,
+      rating: rating,
+      text: review,
+    };
     if (!rating || !review) {
       alert("Write your review before submitting!");
-      return
+      return;
     }
     dispatch(postReview(payload));
     alert("You just rated this product!");
-    setRating(0)
-    setReview("")
-  }
+    setRating(0);
+    setReview("");
+  };
 
   const handleQuantity = (quantity) => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
@@ -175,14 +180,16 @@ const ProductDetails = () => {
                     quantity: quantity
                   }]
                   if (oldCart === null) {
-                    const toCartStringify = [...toCart]
-                    console.log(toCartStringify)
-                    setCart(toCartStringify)
+                    const toCartStringify = [...toCart];
+                    console.log(toCartStringify);
+                    setCart(toCartStringify);
                   } else {
-                    const toCartStringify = [...toCart].concat(oldCart)
-                    console.log(toCartStringify)
-                    console.log( JSON.parse(window.localStorage.getItem("cart")))
-                    setCart(toCartStringify)
+                    const toCartStringify = [...toCart].concat(oldCart);
+                    console.log(toCartStringify);
+                    console.log(
+                      JSON.parse(window.localStorage.getItem("cart"))
+                    );
+                    setCart(toCartStringify);
                   }
 
                   alert("Product added to cart!");
@@ -212,51 +219,51 @@ const ProductDetails = () => {
           <p className={style.p}>{product?.description}</p>
         </div>
 
-        {orders?.length && productAlreadyBought() ? (
-          <div className={style.containerreview}>
-            <div className={style.rating}>
-              <span className={style.descriptiontitle}>
-                •<u> Review:</u>
-              </span>
-              <Rating
-                name="RateReview"
-                value={rating}
-                onChange={(event, newValue) => {
-                  getRating(newValue);
-                }}
-              />
-              <p>Your review is {rating} stars</p>
-            </div>
-
-            <textarea
-              // onChange={(e) => setReview(e.target.value)}
-              onChange={(e) => setReview(e.target.value)}
-              value={review}
-              className={style.textarea}
-              placeholder="Rate this product!"
-              type="textarea"
-              rows={5}
-              cols={5}
-              maxLength="100"
-            ></textarea>
-
-            <button
-              // onClick={() => {
-              //   history.goBack();
-              // }}
-              onClick={(e) => {
-                if (!user) {
-                  window.alert("You have to log in to rate this product");
-                } else {
-                  handleQualify(e)
-                }
+        {/* {orders?.length && productAlreadyBought() ? ( */}
+        <div className={style.containerreview}>
+          <div className={style.rating}>
+            <span className={style.descriptiontitle}>
+              •<u> Review:</u>
+            </span>
+            <Rating
+              name="RateReview"
+              value={rating}
+              onChange={(event, newValue) => {
+                getRating(newValue);
               }}
-              className={style.myBtnCalificar}
-            >
-              Qualify
-            </button>
+            />
+            <p>Your review is {rating} stars</p>
           </div>
-        ) : null}
+
+          <textarea
+            // onChange={(e) => setReview(e.target.value)}
+            onChange={(e) => setReview(e.target.value)}
+            value={review}
+            className={style.textarea}
+            placeholder="Rate this product!"
+            type="textarea"
+            rows={5}
+            cols={5}
+            maxLength="100"
+          ></textarea>
+
+          <button
+            // onClick={() => {
+            //   history.goBack();
+            // }}
+            onClick={(e) => {
+              if (!user) {
+                window.alert("You have to log in to rate this product");
+              } else {
+                handleQualify(e);
+              }
+            }}
+            className={style.myBtnCalificar}
+          >
+            Qualify
+          </button>
+        </div>
+        {/* ) : null} */}
       </div>
       <Footer />
     </>
