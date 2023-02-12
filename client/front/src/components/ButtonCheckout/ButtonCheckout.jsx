@@ -1,9 +1,11 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
+import  {useAuth0} from '@auth0/auth0-react'
 
 const ButtonCheckout = (props) => {
+  const {isAuthenticated} = useAuth0()
   const productsend = props.product;
-  console.log("Productsend", productsend);
+  //console.log("Productsend", productsend);
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
 
@@ -14,11 +16,11 @@ const ButtonCheckout = (props) => {
   };
 
   if (paidFor) {
-    alert("your money belongs to me jajajajajaja..."); //Evaluate redirect page...
+    alert("Your payment was accepted"); //Evaluate redirect page...
   }
 
   if (error) {
-    alert("Don't play with me, you don't have money!"); //Evaluate redirect page...
+    alert("You have to be logged in to buy"); //Evaluate redirect page...
   }
 
   return (
@@ -32,9 +34,10 @@ const ButtonCheckout = (props) => {
       //   }}
       onClick={(data, actions) => {
         //We can validate some here
-        const nosequevalidar = false;
-        if (nosequevalidar) {
-          setError("Some validation error");
+      //  const nosequevalidar = true;
+
+        if (!isAuthenticated) {
+          setError("Authentication error");
           return actions.reject;
         } else {
           return actions.resolve;
