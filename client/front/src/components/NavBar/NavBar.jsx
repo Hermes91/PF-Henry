@@ -50,7 +50,7 @@ export default function NavBar() {
 
           <div className={style.right}>
             {isAuthenticated ? <>
-              <div className={style.userName}> Hello, {user.name}!
+              <div className={style.userName}> Hello, {user.nickname}!
                 <BurgerMenu /></div>
             </>
               : <LoginButton className={style.btn_right} />}

@@ -1,41 +1,138 @@
+.nav {
+    z-index: 3;
+}
+
 .UserContainer {
     display: flex;
+    flex-direction: row;
     position: fixed;
     align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
 }
+
+
+/* ///////////////////// ACCOUNT INFORMATION /////////////////////// */
+
+.AccountInfo {
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 10%;
+    background-color: rgb(253, 231, 231);
+    height: 90%;
+    margin-top: 1%;
+    border-radius: 15px;
+    border: solid 1px;
+}
+
+.topInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.accountName {
+    font-size: 28pt;
+    width: 400px;
+}
+
+.topInfo p {
+    color: rgb(172, 175, 172);
+}
+
+.profilePic {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+}
+
+.contactInfo {
+    padding-top: 50px;
+}
+
+.contactInfo h4 {
+    color: rgb(143, 143, 143);
+}
+
+.AInfoCard {
+    padding-top: 1%;
+    padding-bottom: 30%;
+}
+
+/* //////////////////// EDIT ACCOUNT FORM //////////////////////// */
+
 
 .EditContainer {
-    width: 1200px;
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 30%;
     margin-left: 10%;
-    background-color: rgb(155, 199, 130);
-    height: 600px;
-    margin-top: 40px;
+    background-color: rgb(253, 231, 231);
+    height: 90%;
+    margin-top: 1%;
+    border-radius: 15px;
+    border: solid 1px;
 }
 
+
+.EditCard form {
+    height: 700px;
+    line-height: 42pt;
+}
+
+
+.formerror {
+    color: brown;
+    margin-top: -3px;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.formInput input {
+    height: 21pt;
+}
+
+/* ////////////////////     //////////////////////// */
+
 .PassContainer {
-    width: 1200px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
     margin-left: 10%;
-    background-color: rgb(130, 199, 184);
-    height: 600px;
-    margin-top: 40px;
+    background-color: rgb(253, 231, 231);
+    height: 90%;
+    margin-top: 1%;
+    border-radius: 15px;
+    border: solid 1px;
 }
 
 .WishContainer {
-    width: 1200px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
     margin-left: 10%;
-    background-color: rgb(199, 130, 130);
-    height: 600px;
-    margin-top: 40px;
+    background-color: rgb(253, 231, 231);
+    height: 90%;
+    margin-top: 1%;
+    border-radius: 15px;
+    border: solid 1px;
 }
 
 .ReviewContainer {
-    width: 1200px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
     margin-left: 10%;
-    background-color: rgb(194, 199, 130);
-    height: 600px;
-    margin-top: 40px;
+    background-color: rgb(253, 231, 231);
+    height: 90%;
+    margin-top: 1%;
+    border-radius: 15px;
+    border: solid 1px;
 }
 
 .foot {

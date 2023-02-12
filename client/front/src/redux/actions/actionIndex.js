@@ -136,25 +136,36 @@ export function clearCart(payload) {
 }
 
 export function postUser(payload) {
-  return async function (dispatch){
-    try{
+  return async function (dispatch) {
+    try {
       const response = await axios.post("/users", payload)
-    } catch (error){
+    } catch (error) {
       console.log(error.message)
     }
   }
 }
 
-export function postFavorite(payload){
-  return async function(dispatch){
+export function updateUser(payload) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put("/users", payload)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+}
+
+
+export function postFavorite(payload) {
+  return async function (dispatch) {
     dispatch({
       type: ADD_FAVORITES,
       payload: payload
     })
-    try{
+    try {
       const response = await axios.post("/favorites", payload)
       return response
-    }catch (error){
+    } catch (error) {
       console.log(error)
     }
   }
@@ -164,29 +175,29 @@ export function getFavorites(email) {
   return async function (dispatch) {
     const productsResponse = await axios.get(`/favorites/${email}`);
     dispatch({ type: GET_FAVORITES, payload: productsResponse.data })
-    }
+  }
 }
 
-export function deleteFavorites(payload){
-  return async function(dispatch){
+export function deleteFavorites(payload) {
+  return async function (dispatch) {
     dispatch({
       type: DELETE_FAVORITES,
       payload: payload
     })
-    try{
-      const response = await axios.delete("/favorites", {data: payload})
+    try {
+      const response = await axios.delete("/favorites", { data: payload })
       return response
-    }catch (error){
+    } catch (error) {
       console.log(error)
     }
   }
 }
 export function postReview(payload) {
-  return async function(){
-    try{
+  return async function () {
+    try {
       const response = await axios.post("/reviews", payload)
-      console.log(response) 
-    }catch (error){
+      console.log(response)
+    } catch (error) {
       console.log(error)
     }
   }

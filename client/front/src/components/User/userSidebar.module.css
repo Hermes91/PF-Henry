@@ -4,8 +4,9 @@
 
 .sbContainer {
     background-color: #c7ec96;
-    height: 700px;
+    min-height: fit-content;
 }
+
 
 .list {
     display: flex;
@@ -13,7 +14,8 @@
     justify-content: center;
     align-items: center;
     padding-top: 10px;
-    width: 100%;
+    width: 270px;
+    height: 600px;
 }
 
 .list h4 {
@@ -21,32 +23,31 @@
 }
 
 .list h3 {
-    font-size: 14pt;
+    font-size: 12pt;
     cursor: pointer;
     font-weight: normal;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .list ul {
     list-style: none;
-    padding: 0.5em 0;
+    padding: 0;
     margin: 0;
 }
 
 .list li {
-    padding: 0.1em 6em 0.1em 3em;
+    padding: 0em 6em 0em 3em;
     line-height: 3em;
-
     background-repeat: no-repeat;
     background-position: left 15px center;
     background-size: auto 20px;
     transition: all 0.15s linear;
-
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 12pt;
 }
 
 .list li:last-child {
-    margin-top: 30%;
+    margin-top: 20%;
 }
 
 .listItem:hover {
