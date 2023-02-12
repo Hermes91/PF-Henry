@@ -167,9 +167,6 @@ const ProductDetails = () => {
 
             <button
               onClick={() => {
-                if (!user) {
-                  window.alert("You have to be logged in to add to cart");
-                } else {
                   const oldCart = JSON.parse(window.localStorage.getItem("cart"))
                   const toCart = [{
                     id: product.id,
@@ -189,7 +186,7 @@ const ProductDetails = () => {
                   }
 
                   alert("Product added to cart!");
-                }
+                
               }}
               className={style.myBtn}
             >
