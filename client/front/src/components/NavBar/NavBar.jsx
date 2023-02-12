@@ -20,7 +20,7 @@ export default function NavBar() {
   let navigate = useNavigate();
 
   const handleClickMarket = (e) => {
-    navigate("/market");
+    //navigate("/cart");
   };
 
   const handleClickHome = (e) => {
@@ -55,7 +55,7 @@ export default function NavBar() {
             </>
               : <LoginButton className={style.btn_right} />}
 
-            <Link to="/market" className={style.btn_right}>
+            <Link to="/cart" className={style.btn_right}>
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={style.icon}
