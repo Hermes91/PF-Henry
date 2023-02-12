@@ -11,12 +11,17 @@ export default function UserComponent() {
 
     return (
         <>
-            <NavBar />
-            <div className={s.UserContainer}>
-                <div> <UserSidebar /></div>
-            </div>
-            <div className={s.foot}>
-                <Footer />
+            <div className={s.everything}>
+                <div className={s.NavBar}>
+                    <NavBar />
+                </div>
+
+                <div className={s.UserContainer}>
+                    <UserSidebar />
+                </div>
+                <div className={s.foot}>
+                    <Footer />
+                </div>
             </div>
         </>
     )
