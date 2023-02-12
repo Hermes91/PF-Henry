@@ -53,7 +53,7 @@ const ShopCart = () => {
             price:total,
             description: `Purchase from Vivero Henry at a price of $${product.price} USD`
         })
-     },[total])
+     },[buyOrder])
 
 
  
