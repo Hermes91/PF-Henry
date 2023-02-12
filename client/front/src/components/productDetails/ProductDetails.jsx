@@ -8,6 +8,7 @@ import Rating from "@mui/material/Rating";
 import {
   getProduct,
   postFavorite /* getClean */,
+  postReview
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
@@ -36,6 +37,18 @@ const ProductDetails = () => {
       );
     return productAlreadyBought;
   };
+
+  const handleQualify = (e) => {
+    const payload = {email: user.email, productId: productId, rating: rating, text: review}
+    if (!rating || !review) {
+      alert("Write your review before submitting!");
+      return
+    }
+    dispatch(postReview(payload));
+    alert("You just rated this product!");
+    setRating(0)
+    setReview("")
+    }
 
   const handleQuantity = (quantity) => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
@@ -187,7 +200,7 @@ const ProductDetails = () => {
           </p>
           <p className={style.p}>{product?.description}</p>
         </div>
-
+        
         {orders?.length && productAlreadyBought() ? (
           <div className={style.containerreview}>
             <div className={style.rating}>
@@ -220,14 +233,13 @@ const ProductDetails = () => {
               // onClick={() => {
               //   history.goBack();
               // }}
-              onClick={() => {
-                if (!user) {
-                  window.alert("You have to log in to rate this product");
-                } else {
-                  alert("You just rated this product!");
-                  //dispatch action addToWishList
-                }
-              }}
+             onClick={(e) => {
+              if (!user) {
+                window.alert("You have to log in to rate this product");
+              } else {
+                handleQualify(e)
+              }
+            }}
               className={style.myBtnCalificar}
             >
               Qualify
