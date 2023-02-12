@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -17,10 +17,19 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PeopleIcon from "@mui/icons-material/People";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
+import RecentOrders from "./RecentOrders";
 import Orders from "./Orders";
+import Clients from "./Clients";
+import Products from "./Products";
 
 function Copyright(props) {
   return (
@@ -89,16 +98,85 @@ const Drawer = styled(MuiDrawer, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(false);
+  const [graphShow, setGraphShow] = useState(true);
+  const [depositShow, setdepositShow] = useState(true);
+  const [recentShow, setrecentShow] = useState(true);
+  const [ordersShow, setordersShow] = useState(false);
+  const [clientsShow, setClientsShow] = useState(false);
+  const [productsShow, setproductsShow] = useState(false);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const graph = (
+    <Grid item xs={12} md={8} lg={9}>
+      <Paper
+        sx={{
+          p: 2,
+          display: "flex",
+          flexDirection: "column",
+          height: 240,
+        }}
+      >
+        <Chart />
+      </Paper>
+    </Grid>
+  );
+
+  const deposits = (
+    <Grid item xs={12} md={4} lg={3}>
+      <Paper
+        sx={{
+          p: 2,
+          display: "flex",
+          flexDirection: "column",
+          height: 240,
+        }}
+      >
+        <Deposits />
+      </Paper>
+    </Grid>
+  );
+
+  const recents = (
+    <Grid item xs={12}>
+      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <RecentOrders />
+      </Paper>
+    </Grid>
+  );
+
+  const orders = (
+    <Grid item xs={12}>
+      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <Orders />
+      </Paper>
+    </Grid>
+  );
+
+  const clients = (
+    <Grid item xs={12}>
+      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <Clients />
+      </Paper>
+    </Grid>
+  );
+
+  const products = (
+    <Grid item xs={12}>
+      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <Products />
+      </Paper>
+    </Grid>
+  );
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" color="success" open={open}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -147,7 +225,67 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            <ListItemButton
+              onClick={() => {
+                setGraphShow(true);
+                setdepositShow(true);
+                setrecentShow(true);
+                setordersShow(false);
+                setClientsShow(false);
+                setproductsShow(false);
+              }}
+            >
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                setGraphShow(false);
+                setdepositShow(false);
+                setrecentShow(false);
+                setordersShow(true);
+                setClientsShow(false);
+                setproductsShow(false);
+              }}
+            >
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Orders" />
+            </ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                setGraphShow(false);
+                setdepositShow(false);
+                setrecentShow(false);
+                setordersShow(false);
+                setClientsShow(true);
+                setproductsShow(false);
+              }}
+            >
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Customers" />
+            </ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                setGraphShow(false);
+                setdepositShow(false);
+                setrecentShow(false);
+                setordersShow(false);
+                setClientsShow(false);
+                setproductsShow(true);
+              }}
+            >
+              <ListItemIcon>
+                <BarChartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Products" />
+            </ListItemButton>
+
             <Divider sx={{ my: 1 }} />
           </List>
         </Drawer>
@@ -167,37 +305,17 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
+              {graphShow && graph}
               {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
+              {depositShow && deposits}
               {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Orders />
-                </Paper>
-              </Grid>
+              {recentShow && recents}
+              {/* Orders */}
+              {ordersShow && orders}
+              {/* Clients */}
+              {clientsShow && clients}
+              {/* Products */}
+              {productsShow && products}
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>

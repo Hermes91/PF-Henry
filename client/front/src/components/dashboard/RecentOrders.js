@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "@mui/material/Link";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -54,10 +55,14 @@ const rows = [
   ),
 ];
 
-export default function Orders() {
+function preventDefault(event) {
+  event.preventDefault();
+}
+
+export default function RecentOrders() {
   return (
     <React.Fragment>
-      <Title>Orders</Title>
+      <Title>Recent Orders</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -80,6 +85,9 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
+      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+        See more orders
+      </Link>
     </React.Fragment>
   );
 }
