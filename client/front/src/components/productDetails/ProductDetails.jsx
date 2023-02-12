@@ -172,20 +172,13 @@ const ProductDetails = () => {
 
             <button
               onClick={() => {
-                if (!user) {
-                  window.alert("You have to be logged in to add to cart");
-                } else {
-                  const oldCart = JSON.parse(
-                    window.localStorage.getItem("cart")
-                  );
-                  const toCart = [
-                    {
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                      quantity: quantity,
-                    },
-                  ];
+                  const oldCart = JSON.parse(window.localStorage.getItem("cart"))
+                  const toCart = [{
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: quantity
+                  }]
                   if (oldCart === null) {
                     const toCartStringify = [...toCart];
                     console.log(toCartStringify);
@@ -200,7 +193,7 @@ const ProductDetails = () => {
                   }
 
                   alert("Product added to cart!");
-                }
+                
               }}
               className={style.myBtn}
             >
