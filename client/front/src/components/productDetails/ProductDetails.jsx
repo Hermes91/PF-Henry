@@ -11,14 +11,16 @@ import {
   postReview
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, json } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useLocalStorage } from "./useLocalStorage";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
+  const [cart, setCart] = useLocalStorage("cart")
   const { productId } = useParams();
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
@@ -39,7 +41,7 @@ const ProductDetails = () => {
   };
 
   const handleQualify = (e) => {
-    const payload = {email: user.email, productId: productId, rating: rating, text: review}
+    const payload = { email: user.email, productId: productId, rating: rating, text: review }
     if (!rating || !review) {
       alert("Write your review before submitting!");
       return
@@ -48,7 +50,7 @@ const ProductDetails = () => {
     alert("You just rated this product!");
     setRating(0)
     setReview("")
-    }
+  }
 
   const handleQuantity = (quantity) => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
@@ -58,12 +60,12 @@ const ProductDetails = () => {
     }
   };
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    const newCart = JSON.parse(localStorage.getItem("cart")).concat(cart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-  }, [cart]);
+  // useEffect(() => {
+  //   const newCart = JSON.parse(localStorage.getItem("cart")).concat(cart);
+  //   localStorage.setItem("cart", JSON.stringify(newCart));
+  // }, [cart]);
 
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -168,12 +170,24 @@ const ProductDetails = () => {
                 if (!user) {
                   window.alert("You have to be logged in to add to cart");
                 } else {
-                  setCart({
+                  const oldCart = JSON.parse(window.localStorage.getItem("cart"))
+                  const toCart = [{
                     id: product.id,
                     name: product.name,
                     price: product.price,
-                    quantity: quantity,
-                  });
+                    quantity: quantity
+                  }]
+                  if (oldCart === null) {
+                    const toCartStringify = [...toCart]
+                    console.log(toCartStringify)
+                    setCart(toCartStringify)
+                  } else {
+                    const toCartStringify = [...toCart].concat(oldCart)
+                    console.log(toCartStringify)
+                    console.log( JSON.parse(window.localStorage.getItem("cart")))
+                    setCart(toCartStringify)
+                  }
+
                   alert("Product added to cart!");
                 }
               }}
@@ -200,7 +214,7 @@ const ProductDetails = () => {
           </p>
           <p className={style.p}>{product?.description}</p>
         </div>
-        
+
         {orders?.length && productAlreadyBought() ? (
           <div className={style.containerreview}>
             <div className={style.rating}>
@@ -233,13 +247,13 @@ const ProductDetails = () => {
               // onClick={() => {
               //   history.goBack();
               // }}
-             onClick={(e) => {
-              if (!user) {
-                window.alert("You have to log in to rate this product");
-              } else {
-                handleQualify(e)
-              }
-            }}
+              onClick={(e) => {
+                if (!user) {
+                  window.alert("You have to log in to rate this product");
+                } else {
+                  handleQualify(e)
+                }
+              }}
               className={style.myBtnCalificar}
             >
               Qualify
