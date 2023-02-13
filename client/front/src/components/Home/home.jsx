@@ -35,7 +35,7 @@ export default function Home() {
     return (
         <>
         {isAuthenticated?
-            user.email === ''? //email admin
+            user.email === 'admin@viverohenry.com'? //email admin
             navigate('/admin')
               :
               <div className={s.home}>
