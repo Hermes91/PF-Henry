@@ -112,8 +112,10 @@ const ProductDetails = () => {
                         productId: product.id,
                       })
                     );
-                    return alert("Product added to your wishlist!");
-                  } else
+
+                    alert("Product added to your wishlist!");
+                  } else {
+
                     alert(
                       "You have to be logged in to add products to your wishlist"
                     );
