@@ -12,7 +12,7 @@ export default function AccountInfo() {
     const [usuario, setUsuario] = useState(null)
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users?fullName=${user.name}`)
+        axios.get(`/users?fullName=${user.name}`)
             .then((res) => {
                 setUsuario(res.data)
             })
