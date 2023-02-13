@@ -119,7 +119,8 @@ const ProductDetails = () => {
                     alert(
                       "You have to be logged in to add products to your wishlist"
                     );
-                  //dispatch action addToWishList
+                    //dispatch action addToWishList
+                  }
                 }}
               />
             </div>
