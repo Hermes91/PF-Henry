@@ -16,7 +16,7 @@ export default function EditAccount() {
 
     const [input, setInput] = useState({
         email: user.email,
-        fullName: user.email,
+        fullName: user.name,
         username: "",
         picture: "",
         birthday: "",
@@ -39,7 +39,7 @@ export default function EditAccount() {
         dispatch(updateUser(input))
         setInput({
             email: user.email,
-            fullName: user.email,
+            fullName: user.name,
             username: "",
             picture: "",
             birthday: "",
