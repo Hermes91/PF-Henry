@@ -10,8 +10,9 @@ import WishlistComponent from './components/Wishlist/wishlistComponent';
 import AuthenticationGuard from "./components/PrivateRoutes/PrivateRoute";
 import UserComponent from "./components/User/UserComponent";
 import ShopCart from './components/Cart/cart';
+import axios from "axios";
 
-
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="/shop" element={<Shop />}></Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/user" element={<AuthenticationGuard component={UserComponent} />} />
-          <Route path="/admin" element={<AuthenticationGuard component={Dashboard } />} />
+          <Route path="/admin" element={<AuthenticationGuard component={Dashboard} />} />
           <Route path='/wishlist' element={<AuthenticationGuard component={WishlistComponent} />} />
           <Route path='/cart' element={<ShopCart />} />
 

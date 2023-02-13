@@ -16,7 +16,7 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-export const UPDATE_USER = "UPDATE_USER"
+
 
 
 export const getProducts = () => {
