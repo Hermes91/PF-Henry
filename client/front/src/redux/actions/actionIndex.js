@@ -149,7 +149,7 @@ export function postUser(payload) {
 export function updateUser(payload) {
   return async function () {
     try {
-      axios.put("http://localhost:3001/users", payload)
+      axios.put("/users", payload)
         .then((data) => {
           console.log(data);
         })
