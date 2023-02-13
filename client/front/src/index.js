@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Auth0Provider } from "@auth0/auth0-react";
 import Auth0ProviderHistory from "./auth0-provider-history";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://pf-henry-production-4976.up.railway.app";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
