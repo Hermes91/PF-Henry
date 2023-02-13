@@ -15,7 +15,7 @@ export default function WishlistProducts() {
   const {user} = useAuth0()
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const productsWishlist = useSelector((state) => state.filterProducts);
+    const productsWishlist = useSelector((state) => state.wishlistProducts);
   //  const productsWishlist = useSelector((state) => state.wishlistProducts);
     const [productsXPage] = useState(9);
     const dispatch = useDispatch();
