@@ -80,6 +80,9 @@
   font-size: 24px;
   cursor: pointer;
 }
+.icon:hover{
+ color: red;
+}
 
 .price {
   font-size: 24px;

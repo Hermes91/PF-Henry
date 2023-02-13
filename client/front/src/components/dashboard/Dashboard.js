@@ -30,6 +30,7 @@ import RecentOrders from "./RecentOrders";
 import Orders from "./Orders";
 import Clients from "./Clients";
 import Products from "./Products";
+import LogoutButton from "../Logout/Logout";
 
 function Copyright(props) {
   return (
@@ -285,6 +286,9 @@ function DashboardContent() {
               </ListItemIcon>
               <ListItemText primary="Products" />
             </ListItemButton>
+            <ListItemIcon>
+                <LogoutButton />
+              </ListItemIcon>
 
             <Divider sx={{ my: 1 }} />
           </List>

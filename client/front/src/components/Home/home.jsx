@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 import Contact from '../ContactForm/ContactForm';
 import ShopHome from '../Home/shopHome';
 import Discount from '../Discount/discount';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Map from '../Map/map'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch} from "react-redux";
@@ -19,6 +19,7 @@ export default function Home() {
 
     const dispatch = useDispatch()
     const {isAuthenticated, user} = useAuth0()
+    const navigate = useNavigate()
 
     useEffect( () => {
         isAuthenticated && dispatch(
@@ -32,7 +33,12 @@ export default function Home() {
 
 
     return (
-        <div className={s.home}>
+        <>
+        {isAuthenticated?
+            user.email === ''? //email admin
+            navigate('/admin')
+              :
+              <div className={s.home}>
             <div className={s.nbar}>
                 <Navbar />
             </div>
@@ -60,6 +66,39 @@ export default function Home() {
                 <Footer />
             </div>
         </div>
+              :
+              <div className={s.home}>
+            <div className={s.nbar}>
+                <Navbar />
+            </div>
+            <Carousel />
+            <div className={s.cardsH}>
+                <ProdHome id="7" name="Bromelia guzmania" s="0" />
+                <ProdHome id="8" name="Bromelia lindenii" s="1" />
+                
+               { user ? <Link s={{ textDecoration: "none"}}
+                to={'/wishlist'}>
+                <ShopHome />
+                </Link>
+                : ''
+                }
+                
+            </div>
+            <div className={s.discount}>
+                <Discount />
+            </div>
+            <div className={s.contact}>
+                <Map/>
+                <Contact />
+            </div>
+            <div>
+                <Footer />
+            </div>
+        </div>
+            }
+        </>
+        
+        
     )
 }
 

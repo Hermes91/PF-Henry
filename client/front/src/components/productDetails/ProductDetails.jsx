@@ -112,13 +112,14 @@ const ProductDetails = () => {
                         productId: product.id,
                       })
                     );
-                    alert.window("Product added to your wishlist!");
+
+                    alert("Product added to your wishlist!");
                   } else {
+
                     alert(
                       "You have to be logged in to add products to your wishlist"
                     );
-                    //dispatch action addToWishList
-                  }
+                  //dispatch action addToWishList
                 }}
               />
             </div>
@@ -172,28 +173,27 @@ const ProductDetails = () => {
 
             <button
               onClick={() => {
-                  const oldCart = JSON.parse(window.localStorage.getItem("cart"))
-                  const toCart = [{
+                const oldCart = JSON.parse(window.localStorage.getItem("cart"));
+                const toCart = [
+                  {
                     id: product.id,
                     name: product.name,
                     price: product.price,
-                    quantity: quantity
-                  }]
-                  if (oldCart === null) {
-                    const toCartStringify = [...toCart];
-                    console.log(toCartStringify);
-                    setCart(toCartStringify);
-                  } else {
-                    const toCartStringify = [...toCart].concat(oldCart);
-                    console.log(toCartStringify);
-                    console.log(
-                      JSON.parse(window.localStorage.getItem("cart"))
-                    );
-                    setCart(toCartStringify);
-                  }
+                    quantity: quantity,
+                  },
+                ];
+                if (oldCart === null) {
+                  const toCartStringify = [...toCart];
+                  console.log(toCartStringify);
+                  setCart(toCartStringify);
+                } else {
+                  const toCartStringify = [...toCart].concat(oldCart);
+                  console.log(toCartStringify);
+                  console.log(JSON.parse(window.localStorage.getItem("cart")));
+                  setCart(toCartStringify);
+                }
 
-                  alert("Product added to cart!");
-                
+                alert("Product added to cart!");
               }}
               className={style.myBtn}
             >
@@ -207,7 +207,11 @@ const ProductDetails = () => {
               • <u>Categories:</u>
             </span>
           </p>
-          <p className={style.p}>{product.category?.map(c => ` ${c.charAt(0).toUpperCase() + c.slice(1)} `)}</p>
+          <p className={style.p}>
+            {product.category?.map(
+              (c) => ` ${c.charAt(0).toUpperCase() + c.slice(1)} `
+            )}
+          </p>
         </div>
         <div className={style.containerdescription}>
           <p className={style.p}>
