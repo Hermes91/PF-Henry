@@ -6,8 +6,8 @@ import Pagination from "../Pagination/pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../redux/actions/actionIndex";
-import Footer from '../Footer/Footer'
-
+import Footer from "../Footer/Footer";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 export default function GrillCard() {
   const plants = useSelector((state) => state.filterProducts);
@@ -17,7 +17,6 @@ export default function GrillCard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsXPage] = useState(9);
 
-
   const iLastProduct = currentPage * productsXPage;
   const iFirstProduct = iLastProduct - productsXPage;
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
@@ -25,11 +24,11 @@ export default function GrillCard() {
 
   useEffect(() => {
     !plants.length && dispatch(getProducts());
-    setCurrentPage(1)
+    setCurrentPage(1);
     setTimeout(() => {
       setLoading(false);
     }, "1500");
-  }, [dispatch, orderedChange,plants.length]);
+  }, [dispatch, orderedChange, plants.length]);
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
