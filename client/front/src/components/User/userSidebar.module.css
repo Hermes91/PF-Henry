@@ -4,18 +4,17 @@
 
 .sbContainer {
     background-color: #c7ec96;
-    min-height: fit-content;
+    height: 500px;
 }
 
 
 .list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding-top: 10px;
     width: 270px;
-    height: 600px;
+    height: 300px;
 }
 
 .list h4 {
@@ -37,10 +36,7 @@
 
 .list li {
     padding: 0em 6em 0em 3em;
-    line-height: 3em;
-    background-repeat: no-repeat;
-    background-position: left 15px center;
-    background-size: auto 20px;
+    line-height: 2em;
     transition: all 0.15s linear;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 12pt;
@@ -57,4 +53,8 @@
 .list button {
     all: unset;
     cursor: pointer;
+}
+
+.page {
+    height: auto;
 }

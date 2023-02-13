@@ -16,7 +16,7 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-
+export const UPDATE_USER = "UPDATE_USER"
 
 
 export const getProducts = () => {
@@ -63,6 +63,7 @@ export const createProduct = (product) => {
     }
   };
 };
+
 
 export const filterByName = (productName) => {
   return async function (dispatch) {
@@ -146,10 +147,14 @@ export function postUser(payload) {
 }
 
 export function updateUser(payload) {
-  return async function (dispatch) {
+  return async function () {
     try {
-      const response = await axios.put("/users", payload)
+      axios.put("http://localhost:3001/users", payload)
+        .then((data) => {
+          console.log(data);
+        })
     } catch (error) {
+      alert("your profile couldn't be updated, please try again")
       console.log(error.message)
     }
   }

@@ -18,8 +18,8 @@
     padding-right: 10%;
     margin-left: 10%;
     background-color: rgb(253, 231, 231);
-    height: 90%;
-    margin-top: 1%;
+    height: 60vh;
+    margin-top: 10%;
     border-radius: 15px;
     border: solid 1px;
 }
@@ -28,10 +28,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
-
 
 .accountName {
     font-size: 28pt;
@@ -42,6 +40,12 @@
     color: rgb(172, 175, 172);
 }
 
+.infoBody {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
 .profilePic {
     width: 200px;
     height: 200px;
@@ -49,7 +53,7 @@
 }
 
 .contactInfo {
-    padding-top: 50px;
+    width: 60%;
 }
 
 .contactInfo h4 {
@@ -57,7 +61,6 @@
 }
 
 .AInfoCard {
-    padding-top: 1%;
     padding-bottom: 30%;
 }
 
@@ -78,19 +81,33 @@
 
 
 .EditCard form {
-    height: 700px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 500px;
+    height: min-content;
     line-height: 42pt;
 }
 
+.formSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.formSection button {
+    width: 25%;
+}
 
 .formerror {
     color: brown;
-    margin-top: -3px;
+    margin-top: -15px;
+    font-size: 10pt;
 }
 
 .formInput {
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 .formInput input {
@@ -116,7 +133,7 @@
     padding-left: 10%;
     padding-right: 10%;
     margin-left: 10%;
-    background-color: rgb(253, 231, 231);
+    background-color: rgb(245, 231, 231);
     height: 90%;
     margin-top: 1%;
     border-radius: 15px;
@@ -136,7 +153,7 @@
 }
 
 .foot {
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
+    bottom: -10px;
     width: 100%;
 }
