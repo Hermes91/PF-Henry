@@ -12,7 +12,7 @@ import UserComponent from "./components/User/UserComponent";
 import ShopCart from './components/Cart/cart';
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'https://pf-henry-production-4976.up.railway.app/';
 
 function App() {
   return (
