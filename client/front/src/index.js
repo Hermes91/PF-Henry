@@ -9,8 +9,7 @@ import { Provider } from "react-redux";
 import axios from 'axios';
 import { Auth0Provider } from "@auth0/auth0-react";
 import Auth0ProviderHistory from "./auth0-provider-history";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Toaster from './Toaster'
 
 axios.defaults.baseURL = "https://pf-henry-production-4976.up.railway.app/";
 
@@ -24,18 +23,7 @@ root.render(
           <App />
         </Auth0ProviderHistory>
       </Provider>
-      <ToastContainer
-        position="top-center"
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <Toaster />
     </BrowserRouter>
   </React.StrictMode>
 );
