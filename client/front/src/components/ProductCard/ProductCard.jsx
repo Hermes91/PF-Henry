@@ -7,6 +7,7 @@ import { useLocalStorage } from "./../productDetails/useLocalStorage";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex"
+import { toast } from 'react-toastify'
 
 const ProductCard = (product) => {
   const { user } = useAuth0();
@@ -21,14 +22,14 @@ const ProductCard = (product) => {
     if (isFav) {
       dispatch(deleteFavorites(payload))
       setIsFav(false)
-      alert("Product removed from your wishlist")
+      toast.info("Product was removed from your wishlist")
     } else {
       dispatch(postFavorite(payload))
       setIsFav(true)
-      alert("Product added to your wishlist")
+      toast.info("Product was added to your wishlist")
     }
     } else {
-      alert('You have to be logged in to add products to your wishlist')
+      toast.warn('You must be logged in to add products to your wishlist')
     }
     
   }
@@ -46,7 +47,7 @@ const ProductCard = (product) => {
          
             <FontAwesomeIcon icon={faHeart} className={s.icon} onClick={() => {
                 if(!user) {
-                  window.alert("You have to be logged in to add products to the wishlist")
+                  toast.warn("You must be logged in to add products to the wishlist")
                 } else {
                 handleFavorite()
                 }
@@ -93,7 +94,7 @@ const ProductCard = (product) => {
                   setCart(toCartStringify)
                 }
 
-                alert("Product added to cart!");
+                toast.success("Product added to cart!");
               
               }}>
                 Add to cart

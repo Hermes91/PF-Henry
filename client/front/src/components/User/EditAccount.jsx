@@ -4,6 +4,7 @@ import s from './UserComponent.module.css';
 import { useAuth0 } from "@auth0/auth0-react";
 import validateAccount from './validateAccount';
 import { updateUser } from "../../redux/actions/actionIndex";
+import { toast } from 'react-toastify'
 
 
 export default function EditAccount() {
@@ -47,7 +48,7 @@ export default function EditAccount() {
             addressLineTwo: "",
             telephone: "",
         })
-        alert("Your data was updated correctly")
+        toast.success("Your information was updated successfully")
     }
 
 
