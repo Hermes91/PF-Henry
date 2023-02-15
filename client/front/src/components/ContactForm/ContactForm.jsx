@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import validate from './validate';
 import s from "../ContactForm/ContactForm.module.css"
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function CreateForm() {
     const dispatch = useDispatch()
@@ -28,7 +29,7 @@ export default function CreateForm() {
 
         await postMessage()
         setInput({ name: "", lastname: "", phone: "", email: "", message: "" })
-        alert("Thank you! Your message was sent correctly")
+        toast.success("Thank you! Your message was sent successfully")
     }
 
     const postMessage = async() => {

@@ -16,6 +16,7 @@ import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useLocalStorage } from "./useLocalStorage";
+import { toast } from 'react-toastify'
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -48,11 +49,11 @@ const ProductDetails = () => {
       text: review,
     };
     if (!rating || !review) {
-      alert("Write your review before submitting!");
+      toast.warn("Please write your review before submitting!",);
       return;
     }
     dispatch(postReview(payload));
-    alert("You just rated this product!");
+    toast.success("Product review was sent successfully!");
     setRating(0);
     setReview("");
   };
@@ -61,7 +62,7 @@ const ProductDetails = () => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
     if (quantity === product.stock) {
       quantity = product.stock;
-      window.alert("Stock limit");
+      toast.warn("Stock limit");
     }
   };
 
@@ -113,11 +114,11 @@ const ProductDetails = () => {
                       })
                     );
 
-                    alert("Product added to your wishlist!");
+                    toast.info("Product added to your wishlist!");
                   } else {
 
-                    alert(
-                      "You have to be logged in to add products to your wishlist"
+                    toast.warn(
+                      "You must be logged in to add products to your wishlist"
                     );
                     //dispatch action addToWishList
                   }
@@ -194,7 +195,7 @@ const ProductDetails = () => {
                   setCart(toCartStringify);
                 }
 
-                alert("Product added to cart!");
+                toast.info("Product added to cart!");
               }}
               className={style.myBtn}
             >
@@ -258,7 +259,7 @@ const ProductDetails = () => {
             // }}
             onClick={(e) => {
               if (!user) {
-                window.alert("You have to log in to rate this product");
+                toast.info("You must be logged in to rate this product");
               } else {
                 handleQualify(e);
               }

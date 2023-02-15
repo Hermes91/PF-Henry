@@ -11,8 +11,9 @@ import AuthenticationGuard from "./components/PrivateRoutes/PrivateRoute";
 import UserComponent from "./components/User/UserComponent";
 import ShopCart from './components/Cart/cart';
 import axios from "axios";
+import AdminGuard from "./components/PrivateRoutes/AdminAuth";
 
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'https://pf-henry-production-4976.up.railway.app/';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="/shop" element={<Shop />}></Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/user" element={<AuthenticationGuard component={UserComponent} />} />
-          <Route path="/admin" element={<AuthenticationGuard component={Dashboard} />} />
+          <Route path="/admin" element={<AdminGuard component={Dashboard} />} />
           <Route path='/wishlist' element={<AuthenticationGuard component={WishlistComponent} />} />
           <Route path='/cart' element={<ShopCart />} />
 

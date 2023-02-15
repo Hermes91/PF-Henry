@@ -19,8 +19,13 @@ const ShopCart = () => {
         { id: 1, name: "Bonsai Pino rastrero", price: 11, quantity: 1 },
         { id: 2, name: "Cactus", price: 10, quantity: 2 },
     ]; */
+    
+    const clearCart = () => {
+        SetbuyOrder([])
+        setCart([])
+      }
 
-  
+  if (!buyOrder) clearCart()
 
     const delFromCart = (id) => {
         console.log(id)
@@ -31,10 +36,7 @@ const ShopCart = () => {
       setCart(newCart)
      }
 
-    const clearCart = () => {
-      SetbuyOrder([])
-      setCart([])
-    }
+  
 
     const totalPrice = (array) => {
         var sum = 0 

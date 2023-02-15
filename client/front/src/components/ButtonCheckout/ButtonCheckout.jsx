@@ -1,6 +1,7 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
 import  {useAuth0} from '@auth0/auth0-react'
+import { toast } from 'react-toastify';
 
 const ButtonCheckout = (props) => {
   const {isAuthenticated, user} = useAuth0()
@@ -16,11 +17,11 @@ const ButtonCheckout = (props) => {
   };
 
   if (paidFor) {
-    alert("Your payment was accepted"); //Evaluate redirect page...
+    toast.success("Your payment was accepted"); //Evaluate redirect page...
   }
 
   if (error) {
-    alert("You have to be logged in to buy"); //Evaluate redirect page...
+    toast.warn("You have to be logged in to buy"); //Evaluate redirect page...
   }
 
   return (

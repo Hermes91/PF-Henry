@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
@@ -46,8 +47,8 @@ export const searchProduct = (searchTerm) => {
       const searchResponse = await axios.get(`/products/?name=${searchTerm}`);
       dispatch({ type: SEARCH_PRODUCT, payload: searchResponse.data });
     } catch (error) {
-      console.log("Product not found...");
-      alert(`Product not found, try another name`);
+      console.error(error, "Product not found...");
+      toast.warn('Product not found, try another name');
     }
   };
 };
@@ -154,8 +155,8 @@ export function updateUser(payload) {
           console.log(data);
         })
     } catch (error) {
-      alert("your profile couldn't be updated, please try again")
-      console.log(error.message)
+      toast.error("Your profile could not be updated, please try again later")
+      console.error(error.message)
     }
   }
 }

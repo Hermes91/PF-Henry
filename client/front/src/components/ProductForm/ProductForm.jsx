@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import {getCategories, postProduct} from "../../redux/actions"
 // import function validate
 import {getCategories, createProduct} from '../../redux/actions/actionIndex.js'
+import { toast } from 'react-toastify'
 
 export default function ProductForm () {
 
@@ -43,7 +44,7 @@ export default function ProductForm () {
   
     const handleSubmit = (e) => {
       e.preventDefault()
-      if (Object.keys(err).length) return alert ('Please complete the form with the correct data')
+      if (Object.keys(err).length) toast.warn('Please complete the form with the correct data')
       const newProduct = {
         name: input.name.trim(),
         description: input.description.trim(),
