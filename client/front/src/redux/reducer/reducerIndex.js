@@ -1,4 +1,5 @@
 import {
+  GET_REVIEW_BY_ID,
   GET_PRODUCTS,
   GET_PRODUCT,
   SEARCH_PRODUCT,
@@ -22,6 +23,7 @@ export const initialState = {
   allProducts: [],
   allCategories: [],
   productDetail: [],
+  productReview: [],
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
@@ -214,10 +216,10 @@ export default function reducer(state = initialState, action) {
       };
     }
 
-    case REMOVE_1_FAVORITES: {
-      return {
+    case GET_REVIEW_BY_ID: {
+      return{
         ...state,
-        wishlistProducts: state.wishlistProducts.filter((p) => p.id !== action.payload)
+        productReview: action.payload
       }
     }
 

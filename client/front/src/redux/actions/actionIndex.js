@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from 'react-toastify';
 
+export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID"
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
@@ -217,5 +218,27 @@ export function postReview(payload) {
     } catch (error) {
       console.log(error)
     }
+  }
+}
+
+export const getUserById = (payload) => {
+  return async function () {
+    try{
+      const respose = await axios.get(`/users/${payload}`)
+      return respose
+    }catch(error){
+      return "User not found"
+  }
+  }
+}
+
+export const getReviewById = (payload) => {
+  return async function (dispatch) {
+    try{
+      const respose = await axios.get(`/reviews/?productId=${payload}`)
+      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data })
+    }catch(error){
+      return "Review not found"
+  }
   }
 }
