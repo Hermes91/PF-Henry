@@ -1,4 +1,5 @@
 import {
+  GET_REVIEW_BY_ID,
   GET_PRODUCTS,
   GET_PRODUCT,
   SEARCH_PRODUCT,
@@ -21,6 +22,7 @@ export const initialState = {
   allProducts: [],
   allCategories: [],
   productDetail: [],
+  productReview: [],
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
@@ -211,6 +213,13 @@ export default function reducer(state = initialState, action) {
           (fav) => fav.productId !== action.payload.productId
         ),
       };
+    }
+
+    case GET_REVIEW_BY_ID: {
+      return{
+        ...state,
+        productReview: action.payload
+      }
     }
 
     // --case default-- //

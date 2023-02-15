@@ -7,6 +7,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "@mui/material/Rating";
 import {
   getProduct,
+  getReviewById,
   postFavorite /* getClean */,
   postReview,
 } from "../../redux/actions/actionIndex.js";
@@ -23,6 +24,7 @@ const ProductDetails = () => {
   const { user, isAuthenticated } = useAuth0();
   const [cart, setCart] = useLocalStorage("cart");
   const { productId } = useParams();
+  const reviews = useSelector((state) =>state.productReview)
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
@@ -75,6 +77,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(getProduct(productId));
+    dispatch(getReviewById(productId))
     // return () => {
     //   dispatch(getClean());
     // };
@@ -269,6 +272,7 @@ const ProductDetails = () => {
             Qualify
           </button>
         </div>
+        {console.log(reviews)}
         {/* ) : null} */}
       </div>
       <Footer />
