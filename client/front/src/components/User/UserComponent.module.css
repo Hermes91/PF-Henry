@@ -128,17 +128,91 @@
     border: solid 1px;
 }
 
+
+/* ////////////////////  WishList   //////////////////////// */
+
 .WishContainer {
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-    margin-left: 10%;
-    background-color: rgb(245, 231, 231);
+    width: 150%;
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-left: 40%;
+    background-color: rgb(243, 239, 239);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 90%;
     margin-top: 1%;
     border-radius: 15px;
-    border: solid 1px;
 }
+
+.WishCard {
+    padding-top: 1px;
+}
+
+.WishCard h3 {
+    font-size: 24pt;
+}
+
+.listCont {
+    display: flex;
+    flex-direction: column;
+}
+
+.favList {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: solid 1pt black;
+    padding: 5px 0px;
+}
+
+.removeFav {
+    font-weight: bold;
+    padding-left: 6px;
+    padding-right: 16px;
+    color: rgb(160, 147, 147);
+}
+
+.removeFav:hover {
+    color: rgb(177, 9, 9);
+    cursor: pointer;
+}
+
+.cartFav {
+    position: absolute;
+    right: -330px;
+    cursor: pointer;
+}
+
+.cartFav:hover {
+    color: #088b29;
+}
+
+.cartFav:active {
+    font-weight: bold;
+    color: #088b29;
+}
+
+.favItem {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0 0px;
+    width: 300px;
+    display: flex;
+    gap: 10%;
+    color: black;
+    margin: auto;
+    font-weight: bold;
+    align-items: center;
+}
+
+.favPrice {
+    color: rgb(126, 16, 16);
+    font-weight: 600;
+}
+
+
+/* ////////////////////  WishList   //////////////////////// */
 
 .ReviewContainer {
     width: 100%;
