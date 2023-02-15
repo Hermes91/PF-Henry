@@ -17,7 +17,7 @@ export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const { user } = useAuth0();
   //usar la logica de abajo cada vez que se quiera chequear si el user es admin, retorna un booleano
-  // const isAdmin = user["https://pf-henry-front-one.vercel.app/roles"].includes("Admin");
+  const isAdmin = user && user["https://pf-henry-front-one.vercel.app/roles"].includes("Admin");
   // user && console.log(user)
 
   let navigate = useNavigate();
@@ -57,7 +57,9 @@ export default function NavBar() {
                 <BurgerMenu /></div>
             </>
               : <LoginButton className={style.btn_right} />}
-            
+            {isAdmin && 
+              <Link to='/admin'>holis admin</Link>
+            }
             <Link to="/cart" className={style.btn_right}>
               <FontAwesomeIcon
                 icon={faCartShopping}
