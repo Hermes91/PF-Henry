@@ -16,7 +16,7 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-
+export const REMOVE_1_FAVORITES = "REMOVE_1_FAVORITES"
 
 
 export const getProducts = () => {
@@ -197,6 +197,17 @@ export function deleteFavorites(payload) {
     }
   }
 }
+
+export function remove1Favorite(id) {
+  return async function (dispatch) {
+    dispatch({
+      type: REMOVE_1_FAVORITES,
+      payload: id
+    })
+  }
+}
+
+
 export function postReview(payload) {
   return async function () {
     try {
