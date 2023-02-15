@@ -136,11 +136,19 @@
     padding-left: 15%;
     padding-right: 15%;
     margin-left: 40%;
-    background-color: rgb(245, 231, 231);
+    background-color: rgb(243, 239, 239);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     height: 90%;
     margin-top: 1%;
     border-radius: 15px;
-    border: solid 1px;
+}
+
+.WishCard {
+    padding-top: 1px;
+}
+
+.WishCard h3 {
+    font-size: 24pt;
 }
 
 .listCont {
@@ -173,6 +181,10 @@
     position: absolute;
     right: -330px;
     cursor: pointer;
+}
+
+.cartFav:hover {
+    color: #088b29;
 }
 
 .cartFav:active {

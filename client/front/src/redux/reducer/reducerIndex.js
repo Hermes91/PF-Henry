@@ -16,7 +16,6 @@ import {
   GET_FAVORITES,
   ADD_FAVORITES,
   DELETE_FAVORITES,
-  REMOVE_1_FAVORITES
 } from "../actions/actionIndex.js";
 
 export const initialState = {

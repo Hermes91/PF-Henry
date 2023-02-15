@@ -5,7 +5,7 @@ import { getFavorites } from "../../redux/actions/actionIndex";
 import { useLocalStorage } from "./../productDetails/useLocalStorage";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Link } from "react-router-dom";
-import { remove1Favorite, deleteFavorites } from '../../redux/actions/actionIndex'
+import {  deleteFavorites } from '../../redux/actions/actionIndex'
 
 
 export default function WishList(product) {
@@ -15,13 +15,14 @@ export default function WishList(product) {
     const [setCart] = useLocalStorage("cart")
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         dispatch(getFavorites(user.email));
-    }, [dispatch, user.email]);
+    }, [dispatch, user.email, productsWishlist]);
 
 
 
-    const handleFavorite = (id) => {
+    const handleRemove = (id) => {
         if (user.email) {
             const payload = { productId: id, email: user.email }
             dispatch(deleteFavorites(payload))
@@ -34,11 +35,11 @@ export default function WishList(product) {
         <>
             <div className={s.WishContainer}>
                 <div className={s.WishCard}>
-                    <h3>  WATCH USER WISHLIST component</h3>
+                    <h3>  My Wishlist </h3>
                     <div className={s.listCont}>
                         {productsWishlist.map((e, idx) => (
                             <div className={s.favList} key={idx}>
-                                <div className={s.removeFav} onClick={() => handleFavorite(e.id)}>X</div>
+                                <div className={s.removeFav} onClick={() => handleRemove(e.id)}>X</div>
                                 <Link
                                     s={{ textDecoration: "none", color: "black" }}
                                     to={`/products/${e.id}`}
