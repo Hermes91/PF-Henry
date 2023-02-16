@@ -22,8 +22,8 @@ export default function NavBar() {
 
   let navigate = useNavigate();
 
-  const handleClickMarket = (e) => {
-    //navigate("/cart");
+  const handleClickMarket = () => {
+    window.location.reload()
   };
 
   const handleClickHome = (e) => {
@@ -60,11 +60,11 @@ export default function NavBar() {
             {isAdmin && 
               <Link to='/admin'>holis admin</Link>
             }
-            <Link to="/cart" className={style.btn_right}>
+            <Link to="/cart" className={style.btn_right} onClick={window.location.reload}>
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={style.icon}
-                onClick={(e) => handleClickMarket(e)}
+                
                 alt="Shopping cart icon"
               />
             </Link>
