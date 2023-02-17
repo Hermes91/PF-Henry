@@ -11,94 +11,103 @@ import Discount from '../Discount/discount';
 import { Link, useNavigate } from "react-router-dom";
 import Map from '../Map/map'
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/actionIndex";
 
-
 export default function Home() {
+  const dispatch = useDispatch()
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0()
+  const navigate = useNavigate()
 
-    const dispatch = useDispatch()
-    const {isAuthenticated, user} = useAuth0()
-    const navigate = useNavigate()
+  useEffect(() => {
+    const getToken = async () => {
+      const token = await getAccessTokenSilently();
+      localStorage.setItem("token", token);
+    }
 
-    useEffect( () => {
-        isAuthenticated && dispatch(
-            postUser({
-                email: user.email,
-                fullName: user.name || user.nickname,
-                picture: user.picture
-            }))
-    }, [isAuthenticated, dispatch])
+    if (isAuthenticated) {
+      getToken();
+      dispatch(
+        postUser({
+          email: user.email,
+          fullName: user.name || user.nickname,
+          picture: user.picture
+        })
+      );
+    }
+  }, [isAuthenticated, dispatch, getAccessTokenSilently, user]);
 
-
-
-    return (
-        <>
-        {isAuthenticated?
-            user.email === 'admin@viverohenry.com'? //email admin
-            navigate('/admin')
-              :
-              <div className={s.home}>
+  return (
+    <>
+      {isAuthenticated ? (
+        user.email === "admin@viverohenry.com" ? (
+          navigate("/admin")
+        ) : (
+          <div className={s.home}>
             <div className={s.nbar}>
-                <Navbar />
+              <Navbar />
             </div>
             <Carousel />
             <div className={s.cardsH}>
-                <ProdHome id="7" name="Bromelia guzmania" s="0" />
-                <ProdHome id="8" name="Bromelia lindenii" s="1" />
-                
-               { user ? <Link s={{ textDecoration: "none"}}
-                to={'/wishlist'}>
-                <ShopHome />
+              <ProdHome id="7" name="Bromelia guzmania" s="0" />
+              <ProdHome id="8" name="Bromelia lindenii" s="1" />
+
+              {user ? (
+                <Link
+                  s={{ textDecoration: "none" }}
+                  to={"/wishlist"}
+                >
+                  <ShopHome />
                 </Link>
-                : ''
-                }
-                
+              ) : (
+                ""
+              )}
             </div>
             <div className={s.discount}>
-                <Discount />
+              <Discount />
             </div>
             <div className={s.contact}>
-                <Map/>
-                <Contact />
+              <Map />
+              <Contact />
             </div>
             <div>
-                <Footer />
+              <Footer />
             </div>
-        </div>
-              :
-              <div className={s.home}>
-            <div className={s.nbar}>
-                <Navbar />
-            </div>
-            <Carousel />
-            <div className={s.cardsH}>
-                <ProdHome id="7" name="Bromelia guzmania" s="0" />
-                <ProdHome id="8" name="Bromelia lindenii" s="1" />
-                
-               { user ? <Link s={{ textDecoration: "none"}}
-                to={'/wishlist'}>
+          </div>
+        )
+      ) : (
+        <div className={s.home}>
+          <div className={s.nbar}>
+            <Navbar />
+          </div>
+          <Carousel />
+          <div className={s.cardsH}>
+            <ProdHome id="7" name="Bromelia guzmania" s="0" />
+            <ProdHome id="8" name="Bromelia lindenii" s="1" />
+
+            {user ? (
+              <Link
+                s={{ textDecoration: "none" }}
+                to={"/wishlist"}
+              >
                 <ShopHome />
-                </Link>
-                : ''
-                }
-                
-            </div>
-            <div className={s.discount}>
-                <Discount />
-            </div>
-            <div className={s.contact}>
-                <Map/>
-                <Contact />
-            </div>
-            <div>
-                <Footer />
-            </div>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className={s.discount}>
+            <Discount />
+          </div>
+          <div className={s.contact}>
+            <Map />
+            <Contact />
+          </div>
+          <div>
+            <Footer />
+          </div>
         </div>
-            }
-        </>
-        
-        
-    )
+      )}
+    </>
+  );
 }
-
