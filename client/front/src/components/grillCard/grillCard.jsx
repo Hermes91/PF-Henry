@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import Loading from "../loading/loading";
+import Loading from "../PrivateRoutes/Loading";
 import ProductCard from "../ProductCard/ProductCard";
 import s from "./grillCard.module.css";
 import Pagination from "../Pagination/pagination";
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../redux/actions/actionIndex";
 import Footer from "../Footer/Footer";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+
 
 export default function GrillCard() {
   const plants = useSelector((state) => state.filterProducts);
@@ -25,9 +25,6 @@ export default function GrillCard() {
   useEffect(() => {
     !plants.length && dispatch(getProducts());
     setCurrentPage(1);
-    setTimeout(() => {
-      setLoading(false);
-    }, "1500");
   }, [dispatch, orderedChange, plants.length]);
 
   const pagination = (pageNumber) => {
@@ -61,14 +58,13 @@ export default function GrillCard() {
         </div>
       </div>
 
-      {loading ? (
-        <div>
+      {!currentProducts.length ? (
+        <div className={s.cardsGrid}>
           <Loading />
         </div>
       ) : (
         <div className={s.cardsGrid}>
           {currentProducts.map(
-            //cambiar a productsfilt
             (e) => (
               <Link
                 s={{ textDecoration: "none", color: "black" }}

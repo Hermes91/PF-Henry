@@ -13,7 +13,9 @@ export default function Carouselle() {
     return (
         <div className={s.containerH}>
 
+
             <Carousel showThumbs={false} autoPlay interval={5000} infiniteLoop>
+
                 <div>
 
                     <header>
@@ -30,9 +32,12 @@ export default function Carouselle() {
                     <header>
                         <img className={s.imgCar} alt="carousel2" src={background2} />
                     </header>
-                    <div className={s.name}>Vivero Henry</div>
-                    <div className={s.bar}>
-                        <span className={s.h1}>Explore our wide variety </span>
+
+                    <div className={s.bar2}>
+                        <span className={s.h1}>Explore our </span>
+                        <span className={s.barVariety}> VARIETY </span>
+                        <button className={s.hShop}><a href="/shop">Go To Shop</a></button>
+
                     </div>
                 </div>
                 <div>

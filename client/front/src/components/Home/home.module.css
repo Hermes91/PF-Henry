@@ -29,6 +29,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     padding-bottom: 25px;
+    padding-top: 25px;
 }
 
 .formBack {

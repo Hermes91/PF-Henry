@@ -149,7 +149,6 @@ export function postUser(payload) {
       const response = await axios.post("/users", payload)
     } catch (error) {
       console.error(error.message)
-      toast.error('Could not process request')
     }
   }
 }

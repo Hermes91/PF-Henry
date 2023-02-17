@@ -287,9 +287,9 @@ const ProductDetails = () => {
         {reviews?.map((e) => (
           <Card style={{marginBottom: "1%"}} key={e.id}>
             <Card.Header as="h5">{handleOwner(e.userId, allUsers)}</Card.Header>
-            <Card.Body>
+            <Card.Body className={style.comments}>
               <Card.Text>
-                {e.text}
+                {e.text} 
               </Card.Text>
             </Card.Body>
           </Card>

@@ -80,8 +80,9 @@
   font-size: 24px;
   cursor: pointer;
 }
-.icon:hover{
- color: red;
+
+.icon:hover {
+  color: red;
 }
 
 .price {
@@ -246,9 +247,13 @@
   align-self: flex-end;
 }
 
-.rating{
+.rating {
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: start;
+}
+
+.comments {
+  font-weight: bold;
 }
