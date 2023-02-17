@@ -1,13 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 //import { useHistory } from "react-router-dom";
 import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "@mui/material/Rating";
+import Card from 'react-bootstrap/Card';
 import {
   getProduct,
   getReviewById,
+  getAllUsers,
   postFavorite /* getClean */,
   postReview,
 } from "../../redux/actions/actionIndex.js";
@@ -24,6 +27,8 @@ const ProductDetails = () => {
   const { user, isAuthenticated } = useAuth0();
   const [cart, setCart] = useLocalStorage("cart");
   const { productId } = useParams();
+  const allUsers = useSelector((state) => state.allUsers)
+  const orderedChange = useSelector((state) => state.orderedChange)
   const reviews = useSelector((state) =>state.productReview)
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
@@ -42,6 +47,11 @@ const ProductDetails = () => {
   //     );
   //   return productAlreadyBought;
   // };
+  const handleOwner = (id, allUsers) =>{
+    for(let i = 0; i < allUsers.length; i++){
+      if(allUsers[i].id === id) return allUsers[i].fullName
+    }
+  }
 
   const handleQualify = (e) => {
     const payload = {
@@ -55,6 +65,7 @@ const ProductDetails = () => {
       return;
     }
     dispatch(postReview(payload));
+    dispatch(getReviewById(productId))
     toast.success("Product review was sent successfully!");
     setRating(0);
     setReview("");
@@ -78,6 +89,7 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(getProduct(productId));
     dispatch(getReviewById(productId))
+    dispatch(getAllUsers())
     // return () => {
     //   dispatch(getClean());
     // };
@@ -272,8 +284,16 @@ const ProductDetails = () => {
             Qualify
           </button>
         </div>
-        {console.log(reviews)}
-        {/* ) : null} */}
+        {reviews?.map((e) => (
+          <Card style={{marginBottom: "1%"}} key={e.id}>
+            <Card.Header as="h5">{handleOwner(e.userId, allUsers)}</Card.Header>
+            <Card.Body>
+              <Card.Text>
+                {e.text}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
       </div>
       <Footer />
     </>
