@@ -6,7 +6,7 @@ import { useLocalStorage } from "./../productDetails/useLocalStorage";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Link } from "react-router-dom";
 import {  deleteFavorites } from '../../redux/actions/actionIndex'
-
+import { toast } from "react-toastify"; 
 
 export default function WishList(product) {
     const { user } = useAuth0()
@@ -26,7 +26,7 @@ export default function WishList(product) {
         if (user.email) {
             const payload = { productId: id, email: user.email }
             dispatch(deleteFavorites(payload))
-            alert("Product removed from your wishlist")
+            toast.info("Product removed from your wishlist")
         }
     }
 
@@ -71,7 +71,7 @@ export default function WishList(product) {
                                             console.log(JSON.parse(window.localStorage.getItem("cart")))
                                             setCart(toCartStringify)
                                         }
-                                        alert("Product added to cart!");
+                                        toast.info("Product added to cart!");
                                     }}>
                                         Add to cart
                                     </span>

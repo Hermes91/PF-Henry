@@ -58,7 +58,7 @@ export default function NavBar() {
             </>
               : <LoginButton className={style.btn_right} />}
             {isAdmin && 
-              <Link to='/admin'>holis admin</Link>
+              <Link to='/admin' className={style.btn_right}>Admin dashboard</Link>
             }
             <Link to="/cart" className={style.btn_right} onClick={window.location.reload}>
               <FontAwesomeIcon

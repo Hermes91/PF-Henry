@@ -57,15 +57,20 @@ export const searchProduct = (searchTerm) => {
 export const createProduct = (product) => {
   return async function (dispatch) {
     try {
-      const response = await axios.post("/products", product);
+      const accessToken = localStorage.getItem("token");
+      const response = await axios.post("/products", product, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       dispatch({ type: CREATE_PRODUCT, payload: response });
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
       dispatch({ type: CREATE_PRODUCT, payload: { data: [] } });
+      toast.error('Could not create product')
     }
   };
 };
-
 
 export const filterByName = (productName) => {
   return async function (dispatch) {
@@ -143,7 +148,8 @@ export function postUser(payload) {
     try {
       const response = await axios.post("/users", payload)
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
+      toast.error('Could not process request')
     }
   }
 }
