@@ -30,9 +30,7 @@ export default function Footer() {
           </Link>
 
         </div>
-
         <p>Copyright © 2023 Vivero Henry</p>
-
       </footer>
     </div>
   )
