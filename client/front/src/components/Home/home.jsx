@@ -13,6 +13,7 @@ import Map from '../Map/map'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/actionIndex";
+import OffertCarroussel from '../OffertCarroussel/OffertCarroussel'
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -48,6 +49,9 @@ export default function Home() {
               <Navbar />
             </div>
             <Carousel />
+            <div>
+            <OffertCarroussel/>
+            </div>
             <div className={s.cardsH}>
               <ProdHome id="7" name="Bromelia guzmania" s="0" />
               <ProdHome id="8" name="Bromelia lindenii" s="1" />
@@ -81,6 +85,7 @@ export default function Home() {
             <Navbar />
           </div>
           <Carousel />
+          <OffertCarroussel/>
           <div className={s.cardsH}>
             <ProdHome id="7" name="Bromelia guzmania" s="0" />
             <ProdHome id="8" name="Bromelia lindenii" s="1" />
