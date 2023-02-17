@@ -3,42 +3,83 @@ import s from '../Carousel/carousel.module.css'
 import background1 from '../../assets/search.jpg'
 import background2 from '../../assets/search2.jpg'
 import background3 from '../../assets/search3.jpg'
+import background4 from '../../assets/search4.jpg'
+import background5 from '../../assets/search6.jpg'
+import background6 from '../../assets/search7.jpg'
+
 import { Carousel } from "react-responsive-carousel";
 
 export default function Carouselle() {
     return (
         <div className={s.containerH}>
 
-            {/* autoPlay */}
-            <Carousel showThumbs={false} interval={4000} infiniteLoop>
+
+            <Carousel showThumbs={false} autoPlay interval={5000} infiniteLoop>
+
                 <div>
 
                     <header>
                         <img className={s.imgCar} alt="carousel1" src={background1} />
                     </header>
-                    <div className={s.bar}>
-                        <span className={s.h1}>Leave it in  </span>
-                        <span className={s.h2}> our hands </span>
+                    <div className={s.nameInite}>Welcome to Vivero Henry!</div>
+                    <div className={s.bar_slogan}>
+                   
+                        <span className={s.h1_slogan}>Leave it in  </span>
+                        <span className={s.h2_slogan}> our hands </span>
                     </div>
                 </div>
                 <div>
                     <header>
                         <img className={s.imgCar} alt="carousel2" src={background2} />
                     </header>
+
                     <div className={s.bar2}>
                         <span className={s.h1}>Explore our </span>
                         <span className={s.barVariety}> VARIETY </span>
                         <button className={s.hShop}><a href="/shop">Go To Shop</a></button>
+
                     </div>
                 </div>
                 <div>
                     <header>
                         <img className={s.imgCar} alt="carousel3" src={background3} />
                     </header>
+                    <div className={s.name}>Vivero Henry</div>
                     <div className={s.bar}>
-                        <span className={s.h1}>best  </span>
-                        <span className={s.h2}> plantitas </span>
-                        <span className={s.h1}>ever  </span>
+                        <span className={s.h1}>Best  </span>
+                        <span className={s.h2}> Plantitas </span>
+                        <span className={s.h1}>Ever  </span>
+                    </div>
+                </div>
+                <div>
+                    <header>
+                        <img className={s.imgCar} alt="carousel4" src={background4} />
+                    </header>
+                    <div className={s.name}>Vivero Henry</div>
+                    <div className={s.bar}>
+                        <span className={s.h1}>Delighted to share passions with you!</span>
+                    </div>
+                </div>
+                <div>
+                    <header>
+                        <img className={s.imgCar} alt="carousel4" src={background5} />
+                    </header>
+                    <div className={s.name}>Vivero Henry</div>
+                    <div className={s.bar}>
+                        <span className={s.h1}>Buy our selected plants in </span>
+                        <span className={s.h1_steps}> three simple steps! </span>
+                    </div>
+                </div>
+                <div>
+                    <header>
+                        <img className={s.imgCar} alt="carousel4" src={background6} />
+                    </header>
+                    <div className={s.name}>Vivero Henry</div>
+                    <div className={s.bar}>
+                        <span className={s.h1}>Bring </span>
+                        <span className={s.h2}>life</span>
+                        <span className={s.h1}>to your</span>
+                        <span className={s.h2}>home</span>
                     </div>
                 </div>
             </Carousel>
