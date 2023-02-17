@@ -18,7 +18,7 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-
+export const GET_ALL_USERS = "GET_ALL_USERS"
 
 
 export const getProducts = () => {
@@ -211,11 +211,11 @@ export function postReview(payload) {
   }
 }
 
-export const getUserById = (payload) => {
-  return async function () {
+export const getAllUsers = () => {
+  return async function (dispatch) {
     try{
-      const respose = await axios.get(`/users/${payload}`)
-      return respose
+      const response = await axios.get(`/users`)
+      dispatch({ type: GET_ALL_USERS, payload: response.data})
     }catch(error){
       return "User not found"
   }
