@@ -94,47 +94,6 @@
     animation: aparecerElemento 1.2s;
 }
 
-.bar2 {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    left: 50%;
-    top: 20%;
-}
-
-.hShop {
-    margin-top: 25px;
-    width: 200px;
-    height: 50px;
-    border-radius: 15px;
-    font-size: 24pt;
-    font-weight: bold;
-    background-color: #a3c413;
-    border: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    cursor: pointer;
-    transition: all .2s ease-in;
-}
-
-.barVariety {
-    color: #a3c413;
-    font-size: 84pt;
-    width: 350px;
-    font-weight: bold;
-    line-height: 55pt;
-}
-
-.hShop:hover {
-    background-color: #fffb02;
-    scale: 1.1;
-}
-
-.hShop a {
-    color: black;
-}
-
 header {
     width: 100vw;
     background: black;
