@@ -46,3 +46,12 @@
 .menu a:visited {
     color: #69b347;
 }
+
+.logout {
+    color: antiquewhite;
+    background-color: #69b347;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
