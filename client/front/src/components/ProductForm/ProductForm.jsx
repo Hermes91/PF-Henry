@@ -124,9 +124,10 @@ export default function ProductForm () {
 
             <label>Description:</label>
             <textarea value={input.description} 
-            name='summary' 
+            name='description' 
             onChange={handleChange} 
-            placeholder='Description' />
+            placeholder='Description'>
+            </textarea>
             {err.description && <p>{err.description}</p>}
 
             <label>Price:</label>
