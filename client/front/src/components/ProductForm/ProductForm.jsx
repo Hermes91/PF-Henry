@@ -49,6 +49,14 @@ export default function ProductForm () {
         categories: input.categories.filter((c) => c !== e)
       })
     }
+
+    const handleChangeFile = (e) => {
+      const file = e.target.files[0];
+      setInput(prevInput => ({
+        ...prevInput,
+        img: file
+      }));
+    };
   
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -89,7 +97,7 @@ export default function ProductForm () {
           <h1>Complete the form below to create a new product</h1>
           <h5>Complete all fields</h5>
   
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <label>Name:</label>
             <input value={input.name}
             name='name'
@@ -115,11 +123,11 @@ export default function ProductForm () {
             {err.weight && <p>{err.weight}</p>}
 
             <label>Image:</label>
-            <input value={input.img} 
-            name='img' 
-            onChange={handleChange} 
-            type='text' 
-            placeholder='Image URL' />
+            <input
+            name='img'
+            type='file'
+            onChange={handleChangeFile}
+            />
             {err.img && <p>{err.img}</p>}
 
             <label>Description:</label>
