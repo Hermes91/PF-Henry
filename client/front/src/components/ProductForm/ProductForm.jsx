@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import validate from './validate'
 import { getCategories, createProduct } from '../../redux/actions/actionIndex.js'
 import { toast } from 'react-toastify'
+import s from './ProductForm.module.css'
 
 export default function ProductForm () {
     const dispatch = useDispatch()
@@ -33,7 +34,7 @@ export default function ProductForm () {
         })
       }
   
-    const isButtonDisabled = () => (!!Object.keys(err).length)
+    const isButtonDisabled = () => (Object.keys(err).length > 0)
   
     const handleSelectCategory = (e) => {
       setInput({
