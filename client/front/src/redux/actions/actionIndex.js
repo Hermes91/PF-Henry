@@ -18,7 +18,8 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-export const GET_ALL_USERS = "GET_ALL_USERS"
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const POST_ORDER = "POST_ORDER"
 
 
 export const getProducts = () => {
@@ -234,6 +235,17 @@ export const getReviewById = (payload) => {
       dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data })
     }catch(error){
       return "Review not found"
+    }
   }
+}
+
+export const postOrder = (payload) => {
+  return async function () {
+    try {
+      const resOrder = await axios.post("/orders", payload)
+      console.log(resOrder)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
