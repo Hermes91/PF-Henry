@@ -1,7 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID";
+export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
+export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID"
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
@@ -245,3 +246,15 @@ export const getOrders = () => {
     }
   };
 };
+
+
+export const getUserReviews = (payload) => {
+  return async function (dispatch){
+    try{
+      const res = await axios.get(`/reviews/${payload}`)
+      dispatch({type: GET_USER_REVIEWS, payload: res.data})
+    }catch(error){
+      return "Error"
+    }
+  }
+}

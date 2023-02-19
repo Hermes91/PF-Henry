@@ -18,6 +18,7 @@ import {
   DELETE_FAVORITES,
   GET_ALL_USERS,
   GET_ORDERS,
+  GET_USER_REVIEWS
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -26,6 +27,7 @@ export const initialState = {
   productDetail: [],
   productReview: [],
   allUsers: [],
+  userReviews:[],
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
@@ -238,6 +240,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         orders: action.payload,
       };
+    }
+    
+    case GET_USER_REVIEWS: {
+      return{
+        ...state, 
+        userReviews: action.payload
+      }
     }
 
     // --case default-- //
