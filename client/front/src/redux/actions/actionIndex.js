@@ -1,7 +1,7 @@
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID"
+export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
@@ -18,8 +18,8 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-export const GET_ALL_USERS = "GET_ALL_USERS"
-
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_ORDERS = "GET_ORDERS";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -49,7 +49,7 @@ export const searchProduct = (searchTerm) => {
       dispatch({ type: SEARCH_PRODUCT, payload: searchResponse.data });
     } catch (error) {
       console.error(error, "Product not found...");
-      toast.warn('Product not found, try another name');
+      toast.warn("Product not found, try another name");
     }
   };
 };
@@ -67,7 +67,7 @@ export const createProduct = (product) => {
     } catch (error) {
       console.error(error.message);
       dispatch({ type: CREATE_PRODUCT, payload: { data: [] } });
-      toast.error('Could not create product')
+      toast.error("Could not create product");
     }
   };
 };
@@ -113,7 +113,7 @@ export function getClean() {
     type: GET_CLEAN,
     payload: [],
   };
-};
+}
 
 ////////////////////////***CART ACTIONS***/////////////////////////
 
@@ -121,119 +121,127 @@ export const addToCart = (id) => {
   return async function (dispatch) {
     dispatch({
       type: ADD_CART,
-      payload: id
-    })
-  }
-}
+      payload: id,
+    });
+  };
+};
 
 export const deletCartProduct = (id) => {
   return async function (dispatch) {
     dispatch({
       type: REMOVE_FROM_CART,
-      payload: id
-    })
-  }
-}
+      payload: id,
+    });
+  };
+};
 
 export function clearCart(payload) {
   return {
     type: CLEAR_CART,
-    payload
-  }
-
+    payload,
+  };
 }
 
 export function postUser(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.post("/users", payload)
+      const response = await axios.post("/users", payload);
     } catch (error) {
-      console.error(error.message)
+      console.error(error.message);
     }
-  }
+  };
 }
 
 export function updateUser(payload) {
   return async function () {
     try {
-      axios.put("/users", payload)
-        .then((data) => {
-          console.log(data);
-        })
+      axios.put("/users", payload).then((data) => {
+        console.log(data);
+      });
     } catch (error) {
-      toast.error("Your profile could not be updated, please try again later")
-      console.error(error.message)
+      toast.error("Your profile could not be updated, please try again later");
+      console.error(error.message);
     }
-  }
+  };
 }
-
 
 export function postFavorite(payload) {
   return async function (dispatch) {
     dispatch({
       type: ADD_FAVORITES,
-      payload: payload
-    })
+      payload: payload,
+    });
     try {
-      const response = await axios.post("/favorites", payload)
-      return response
+      const response = await axios.post("/favorites", payload);
+      return response;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function getFavorites(email) {
   return async function (dispatch) {
     const productsResponse = await axios.get(`/favorites/${email}`);
-    dispatch({ type: GET_FAVORITES, payload: productsResponse.data })
-  }
+    dispatch({ type: GET_FAVORITES, payload: productsResponse.data });
+  };
 }
 
 export function deleteFavorites(payload) {
   return async function (dispatch) {
     dispatch({
       type: DELETE_FAVORITES,
-      payload: payload
-    })
+      payload: payload,
+    });
     try {
-      const response = await axios.delete("/favorites", { data: payload })
-      return response
+      const response = await axios.delete("/favorites", { data: payload });
+      return response;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function postReview(payload) {
   return async function () {
     try {
-      const response = await axios.post("/reviews", payload)
-      console.log(response)
+      const response = await axios.post("/reviews", payload);
+      console.log(response);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export const getAllUsers = () => {
   return async function (dispatch) {
-    try{
-      const response = await axios.get(`/users`)
-      dispatch({ type: GET_ALL_USERS, payload: response.data})
-    }catch(error){
-      return "User not found"
-  }
-  }
-}
+    try {
+      const response = await axios.get(`/users`);
+      dispatch({ type: GET_ALL_USERS, payload: response.data });
+    } catch (error) {
+      return "User not found";
+    }
+  };
+};
 
 export const getReviewById = (payload) => {
   return async function (dispatch) {
-    try{
-      const respose = await axios.get(`/reviews/?productId=${payload}`)
-      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data })
-    }catch(error){
-      return "Review not found"
-  }
-  }
-}
+    try {
+      const respose = await axios.get(`/reviews/?productId=${payload}`);
+      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
+    } catch (error) {
+      return "Review not found";
+    }
+  };
+};
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/orders`);
+      dispatch({ type: GET_ORDERS, payload: response.data });
+    } catch (error) {
+      return "Order not found";
+    }
+  };
+};
