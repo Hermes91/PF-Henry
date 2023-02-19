@@ -8,7 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Login/Login";
 import LogoutButton from "../Logout/Logout";
 
-
 // --import style-- //
 import style from "./NavBar.module.css";
 import BurgerMenu from "./Burger";
@@ -46,14 +45,23 @@ export default function NavBar() {
             <Link to="/about-us" className={style.btn_left}>
               About Us
             </Link>
+            <Link to="/blogs" className={style.btn_left}>
+              Blog
+            </Link>
           </div>
 
           <div className={style.right}>
-            {isAuthenticated ? <>
-              <div className={style.userName}> Hello, {user.nickname}!
-                <BurgerMenu /></div>
-            </>
-              : <LoginButton className={style.btn_right} />}
+            {isAuthenticated ? (
+              <>
+                <div className={style.userName}>
+                  {" "}
+                  Hello, {user.nickname}!
+                  <BurgerMenu />
+                </div>
+              </>
+            ) : (
+              <LoginButton className={style.btn_right} />
+            )}
 
             <Link to="/cart" className={style.btn_right}>
               <FontAwesomeIcon

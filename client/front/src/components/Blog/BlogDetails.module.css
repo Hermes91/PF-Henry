@@ -1,0 +1,43 @@
+.tittle{
+    text-align: center;
+    background-color: #69b347;
+    color: #ffffff;
+}
+
+.paragraph{
+    font-size: 22px;
+    text-align: center;
+    /* white-space: pre-line; */
+}
+.blogBody {
+    display: flex;
+    flex-direction: column;
+    width: 1370px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #d4ffb1;
+    margin-top: 2%;
+    border-radius: 25px;
+    -webkit-box-shadow: 7px 10px 50px -19px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 7px 10px 50px -19px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 10px 50px -19px rgba(0, 0, 0, 0.75);
+  }
+
+  .imagecontainer {
+    border: solid 5pt #84db9a;
+    background-color: aliceblue;
+    /* background: url("../../assets//greenF.png"); */
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+      background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .image {
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.15);
+  
+  }
