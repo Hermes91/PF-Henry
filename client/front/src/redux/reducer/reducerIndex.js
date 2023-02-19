@@ -16,7 +16,9 @@ import {
   GET_FAVORITES,
   ADD_FAVORITES,
   DELETE_FAVORITES,
-  GET_ALL_USERS
+  GET_ALL_USERS,
+  GET_ORDERS,
+  GET_USER_REVIEWS
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -24,7 +26,8 @@ export const initialState = {
   allCategories: [],
   productDetail: [],
   productReview: [],
-  allUsers:[],
+  allUsers: [],
+  userReviews:[],
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
@@ -77,15 +80,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByName =
         action.payload === "A-Z"
           ? state.filterProducts.sort((a, b) => {
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
-            return 0;
-          })
+              if (a.name > b.name) return 1;
+              if (a.name < b.name) return -1;
+              return 0;
+            })
           : state.filterProducts.sort((a, b) => {
-            if (a.name < b.name) return 1;
-            if (a.name > b.name) return -1;
-            return 0;
-          });
+              if (a.name < b.name) return 1;
+              if (a.name > b.name) return -1;
+              return 0;
+            });
 
       return {
         ...state,
@@ -98,15 +101,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByPrice =
         action.payload === "minPrice"
           ? state.filterProducts.sort((a, b) => {
-            if (a.price > b.price) return 1;
-            if (a.price < b.price) return -1;
-            return 0;
-          })
+              if (a.price > b.price) return 1;
+              if (a.price < b.price) return -1;
+              return 0;
+            })
           : state.filterProducts.sort((a, b) => {
-            if (a.price < b.price) return 1;
-            if (a.price > b.price) return -1;
-            return 0;
-          });
+              if (a.price < b.price) return 1;
+              if (a.price > b.price) return -1;
+              return 0;
+            });
 
       return {
         ...state,
@@ -132,15 +135,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByWeight =
         action.payload === "minWeight"
           ? state.filterProducts.sort((a, b) => {
-            if (a.weight > b.weight) return 1;
-            if (a.weight < b.weight) return -1;
-            return 0;
-          })
+              if (a.weight > b.weight) return 1;
+              if (a.weight < b.weight) return -1;
+              return 0;
+            })
           : state.filterProducts.sort((a, b) => {
-            if (a.weight < b.weight) return 1;
-            if (a.weight > b.weight) return -1;
-            return 0;
-          });
+              if (a.weight < b.weight) return 1;
+              if (a.weight > b.weight) return -1;
+              return 0;
+            });
 
       return {
         ...state,
@@ -163,17 +166,17 @@ export default function reducer(state = initialState, action) {
       let itemInCart = state.cart.find((i) => i.id === newItem.id);
       return itemInCart
         ? {
-          ...state,
-          cart: state.cart.map((item) =>
-            item.id === newItem.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        }
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          }
         : {
-          ...state,
-          cart: [...state.cart, { ...newItem, quantity: 1 }],
-        };
+            ...state,
+            cart: [...state.cart, { ...newItem, quantity: 1 }],
+          };
     }
 
     case REMOVE_FROM_CART: {
@@ -218,17 +221,31 @@ export default function reducer(state = initialState, action) {
     }
 
     case GET_REVIEW_BY_ID: {
-      return{
+      return {
         ...state,
-        productReview: action.payload
-      }
+        productReview: action.payload,
+      };
     }
 
     case GET_ALL_USERS: {
-      return{
+      return {
         ...state,
         allUsers: action.payload,
-        orderedChange: !state.orderedChange
+        orderedChange: !state.orderedChange,
+      };
+    }
+
+    case GET_ORDERS: {
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    }
+    
+    case GET_USER_REVIEWS: {
+      return{
+        ...state, 
+        userReviews: action.payload
       }
     }
 

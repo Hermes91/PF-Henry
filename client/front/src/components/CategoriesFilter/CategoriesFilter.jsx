@@ -40,7 +40,7 @@ const CategoriesFilter = () => {
           className={style.select}
           onChange={(event) => handleFilteredProduct(event)}
         >
-          <option value={"Todas"}>Todas</option>
+          <option value={"Todas"}>All</option>
           {categoriesList}
         </select>
       </div>
