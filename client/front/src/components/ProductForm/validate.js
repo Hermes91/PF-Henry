@@ -11,7 +11,7 @@ export default function validate({ name, description, height, weight, price, off
     if (!name) errors.name = 'Product name is required'
     if (!lettersAndWhitespaces.test(name)) errors.name = 'Product name is invalid'
 
-    if (height) errors.height = 'A height value is required'
+    if (!height) errors.height = 'A height value is required'
     if (!integers.test(height)) errors.height = 'A positive integer number is required'
     if (height > 300) height = 'Value cannot be higher than 300cm'
 
