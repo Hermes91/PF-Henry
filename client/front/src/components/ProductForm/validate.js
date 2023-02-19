@@ -13,10 +13,10 @@ export default function validate({ name, description, height, weight, price, off
 
     if (!height) errors.height = 'A height value is required'
     if (!integers.test(height)) errors.height = 'A positive integer number is required'
-    if (height > 300) height = 'Value cannot be higher than 300cm'
+    if (height > 300) errors.height = 'Value cannot be higher than 300cm'
 
     if (!weight) errors.weight = 'A weight value is required'
-    if (!integers.test(weight)) errors.minWeight = 'A positive integer number is required'
+    if (!integers.test(weight)) errors.weight = 'A positive integer number is required'
     if (weight > 150) errors.weight = 'Value cannot be higher than 150l'
 
     if (!img) errors.img = 'An image file is required'
@@ -40,6 +40,6 @@ export default function validate({ name, description, height, weight, price, off
     if (!integers.test(stock)) errors.stock = 'A positive integer number is required'
 
     if (categories.length === 0) errors.categories = 'At least one category is required'
-
+console.log(errors)
     return errors
 }
