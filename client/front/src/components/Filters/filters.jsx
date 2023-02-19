@@ -3,6 +3,7 @@ import {
   filterByName,
   filterByPrice,
   filterByWeight,
+  filterByRating,
   getProducts
 } from "../../redux/actions/actionIndex.js";
 
@@ -32,6 +33,10 @@ export default function Filters() {
   function handleFilterByWeight(e) {
     e.preventDefault();
     dispatch(filterByWeight(e.target.value));
+  }
+  function handleFilterByRating(e) {
+    e.preventDefault();
+    dispatch(filterByRating(e.target.value));
   }
 
   return (
@@ -64,6 +69,15 @@ export default function Filters() {
           <option hidden>By Weight</option>
           <option value="maxWeight">Max-Min</option>
           <option value="minWeight">Min-Max</option>
+        </select>
+        {/* -- BY RATING-- */}
+        <select
+          className={style.filters}
+          onChange={(e) => handleFilterByRating(e)}
+        >
+          <option hidden>By Rating</option>
+          <option value="maxRating">Higher to lower</option>
+          <option value="minRating">Lower to higher</option>
         </select>
         <button
             className={style.refreshButton}

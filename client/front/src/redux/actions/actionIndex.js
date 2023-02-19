@@ -18,7 +18,7 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
-
+export const FILTER_BY_RATING = "FILTER_BY_RATING";
 
 
 export const getProducts = () => {
@@ -99,6 +99,15 @@ export const filterByWeight = (productWeight) => {
     dispatch({
       type: FILTER_BY_WEIGHT,
       payload: productWeight,
+    });
+  };
+};
+
+export const filterByRating = (value) => {
+  return async function (dispatch) {
+    dispatch({
+      type: FILTER_BY_RATING,
+      payload: value,
     });
   };
 };
