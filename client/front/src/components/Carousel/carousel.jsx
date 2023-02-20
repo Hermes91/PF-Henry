@@ -17,15 +17,13 @@ export default function Carouselle() {
             <Carousel showThumbs={false} autoPlay interval={5000} infiniteLoop>
 
                 <div>
-
                     <header>
                         <img className={s.imgCar} alt="carousel1" src={background1} />
                     </header>
-                    <div className={s.nameInite}>Welcome to Vivero Henry!</div>
+                    <div className={s.nameInite}>Welcome to </div>
+                    <div className={s.nameInite2}>Vivero Henry!</div>
                     <div className={s.bar_slogan}>
-                   
-                        <span className={s.h1_slogan}>Leave it in  </span>
-                        <span className={s.h2_slogan}> our hands </span>
+                        <span className={s.h1_slogan}>"Leave it in our hands"</span>
                     </div>
                 </div>
                 <div>
@@ -42,22 +40,11 @@ export default function Carouselle() {
                 </div>
                 <div>
                     <header>
-                        <img className={s.imgCar} alt="carousel3" src={background3} />
-                    </header>
-                    <div className={s.name}>Vivero Henry</div>
-                    <div className={s.bar}>
-                        <span className={s.h1}>Best  </span>
-                        <span className={s.h2}> Plantitas </span>
-                        <span className={s.h1}>Ever  </span>
-                    </div>
-                </div>
-                <div>
-                    <header>
                         <img className={s.imgCar} alt="carousel4" src={background4} />
                     </header>
                     <div className={s.name}>Vivero Henry</div>
                     <div className={s.bar}>
-                        <span className={s.h1}>Delighted to share passions with you!</span>
+                        <span className={s.h1_3}>Delighted to share our passion with you!</span>
                     </div>
                 </div>
                 <div>
@@ -66,8 +53,8 @@ export default function Carouselle() {
                     </header>
                     <div className={s.name}>Vivero Henry</div>
                     <div className={s.bar}>
-                        <span className={s.h1}>Buy our selected plants in </span>
-                        <span className={s.h1_steps}> three simple steps! </span>
+                        <span className={s.h1_1}>Buy our selected plants in </span>
+                        <span className={s.h1_steps}>three simple steps!</span>
                     </div>
                 </div>
                 <div>
@@ -75,7 +62,7 @@ export default function Carouselle() {
                         <img className={s.imgCar} alt="carousel4" src={background6} />
                     </header>
                     <div className={s.name}>Vivero Henry</div>
-                    <div className={s.bar}>
+                    <div className={s.bar_life}>
                         <span className={s.h1}>Bring </span>
                         <span className={s.h2}>life</span>
                         <span className={s.h1}>to your</span>

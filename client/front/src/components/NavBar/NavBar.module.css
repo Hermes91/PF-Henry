@@ -4,6 +4,7 @@
   flex-direction: row;
   display: flex;
   display: inline;
+
 }
 
 .NavBar {
@@ -13,6 +14,7 @@
   width: 100%;
   padding-top: 10px;
   padding-bottom: 8px;
+
 }
 
 .userName {
@@ -35,7 +37,6 @@
   margin-right: 15px;
   padding: 10px 30px;
   font-weight: bold;
-
 }
 
 .btn_right:hover {
@@ -58,7 +59,6 @@
   flex-wrap: wrap;
   flex-direction: column;
   padding-left: 20px;
-
 }
 
 .btn_left {
@@ -68,7 +68,6 @@
   overflow: hidden;
   padding: 15px 32px;
   font-weight: bold;
-
 }
 
 .btn_left:hover {

@@ -49,13 +49,10 @@ export default function Home() {
               <Navbar />
             </div>
             <Carousel />
-            <div>
-            <OffertCarroussel/>
-            </div>
+
             <div className={s.cardsH}>
               <ProdHome id="7" name="Bromelia guzmania" s="0" />
               <ProdHome id="8" name="Bromelia lindenii" s="1" />
-
               {user ? (
                 <Link
                   s={{ textDecoration: "none" }}
@@ -69,6 +66,9 @@ export default function Home() {
             </div>
             <div className={s.discount}>
               <Discount />
+            </div>
+            <div>
+              <OffertCarroussel />
             </div>
             <div className={s.contact}>
               <Map />
@@ -85,7 +85,7 @@ export default function Home() {
             <Navbar />
           </div>
           <Carousel />
-          <OffertCarroussel/>
+          <OffertCarroussel />
           <div className={s.cardsH}>
             <ProdHome id="7" name="Bromelia guzmania" s="0" />
             <ProdHome id="8" name="Bromelia lindenii" s="1" />
