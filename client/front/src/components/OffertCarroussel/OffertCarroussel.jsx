@@ -24,7 +24,7 @@ function OffertCarroussel() {
     <div className="m-5">
     <div className={style.flexContainer}>
       <h2 className="blueOur">Check out our</h2>
-      <h2 className={style.red}>Offerts!</h2>
+      <h2 className={style.red}>Discounts!</h2>
     </div>
 
     <Swiper
