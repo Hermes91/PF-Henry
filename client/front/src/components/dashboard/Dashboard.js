@@ -32,7 +32,7 @@ import Orders from "./Orders";
 import Clients from "./Clients";
 import Products from "./Products";
 import LogoutButton from "../Logout/Logout";
-// import ProductForm from "../ProductForm/ProductForm";
+import ProductForm from "../ProductForm/ProductForm";
 
 function Copyright(props) {
   return (
@@ -108,7 +108,7 @@ function DashboardContent() {
   const [ordersShow, setordersShow] = useState(false);
   const [clientsShow, setClientsShow] = useState(false);
   const [productsShow, setproductsShow] = useState(false);
-  const [productForm, setProductForm] = useState(false)
+  const [productFormShow, setProductFormShow] = useState(false)
   const [logoutShow, setLogoutShow] = useState(false)
 
   const toggleDrawer = () => {
@@ -185,13 +185,13 @@ function DashboardContent() {
     </Grid>
   );
 
-  // const formProduct = (
-  //   <Grid item xs={12}>
-  //     <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-  //       <ProductForm />
-  //     </Paper>
-  //   </Grid>
-  // );
+  const formProduct = (
+    <Grid item xs={12}>
+      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <ProductForm />
+      </Paper>
+    </Grid>
+  );
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -254,7 +254,7 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(false);
                 setproductsShow(false);
-                setProductForm(false)
+                setProductFormShow(false)
               }}
             >
               <ListItemIcon>
@@ -270,7 +270,7 @@ function DashboardContent() {
                 setordersShow(true);
                 setClientsShow(false);
                 setproductsShow(false);
-                setProductForm(false)
+                setProductFormShow(false)
               }}
             >
               <ListItemIcon>
@@ -286,7 +286,7 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(true);
                 setproductsShow(false);
-                setProductForm(false)
+                setProductFormShow(false)
               }}
             >
               <ListItemIcon>
@@ -302,7 +302,7 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(false);
                 setproductsShow(true);
-                setProductForm(false)
+                setProductFormShow(false)
               }}
             >
               <ListItemIcon>
@@ -317,12 +317,12 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(false);
                 setproductsShow(false);
-                setProductForm(true)
+                setProductFormShow(true)
               }}>
             <ListItemIcon>
               <AddIcon />
             </ListItemIcon>
-            <ListItemText primary="Manage stock" />
+            <ListItemText primary="formProduct" />
             </ListItemButton>
             <ListItemButton>
             <ListItemIcon>
@@ -361,6 +361,8 @@ function DashboardContent() {
               {clientsShow && clients}
               {/* Products */}
               {productsShow && products}
+              {/* {Create product} */}
+              {productFormShow && formProduct}
               {/*Logout*/}
               {logoutShow && logout}
             </Grid>

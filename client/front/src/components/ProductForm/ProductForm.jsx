@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import validate from './validate'
 import { getCategories, createProduct } from '../../redux/actions/actionIndex.js'
 import { toast } from 'react-toastify'
+import s from './ProductForm.module.css'
 
 export default function ProductForm () {
     const dispatch = useDispatch()
-    const categories = useSelector(state => state.categories)
+    const categories = useSelector((state) => state.allCategories)
     const navigate = useNavigate()
     const [err, setErr] = useState({})
     const [input, setInput] = useState({
@@ -22,6 +23,10 @@ export default function ProductForm () {
       categories: []
     })
 
+    useEffect(() => {
+      dispatch(getCategories())
+    }, [dispatch])
+
     function handleChange(e) {
         setInput(prevState => {
           const newState = {    
@@ -33,7 +38,7 @@ export default function ProductForm () {
         })
       }
   
-    const isButtonDisabled = () => (!!Object.keys(err).length)
+    const isButtonDisabled = () => (Object.keys(err).length > 0)
   
     const handleSelectCategory = (e) => {
       setInput({
@@ -48,6 +53,14 @@ export default function ProductForm () {
         categories: input.categories.filter((c) => c !== e)
       })
     }
+
+    const handleChangeFile = (e) => {
+      const file = e.target.files[0];
+      setInput(prevInput => ({
+        ...prevInput,
+        img: file
+      }));
+    };
   
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -78,17 +91,14 @@ export default function ProductForm () {
       })
       navigate('/admin')
     }
-  
-    useEffect(() => {
-      dispatch(getCategories())
-    }, [dispatch])
+
   
     return (
         <div>
-          <h1>Complete the form below to create a new product</h1>
+          <h1>Create a new product</h1>
           <h5>Complete all fields</h5>
   
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <label>Name:</label>
             <input value={input.name}
             name='name'
@@ -114,18 +124,19 @@ export default function ProductForm () {
             {err.weight && <p>{err.weight}</p>}
 
             <label>Image:</label>
-            <input value={input.img} 
-            name='img' 
-            onChange={handleChange} 
-            type='text' 
-            placeholder='Image URL' />
+            <input
+            name='img'
+            type='file'
+            onChange={handleChangeFile}
+            />
             {err.img && <p>{err.img}</p>}
 
             <label>Description:</label>
             <textarea value={input.description} 
-            name='summary' 
+            name='description' 
             onChange={handleChange} 
-            placeholder='Description' />
+            placeholder='Description'>
+            </textarea>
             {err.description && <p>{err.description}</p>}
 
             <label>Price:</label>
@@ -155,7 +166,10 @@ export default function ProductForm () {
             <label>Category:</label>
             <select onChange={handleSelectCategory}>
               <option disabled selected>Select category</option>
-              {categories?.map(category => <option value={category.name} key={category.id}>{category.name}</option>)}
+              {categories?.map((c) => (
+                c.length > 0 &&
+              <option value={c}>{c}</option>
+              ))}
             </select>
             <ul >
               {input.categories?.map((category,id) => 
