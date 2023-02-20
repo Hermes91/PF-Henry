@@ -83,7 +83,7 @@ const ShopCart = () => {
 
                     <h3>total:${total}.00 </h3>
                     <div className={s.checkoutText}>Proceed to Checkout
-                        <ButtonCheckout product={product}/>
+                        <ButtonCheckout buyOrder={buyOrder} product={product}/>
 
                         </div>
                 </article>

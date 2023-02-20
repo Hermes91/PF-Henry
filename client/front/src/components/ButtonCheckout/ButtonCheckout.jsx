@@ -2,9 +2,12 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react'
 import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { postOrder } from "../../redux/actions/actionIndex";
 
 const ButtonCheckout = (props) => {
   const { isAuthenticated, user } = useAuth0()
+  const dispatch = useDispatch()
   const productsend = props.product;
   //console.log("Productsend", productsend);
   const [paidFor, setPaidFor] = useState(false);
@@ -28,6 +31,12 @@ const ButtonCheckout = (props) => {
 
   }
 
+  const purchaseData = {
+    totalAmount: productsend.price,
+    email: user?.email,
+    products: props.buyOrder.map(i => { return {productId: i.id, quantity: i.quantity}})
+  }
+
   return (
     <PayPalButtons
       //   style={{
@@ -47,6 +56,7 @@ const ButtonCheckout = (props) => {
           return await actions.reject();
 
         } else {
+          postOrder(purchaseData)
           return await actions.resolve();
 
         }
