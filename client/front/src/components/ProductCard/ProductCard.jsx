@@ -1,6 +1,7 @@
 import s from "./ProductCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartS } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useLocalStorage } from "./../productDetails/useLocalStorage";
@@ -15,45 +16,45 @@ const ProductCard = (product) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = useLocalStorage("cart")
+  const [hearth, setHearth] = useState(faHeart)
 
   const handleFavorite = () => {
-    if(user.email) {
-      const payload = {productId: product.id, email: user.email}
-    if (isFav) {
-      dispatch(deleteFavorites(payload))
-      setIsFav(false)
-      toast.info("Product was removed from your wishlist")
-    } else {
-      dispatch(postFavorite(payload))
-      setIsFav(true)
-      toast.info("Product was added to your wishlist")
-    }
+    if (user.email) {
+      const payload = { productId: product.id, email: user.email }
+      if (isFav) {
+        dispatch(deleteFavorites(payload))
+        setIsFav(false)
+        setHearth(faHeart)
+        toast.info("Product was removed from your wishlist")
+      } else {
+        dispatch(postFavorite(payload))
+        setIsFav(true)
+        setHearth(faHeartS)
+        toast.info("Product was added to your wishlist")
+      }
     } else {
       toast.warn('You must be logged in to add products to your wishlist')
     }
-    
+
   }
 
   return (
     <div className={s.container}>
-
       <div className={s.card}>
-
         <div className={s.cardImg}>
-        <Link s={{ textDecoration: "none", color: "black" }}
-                to={`/shop`}
-              >
-          <div className={s.topCard}>
-         
-            <FontAwesomeIcon icon={faHeart} className={s.icon} onClick={() => {
-                if(!user) {
+          <Link s={{ textDecoration: "none", color: "black" }}
+            to={`/shop`}
+          >
+            <div className={s.topCard}>
+              <FontAwesomeIcon icon={hearth} className={s.icon} onClick={() => {
+                if (!user) {
                   toast.warn("You must be logged in to add products to the wishlist")
                 } else {
-                handleFavorite()
+                  handleFavorite()
                 }
-              }}/>
-             
-          </div>
+              }} />
+
+            </div>
           </Link>
           <img
             src={product.img}
@@ -71,37 +72,37 @@ const ProductCard = (product) => {
             </h4>
           </div>
           <Link s={{ textDecoration: "none", color: "black" }}
-                to={`/shop`}
-              >
-          <div className={s.info2}>
-            <div className={s.cardfoot}>
-              <span  onClick={() => {
-                const oldCart = JSON.parse(window.localStorage.getItem("cart"))
-                const toCart = [{
-                  id: product.id,
-                  name: product.name,
-                  price: product.price,
-                  quantity: quantity
-                }]
-                if (oldCart === null) {
-                  const toCartStringify = [...toCart]
-                  console.log(toCartStringify)
-                  setCart(toCartStringify)
-                } else {
-                  const toCartStringify = [...toCart].concat(oldCart)
-                  console.log(toCartStringify)
-                  console.log( JSON.parse(window.localStorage.getItem("cart")))
-                  setCart(toCartStringify)
-                }
+            to={`/shop`}
+          >
+            <div className={s.info2}>
+              <div className={s.cardfoot}>
+                <span onClick={() => {
+                  const oldCart = JSON.parse(window.localStorage.getItem("cart"))
+                  const toCart = [{
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: quantity
+                  }]
+                  if (oldCart === null) {
+                    const toCartStringify = [...toCart]
+                    console.log(toCartStringify)
+                    setCart(toCartStringify)
+                  } else {
+                    const toCartStringify = [...toCart].concat(oldCart)
+                    console.log(toCartStringify)
+                    console.log(JSON.parse(window.localStorage.getItem("cart")))
+                    setCart(toCartStringify)
+                  }
 
-                toast.success("Product added to cart!");
-              
-              }}>
-                Add to cart
-              </span>
-           
+                  toast.success("Product added to cart!");
+
+                }}>
+                  Add to cart
+                </span>
+
+              </div>
             </div>
-          </div>
           </Link>
         </div>
       </div>
