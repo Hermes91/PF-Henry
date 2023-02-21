@@ -227,7 +227,6 @@ export function postReview(payload) {
   };
 }
 
-
 export function getBlogs() {
   return async function (dispatch) {
     try {
@@ -254,61 +253,62 @@ export function getBlogById(id) {
     } catch (error) {
       console.log(error);
     }
-  };
-
-export const getAllUsers = () => {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(`/users`);
-      dispatch({ type: GET_ALL_USERS, payload: response.data });
-    } catch (error) {
-      return "User not found";
-    }
-  };
+  }
 };
 
-export const getReviewById = (payload) => {
-  return async function (dispatch) {
-    try {
-      const respose = await axios.get(`/reviews/?productId=${payload}`);
-      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
-    } catch (error) {
-      return "Review not found";
-    }
+  export const getAllUsers = () => {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`/users`);
+        dispatch({ type: GET_ALL_USERS, payload: response.data });
+      } catch (error) {
+        return "User not found";
+      }
+    };
   };
-};
 
-export const getOrders = () => {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(`/orders`);
-      dispatch({ type: GET_ORDERS, payload: response.data });
-    } catch (error) {
-      return "Order not found";
-    }
+  export const getReviewById = (payload) => {
+    return async function (dispatch) {
+      try {
+        const respose = await axios.get(`/reviews/?productId=${payload}`);
+        dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
+      } catch (error) {
+        return "Review not found";
+      }
+    };
   };
-};
+
+  export const getOrders = () => {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`/orders`);
+        dispatch({ type: GET_ORDERS, payload: response.data });
+      } catch (error) {
+        return "Order not found";
+      }
+    };
+  };
 
 
-export const getUserReviews = (payload) => {
-  return async function (dispatch){
-    try{
-      const res = await axios.get(`/reviews/${payload}`)
-      dispatch({type: GET_USER_REVIEWS, payload: res.data})
-    }catch(error){
-      return "Error"
+  export const getUserReviews = (payload) => {
+    return async function (dispatch) {
+      try {
+        const res = await axios.get(`/reviews/${payload}`)
+        dispatch({ type: GET_USER_REVIEWS, payload: res.data })
+      } catch (error) {
+        return "Error"
+      }
     }
   }
-}
 
-export const postOrder = (payload) => {
-  return async function () {
-    try {
-      const resOrder = await axios.post("/orders", payload)
-      console.log(resOrder)
-    } catch (error) {
-      console.log(error)
+  export const postOrder = (payload) => {
+    return async function () {
+      try {
+        const resOrder = await axios.post("/orders", payload)
+        console.log(resOrder)
+      } catch (error) {
+        console.log(error)
 
+      }
     }
   }
-}
