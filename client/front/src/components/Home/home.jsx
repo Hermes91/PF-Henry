@@ -25,7 +25,6 @@ export default function Home() {
       const token = await getAccessTokenSilently();
       localStorage.setItem("token", token);
     }
-
     if (isAuthenticated) {
       getToken();
       dispatch(
@@ -116,3 +115,4 @@ export default function Home() {
     </>
   );
 }
+

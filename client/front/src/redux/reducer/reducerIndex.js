@@ -16,6 +16,8 @@ import {
   GET_FAVORITES,
   ADD_FAVORITES,
   DELETE_FAVORITES,
+  GET_BLOGS,
+  GET_BLOG_BY_ID,
   GET_ALL_USERS,
   GET_ORDERS,
   GET_USER_REVIEWS
@@ -34,6 +36,8 @@ export const initialState = {
   buyOrder: [],
   cart: [],
   orders: [],
+  blogs: [],
+  blog: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -219,7 +223,18 @@ export default function reducer(state = initialState, action) {
         ),
       };
     }
-
+    case GET_BLOGS: {
+      return {
+        ...state,
+        blogs: action.payload,
+      };
+    }
+    case GET_BLOG_BY_ID: {
+      return {
+        ...state,
+        blog: action.payload,
+      };
+    }
     case GET_REVIEW_BY_ID: {
       return {
         ...state,
@@ -248,7 +263,6 @@ export default function reducer(state = initialState, action) {
         userReviews: action.payload
       }
     }
-
     // --case default-- //
     default:
       return {

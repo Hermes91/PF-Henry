@@ -8,7 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Login/Login";
 import LogoutButton from "../Logout/Logout";
 
-
 // --import style-- //
 import style from "./NavBar.module.css";
 import BurgerMenu from "./Burger";
@@ -49,6 +48,9 @@ export default function NavBar() {
             <Link to="/about-us" className={style.btn_left}>
               About Us
             </Link>
+            <Link to="/blogs" className={style.btn_left}>
+              Blog
+            </Link>
           </div>
 
           <div className={style.right}>
@@ -61,6 +63,7 @@ export default function NavBar() {
               <Link to='/admin' className={style.btn_right}>Admin dashboard</Link>
             }
             <Link to="/cart" className={style.btn_right} onClick={window.location.reload}>
+
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={style.icon}
