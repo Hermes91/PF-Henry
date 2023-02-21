@@ -194,7 +194,7 @@ const ProductDetails = () => {
 
             <button
               onClick={() => {
-                const oldCart = JSON.parse(window.localStorage.getItem("cart"));
+                let oldCart = JSON.parse(window.localStorage.getItem("cart"));
                 const toCart = [
                   {
                     id: product.id,
@@ -203,17 +203,19 @@ const ProductDetails = () => {
                     quantity: quantity,
                   },
                 ];
+                const verify = oldCart !== null ? oldCart.filter(e => e.id === toCart[0].id) : []
                 if (oldCart === null) {
                   const toCartStringify = [...toCart];
-                  console.log(toCartStringify);
+                  //console.log(toCartStringify);
                   setCart(toCartStringify);
+                } else if (verify.length > 0) {
+                    for(let i = 0; i < oldCart.length; i++){
+                      if(oldCart[i].id === toCart[0].id) {oldCart[i].quantity ++}
+                      setCart(oldCart)
+                  }
                 } else {
-                  const toCartStringify = [...toCart].concat(oldCart);
-                  console.log(toCartStringify);
-                  console.log(JSON.parse(window.localStorage.getItem("cart")));
-                  setCart(toCartStringify);
-                }
-
+                const toCartStringify = [...toCart].concat(oldCart);
+                setCart(toCartStringify);}
                 toast.info("Product added to cart!");
               }}
               className={style.myBtn}
