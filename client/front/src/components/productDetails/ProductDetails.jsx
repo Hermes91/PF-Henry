@@ -29,7 +29,7 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const allUsers = useSelector((state) => state.allUsers)
   const orderedChange = useSelector((state) => state.orderedChange)
-  const reviews = useSelector((state) =>state.productReview)
+  const reviews = useSelector((state) => state.productReview)
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
@@ -47,9 +47,9 @@ const ProductDetails = () => {
   //     );
   //   return productAlreadyBought;
   // };
-  const handleOwner = (id, allUsers) =>{
-    for(let i = 0; i < allUsers.length; i++){
-      if(allUsers[i].id === id) return allUsers[i].fullName
+  const handleOwner = (id, allUsers) => {
+    for (let i = 0; i < allUsers.length; i++) {
+      if (allUsers[i].id === id) return allUsers[i].fullName
     }
   }
 
@@ -283,13 +283,14 @@ const ProductDetails = () => {
           >
             Qualify
           </button>
+
         </div>
         {reviews?.map((e) => (
-          <Card style={{marginBottom: "1%"}} key={e.id}>
-            <Card.Header as="h5">{handleOwner(e.userId, allUsers)}</Card.Header>
+          <Card key={e.id} className={style.cardContainer}>
+            <Card.Header className={style.coomentHead}><span>{handleOwner(e.userId, allUsers)}</span></Card.Header>
             <Card.Body className={style.comments}>
               <Card.Text>
-                {e.text} 
+                {e.text}
               </Card.Text>
             </Card.Body>
           </Card>

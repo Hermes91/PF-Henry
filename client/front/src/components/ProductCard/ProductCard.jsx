@@ -35,7 +35,6 @@ const ProductCard = (product) => {
     } else {
       toast.warn('You must be logged in to add products to your wishlist')
     }
-
   }
 
   return (
