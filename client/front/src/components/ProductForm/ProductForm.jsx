@@ -113,7 +113,7 @@ export default function ProductForm () {
 
   
     return (
-        <div>
+        <div className={s.prodForm}>
           <h1>Create a new product</h1>
           <h5>Complete all fields</h5>
   

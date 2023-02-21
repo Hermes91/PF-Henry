@@ -12,7 +12,7 @@ import Auth0ProviderHistory from "./auth0-provider-history";
 import Toaster from './Toaster'
 import ErrorBoundary from "./ErrorBoundary";
 
-axios.defaults.baseURL = "https://pf-henry-production-4976.up.railway.app/";
+axios.defaults.baseURL = "https://pf-henry-production-7893.up.railway.app/";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
