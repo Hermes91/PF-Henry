@@ -19,11 +19,12 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
+export const GET_BLOGS = "GET_BLOGS";
+export const GET_BLOG_BY_ID = "GET_BLOG_BY_ID";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const POST_ORDER = "POST_ORDER"
 export const GET_ORDERS = "GET_ORDERS";
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
-
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -225,6 +226,35 @@ export function postReview(payload) {
     }
   };
 }
+
+
+export function getBlogs() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/blogs");
+      dispatch({
+        type: GET_BLOGS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getBlogById(id) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/blogs/${id}`);
+      console.log(response);
+      dispatch({
+        type: GET_BLOG_BY_ID,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const getAllUsers = () => {
   return async function (dispatch) {
