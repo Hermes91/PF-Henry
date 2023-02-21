@@ -13,7 +13,7 @@ import ShopCart from './components/Cart/cart';
 import axios from "axios";
 import AdminGuard from "./components/PrivateRoutes/AdminAuth";
 
-axios.defaults.baseURL = 'https://pf-henry-production-4976.up.railway.app/';
+axios.defaults.baseURL = 'https://pf-henry-production-7893.up.railway.app/';
 
 function App() {
   return (
