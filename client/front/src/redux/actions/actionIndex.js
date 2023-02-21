@@ -24,6 +24,7 @@ export const GET_BLOG_BY_ID = "GET_BLOG_BY_ID";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const POST_ORDER = "POST_ORDER"
 export const GET_ORDERS = "GET_ORDERS";
+export const FILTER_BY_RATING = "FILTER_BY_RATING";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -108,6 +109,15 @@ export const filterByWeight = (productWeight) => {
     dispatch({
       type: FILTER_BY_WEIGHT,
       payload: productWeight,
+    });
+  };
+};
+
+export const filterByRating = (value) => {
+  return async function (dispatch) {
+    dispatch({
+      type: FILTER_BY_RATING,
+      payload: value,
     });
   };
 };
