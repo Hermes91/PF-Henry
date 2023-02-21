@@ -6,6 +6,7 @@ export default function Pagination({
   pagination,
   plants,
   currentPage,
+  notShow,
 }) {
   let pages = [];
 
@@ -15,7 +16,8 @@ export default function Pagination({
 
   return (
     <div className={s.pagination}>
-      {pages &&
+      {!notShow &&
+        pages &&
         pages.map((number) => (
           <button
             key={number}

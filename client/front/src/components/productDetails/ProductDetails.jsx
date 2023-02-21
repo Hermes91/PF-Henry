@@ -15,7 +15,7 @@ import {
   postReview,
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
-import { useParams, Link, json } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -29,7 +29,7 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const allUsers = useSelector((state) => state.allUsers)
   const orderedChange = useSelector((state) => state.orderedChange)
-  const reviews = useSelector((state) =>state.productReview)
+  const reviews = useSelector((state) => state.productReview)
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
@@ -47,9 +47,9 @@ const ProductDetails = () => {
   //     );
   //   return productAlreadyBought;
   // };
-  const handleOwner = (id, allUsers) =>{
-    for(let i = 0; i < allUsers.length; i++){
-      if(allUsers[i].id === id) return allUsers[i].fullName
+  const handleOwner = (id, allUsers) => {
+    for (let i = 0; i < allUsers.length; i++) {
+      if (allUsers[i].id === id) return allUsers[i].fullName
     }
   }
 
@@ -95,14 +95,18 @@ const ProductDetails = () => {
     // };
   }, [dispatch, productId]);
 
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  }
+
+
   return (
     <>
       <Navbar />
-      <Link to={`/shop`}>
-        <div className={style.backButton}>
-          <h3>Back</h3>
-        </div>
-      </Link>
+      <div className={style.backButton} onClick={goBack}>
+        <h3>Back</h3>
+      </div>
 
       <div className={style.detailBody}>
         <div className={style.containerP}>
@@ -285,11 +289,11 @@ const ProductDetails = () => {
           </button>
         </div>
         {reviews?.map((e) => (
-          <Card style={{marginBottom: "1%"}} key={e.id}>
+          <Card style={{ marginBottom: "1%" }} key={e.id}>
             <Card.Header as="h5">{handleOwner(e.userId, allUsers)}</Card.Header>
             <Card.Body className={style.comments}>
               <Card.Text>
-                {e.text} 
+                {e.text}
               </Card.Text>
             </Card.Body>
           </Card>

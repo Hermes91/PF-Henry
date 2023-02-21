@@ -24,6 +24,7 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   color: #d4ffb1;
+  cursor: pointer;
 }
 
 .backButton a:link {
