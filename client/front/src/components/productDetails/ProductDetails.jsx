@@ -287,10 +287,12 @@ const ProductDetails = () => {
           >
             Qualify
           </button>
+
         </div>
         {reviews?.map((e) => (
-          <Card style={{ marginBottom: "1%" }} key={e.id}>
-            <Card.Header as="h5">{handleOwner(e.userId, allUsers)}</Card.Header>
+
+          <Card key={e.id} className={style.cardContainer}>
+            <Card.Header className={style.coomentHead}><span>{handleOwner(e.userId, allUsers)}</span></Card.Header>
             <Card.Body className={style.comments}>
               <Card.Text>
                 {e.text}

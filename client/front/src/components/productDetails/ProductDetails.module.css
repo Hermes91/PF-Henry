@@ -140,7 +140,7 @@
   font-size: 18px;
   padding: 8px;
   border: none;
-  background: #000;
+  background: #2a265f;
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
@@ -162,7 +162,7 @@
 }
 
 .myBtn:hover {
-  background: #ddd;
+  background: #84db9a;
   color: black;
 }
 
@@ -257,4 +257,31 @@
 
 .comments {
   font-weight: bold;
+  margin-left: 15px;
+}
+
+.cardContainer {
+  background-color: #84db9a;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  width: 70%;
+  height: 120px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.coomentHead {
+  font-size: 12pt;
+  font-style: italic;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: #2a265f;
+}
+
+.coomentHead span {
+  margin-top: 15px;
+  margin-left: 15px;
+  color: #84db9a;
 }
