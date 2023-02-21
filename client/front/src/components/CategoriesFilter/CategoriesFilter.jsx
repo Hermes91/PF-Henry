@@ -4,9 +4,6 @@ import { useEffect } from "react";
 import {
   filterByCategory,
   getCategories,
-  getProducts,
-  //   setCurrent,
-  //   setPage,
 } from "../../../src/redux/actions/actionIndex";
 
 const CategoriesFilter = () => {
@@ -35,12 +32,10 @@ const CategoriesFilter = () => {
   return (
     <>
       <div className={style.filtercontainer}>
-        <h3>Categories</h3>
         <select
           className={style.select}
-          onChange={(event) => handleFilteredProduct(event)}
-        >
-          <option value={"Todas"}>Todas</option>
+          onChange={(event) => handleFilteredProduct(event)}>
+          <option value={"Todas"}>Categories</option>
           {categoriesList}
         </select>
       </div>

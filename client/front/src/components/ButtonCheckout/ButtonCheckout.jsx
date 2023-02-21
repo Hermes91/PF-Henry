@@ -1,9 +1,13 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
-import  {useAuth0} from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
+import { toast } from 'react-toastify';
+import { useDispatch } from "react-redux";
+import { postOrder } from "../../redux/actions/actionIndex";
 
 const ButtonCheckout = (props) => {
-  const {isAuthenticated, user} = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
+  const dispatch = useDispatch()
   const productsend = props.product;
   //console.log("Productsend", productsend);
   const [paidFor, setPaidFor] = useState(false);
@@ -16,11 +20,21 @@ const ButtonCheckout = (props) => {
   };
 
   if (paidFor) {
-    alert("Your payment was accepted"); //Evaluate redirect page...
+    toast.success("Your payment was accepted"); //Evaluate redirect page...
   }
 
   if (error) {
-    alert("You have to be logged in to buy"); //Evaluate redirect page...
+    toast.warn("You have to be logged in to buy"); //Evaluate redirect page...
+    setTimeout(function () {
+      setError(null);
+    }, 1000);
+
+  }
+
+  const purchaseData = {
+    totalAmount: productsend.price,
+    email: user?.email,
+    products: props.buyOrder.map(i => { return {productId: i.id, quantity: i.quantity}})
   }
 
   return (
@@ -32,15 +46,19 @@ const ButtonCheckout = (props) => {
       //     tagline: false,
       //     shape: "pill",
       //   }}
-      onClick={(data, actions) => {
+      onClick={async (data, actions) => {
         //We can validate some here
-      //  const nosequevalidar = true;
+        //  const nosequevalidar = true;
 
         if (!user.email) {
-          setError("Authentication error");
-          return actions.reject;
+          console.log(user.email)
+          setError("Authentication error")
+          return await actions.reject();
+
         } else {
-          return actions.resolve;
+          postOrder(purchaseData)
+          return await actions.resolve();
+
         }
       }}
       createOrder={(data, actions) => {
@@ -61,8 +79,10 @@ const ButtonCheckout = (props) => {
         handleApprove(data.orderID);
       }}
       onError={(error) => {
+
         setError(error);
         console.log("Paypal Checkout Error: ", error);
+
       }}
       onCancel={() => {
         console.log("Paypal Checkout was cancelled"); //Evaluate redirect user to car again

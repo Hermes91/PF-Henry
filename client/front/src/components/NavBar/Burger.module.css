@@ -1,7 +1,7 @@
 .dropdown {
     position: relative;
     cursor: pointer;
-
+    z-index: 8;
 }
 
 .menu {
@@ -12,13 +12,11 @@
     padding: 0;
     border: 1px solid grey;
     width: 150px;
-
 }
 
 .menu>li {
     margin: 0;
     background-color: white;
-
 }
 
 .menu>li:hover {
@@ -45,4 +43,13 @@
 
 .menu a:visited {
     color: #69b347;
+}
+
+.logout {
+    color: antiquewhite;
+    background-color: #69b347;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
 }

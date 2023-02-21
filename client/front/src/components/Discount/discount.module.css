@@ -13,11 +13,9 @@
     justify-content: center;
     gap: 5vh;
     padding-bottom: 25px;
+    text-align: flex-start;
 }
 
-.greenText {
-    justify-content: center;
-}
 
 .greenText h3 {
     color: #69b347;

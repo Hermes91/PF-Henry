@@ -32,7 +32,9 @@ export default function BurgerMenu() {
                 />}
             menu={[
                 <button onClick={handleMenuOne}> <Link to="/user">My Account</Link></button >,
-                <LogoutButton onClick={handleMenuTwo} />,
+                <div className={s.logout}>
+                    < LogoutButton onClick={handleMenuTwo} />
+                </div>
             ]}
         />);
 };

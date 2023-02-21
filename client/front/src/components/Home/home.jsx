@@ -4,59 +4,115 @@ import Carousel from "../Carousel/carousel";
 import ProdHome from "./prodHome";
 import s from "../Home/home.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Footer from "../Footer/Footer";
-import Contact from "../ContactForm/ContactForm";
-import ShopHome from "../Home/shopHome";
-import Discount from "../Discount/discount";
-import { Link } from "react-router-dom";
-import Map from "../Map/map";
+import Footer from '../Footer/Footer';
+import Contact from '../ContactForm/ContactForm';
+import ShopHome from '../Home/shopHome';
+import Discount from '../Discount/discount';
+import { Link, useNavigate } from "react-router-dom";
+import Map from '../Map/map'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/actionIndex";
+import OffertCarroussel from '../OffertCarroussel/OffertCarroussel'
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const { isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch()
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    isAuthenticated &&
+    const getToken = async () => {
+      const token = await getAccessTokenSilently();
+      localStorage.setItem("token", token);
+    }
+    if (isAuthenticated) {
+      getToken();
       dispatch(
         postUser({
           email: user.email,
           fullName: user.name || user.nickname,
-          picture: user.picture,
+          picture: user.picture
         })
       );
-  }, [isAuthenticated, dispatch]);
+    }
+  }, [isAuthenticated, dispatch, getAccessTokenSilently, user]);
 
   return (
-    <div className={s.home}>
-      <div className={s.nbar}>
-        <Navbar />
-      </div>
-      <Carousel />
-      <div className={s.cardsH}>
-        <ProdHome id="7" name="Bromelia guzmania" s="0" />
-        <ProdHome id="8" name="Bromelia lindenii" s="1" />
-        <div />
-        {user ? (
-          <Link s={{ textDecoration: "none" }} to={"/wishlist"}>
-            <ShopHome />
-          </Link>
+    <>
+      {isAuthenticated ? (
+        user.email === "admin@viverohenry.com" ? (
+          navigate("/admin")
         ) : (
-          ""
-        )}
-      </div>
-      <div className={s.discount}>
-        <Discount />
-      </div>
-      <div className={s.contact}>
-        <Map />
-        <Contact />
-      </div>
-      <div>
-        <Footer />
-      </div>
-    </div>
+          <div className={s.home}>
+            <div className={s.nbar}>
+              <Navbar />
+            </div>
+            <Carousel />
+
+            <div className={s.cardsH}>
+              <ProdHome id="7" name="Bromelia guzmania" s="0" />
+              <ProdHome id="8" name="Bromelia lindenii" s="1" />
+              {user ? (
+                <Link
+                  s={{ textDecoration: "none" }}
+                  to={"/wishlist"}
+                >
+                  <ShopHome />
+                </Link>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={s.discount}>
+              <Discount />
+            </div>
+            <div>
+              <OffertCarroussel />
+            </div>
+            <div className={s.contact}>
+              <Map />
+              <Contact />
+            </div>
+            <div>
+              <Footer />
+            </div>
+          </div>
+        )
+      ) : (
+        <div className={s.home}>
+          <div className={s.nbar}>
+            <Navbar />
+          </div>
+          <Carousel />
+          <OffertCarroussel />
+          <div className={s.cardsH}>
+            <ProdHome id="7" name="Bromelia guzmania" s="0" />
+            <ProdHome id="8" name="Bromelia lindenii" s="1" />
+
+            {user ? (
+              <Link
+                s={{ textDecoration: "none" }}
+                to={"/wishlist"}
+              >
+                <ShopHome />
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className={s.discount}>
+            <Discount />
+          </div>
+          <div className={s.contact}>
+            <Map />
+            <Contact />
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
+

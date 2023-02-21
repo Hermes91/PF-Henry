@@ -9,19 +9,25 @@ import { Provider } from "react-redux";
 import axios from 'axios';
 import { Auth0Provider } from "@auth0/auth0-react";
 import Auth0ProviderHistory from "./auth0-provider-history";
+import Toaster from './Toaster'
+import ErrorBoundary from "./ErrorBoundary";
 
 axios.defaults.baseURL = "https://pf-henry-production-4976.up.railway.app/";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-      <Auth0ProviderHistory>
+    <ErrorBoundary fallback={<h1>Opps! Something went wrong!</h1>}>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Auth0ProviderHistory>
             <App />
-        </Auth0ProviderHistory>
-      </Provider>
-    </BrowserRouter>
+          </Auth0ProviderHistory>
+        </Provider>
+        <Toaster />
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

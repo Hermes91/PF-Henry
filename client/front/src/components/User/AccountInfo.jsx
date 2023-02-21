@@ -6,17 +6,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 
 export default function AccountInfo() {
-    const { user, isAuthenticated, isLoading } = useAuth0()
+    const { user, isAuthenticated, } = useAuth0()
     const dispatch = useDispatch()
-
-
-
     let { id } = useParams()
     const [usuario, setUsuario] = useState(null)
 
-
     useEffect(() => {
-        axios.get(`http://localhost:3001/users?fullName=${user.name}`)
+        axios.get(`/users?fullName=${user.name}`)
             .then((res) => {
                 setUsuario(res.data)
             })
@@ -30,8 +26,11 @@ export default function AccountInfo() {
         return str.split('-').reverse().join('-');
     }
 
+    //console.log(usuario)
+    // console.log(user)
 
     return (
+
         isAuthenticated &&
         <>
             <div>{
@@ -43,13 +42,15 @@ export default function AccountInfo() {
                                 <p>Birthday: {usuario[0].birthday ? reverseString(usuario[0].birthday) : "no birthday registered"}</p>
                             </div>
                             <div>
-                                <img src={usuario[0].picture} alt="userPic" className={s.profilePic} />
-                            </div>
-                            <div className={s.contactInfo}>
-                                <h2>Contant info</h2>
-                                <hr />
-                                <h4>Default Billing Address: {usuario[0].addressLineOne}, {usuario[0].addressLineTwo}</h4>
-                                <h4>Phone number: {usuario[0].telephone}</h4>
+                                <div className={s.infoBody}>
+                                    <img src={usuario[0].picture} alt="userPic" className={s.profilePic} />
+                                    <div className={s.contactInfo}>
+                                        <h2>Contant info</h2>
+                                        <hr />
+                                        <h4>Default Billing Address: {usuario[0].addressLineOne}, {usuario[0].addressLineTwo}</h4>
+                                        <h4>Phone number: {usuario[0].telephone}</h4>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div > :

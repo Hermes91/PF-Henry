@@ -1,27 +1,35 @@
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 //import { useHistory } from "react-router-dom";
 import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "@mui/material/Rating";
+import Card from 'react-bootstrap/Card';
 import {
   getProduct,
+  getReviewById,
+  getAllUsers,
   postFavorite /* getClean */,
   postReview,
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
-import { useParams, Link, json } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useLocalStorage } from "./useLocalStorage";
+import { toast } from 'react-toastify'
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const [cart, setCart] = useLocalStorage("cart");
   const { productId } = useParams();
+  const allUsers = useSelector((state) => state.allUsers)
+  const orderedChange = useSelector((state) => state.orderedChange)
+  const reviews = useSelector((state) => state.productReview)
   const orders = useSelector((state) => state.orders);
   const product = useSelector((state) => state.productDetail);
   const [quantity, setQuantity] = useState(1);
@@ -39,6 +47,11 @@ const ProductDetails = () => {
   //     );
   //   return productAlreadyBought;
   // };
+  const handleOwner = (id, allUsers) => {
+    for (let i = 0; i < allUsers.length; i++) {
+      if (allUsers[i].id === id) return allUsers[i].fullName
+    }
+  }
 
   const handleQualify = (e) => {
     const payload = {
@@ -48,11 +61,12 @@ const ProductDetails = () => {
       text: review,
     };
     if (!rating || !review) {
-      alert("Write your review before submitting!");
+      toast.warn("Please write your review before submitting!",);
       return;
     }
     dispatch(postReview(payload));
-    alert("You just rated this product!");
+    dispatch(getReviewById(productId))
+    toast.success("Product review was sent successfully!");
     setRating(0);
     setReview("");
   };
@@ -61,7 +75,7 @@ const ProductDetails = () => {
     if (quantity >= 1 && quantity <= product.stock) setQuantity(quantity);
     if (quantity === product.stock) {
       quantity = product.stock;
-      window.alert("Stock limit");
+      toast.warn("Stock limit");
     }
   };
 
@@ -74,19 +88,25 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(getProduct(productId));
+    dispatch(getReviewById(productId))
+    dispatch(getAllUsers())
     // return () => {
     //   dispatch(getClean());
     // };
   }, [dispatch, productId]);
 
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  }
+
+
   return (
     <>
       <Navbar />
-      <Link to={`/shop`}>
-        <div className={style.backButton}>
-          <h3>Back</h3>
-        </div>
-      </Link>
+      <div className={style.backButton} onClick={goBack}>
+        <h3>Back</h3>
+      </div>
 
       <div className={style.detailBody}>
         <div className={style.containerP}>
@@ -112,12 +132,15 @@ const ProductDetails = () => {
                         productId: product.id,
                       })
                     );
-                    return alert("Product added to your wishlist!");
-                  } else
-                    alert(
-                      "You have to be logged in to add products to your wishlist"
+
+                    toast.info("Product added to your wishlist!");
+                  } else {
+
+                    toast.warn(
+                      "You must be logged in to add products to your wishlist"
                     );
-                  //dispatch action addToWishList
+                    //dispatch action addToWishList
+                  }
                 }}
               />
             </div>
@@ -191,7 +214,7 @@ const ProductDetails = () => {
                   setCart(toCartStringify);
                 }
 
-                alert("Product added to cart!");
+                toast.info("Product added to cart!");
               }}
               className={style.myBtn}
             >
@@ -255,7 +278,7 @@ const ProductDetails = () => {
             // }}
             onClick={(e) => {
               if (!user) {
-                window.alert("You have to log in to rate this product");
+                toast.info("You must be logged in to rate this product");
               } else {
                 handleQualify(e);
               }
@@ -265,7 +288,16 @@ const ProductDetails = () => {
             Qualify
           </button>
         </div>
-        {/* ) : null} */}
+        {reviews?.map((e) => (
+          <Card style={{ marginBottom: "1%" }} key={e.id}>
+            <Card.Header as="h5">{handleOwner(e.userId, allUsers)}</Card.Header>
+            <Card.Body className={style.comments}>
+              <Card.Text>
+                {e.text}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
       </div>
       <Footer />
     </>

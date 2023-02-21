@@ -11,7 +11,9 @@ body {
 
 .nbar {
     position: sticky;
-    z-index: 10;
+    top: 0px;
+    z-index: 8;
+    background-color: rgb(255, 255, 255);
 }
 
 .cardsH {
@@ -29,6 +31,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     padding-bottom: 25px;
+    padding-top: 25px;
 }
 
 .formBack {

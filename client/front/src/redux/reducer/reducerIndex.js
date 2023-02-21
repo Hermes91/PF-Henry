@@ -1,4 +1,5 @@
 import {
+  GET_REVIEW_BY_ID,
   GET_PRODUCTS,
   GET_PRODUCT,
   SEARCH_PRODUCT,
@@ -17,12 +18,18 @@ import {
   DELETE_FAVORITES,
   GET_BLOGS,
   GET_BLOG_BY_ID,
+  GET_ALL_USERS,
+  GET_ORDERS,
+  GET_USER_REVIEWS
 } from "../actions/actionIndex.js";
 
 export const initialState = {
   allProducts: [],
   allCategories: [],
   productDetail: [],
+  productReview: [],
+  allUsers: [],
+  userReviews:[],
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
@@ -216,7 +223,6 @@ export default function reducer(state = initialState, action) {
         ),
       };
     }
-
     case GET_BLOGS: {
       return {
         ...state,
@@ -228,6 +234,34 @@ export default function reducer(state = initialState, action) {
         ...state,
         blog: action.payload,
       };
+    }
+    case GET_REVIEW_BY_ID: {
+      return {
+        ...state,
+        productReview: action.payload,
+      };
+    }
+
+    case GET_ALL_USERS: {
+      return {
+        ...state,
+        allUsers: action.payload,
+        orderedChange: !state.orderedChange,
+      };
+    }
+
+    case GET_ORDERS: {
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    }
+    
+    case GET_USER_REVIEWS: {
+      return{
+        ...state, 
+        userReviews: action.payload
+      }
     }
     // --case default-- //
     default:

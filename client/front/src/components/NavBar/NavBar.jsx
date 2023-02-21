@@ -15,11 +15,14 @@ import BurgerMenu from "./Burger";
 export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const { user } = useAuth0();
+  //usar la logica de abajo cada vez que se quiera chequear si el user es admin, retorna un booleano
+  const isAdmin = user && user["https://pf-henry-front-one.vercel.app/roles"].includes("Admin");
+  // user && console.log(user)
 
   let navigate = useNavigate();
 
-  const handleClickMarket = (e) => {
-    //navigate("/cart");
+  const handleClickMarket = () => {
+    window.location.reload()
   };
 
   const handleClickHome = (e) => {
@@ -51,23 +54,20 @@ export default function NavBar() {
           </div>
 
           <div className={style.right}>
-            {isAuthenticated ? (
-              <>
-                <div className={style.userName}>
-                  {" "}
-                  Hello, {user.nickname}!
-                  <BurgerMenu />
-                </div>
-              </>
-            ) : (
-              <LoginButton className={style.btn_right} />
-            )}
+            {isAuthenticated ? <>
+              <div className={style.userName}> Hello, {user.nickname}!
+                <BurgerMenu /></div>
+            </>
+              : <LoginButton className={style.btn_right} />}
+            {isAdmin && 
+              <Link to='/admin' className={style.btn_right}>Admin dashboard</Link>
+            }
+            <Link to="/cart" className={style.btn_right} onClick={window.location.reload}>
 
-            <Link to="/cart" className={style.btn_right}>
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className={style.icon}
-                onClick={(e) => handleClickMarket(e)}
+                
                 alt="Shopping cart icon"
               />
             </Link>
