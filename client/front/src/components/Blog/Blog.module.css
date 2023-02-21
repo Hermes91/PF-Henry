@@ -1,0 +1,51 @@
+.container {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    text-align: center;
+    background-size: cover;
+    justify-content: center !important;
+    display: flex;	
+    margin-top: 3cm;
+    border-radius: 5px;
+    margin: 2.5px; 
+  }
+  /* .blogName{
+    background-color:#BBB1A5;
+    color:white;
+    padding:10px 8px;
+   text-transform:uppercase;
+   width:500px;
+  } */
+
+  .blogName{
+    padding:5px 8px;
+    text-transform:uppercase;
+    justify-content: center;
+    text-align: center;
+   }
+   
+  .blogSpan{
+    background-color:#ffffff;
+    color:rgb(0, 0, 0);
+   }
+
+  .button {
+    background-color: #2a265f;
+    border-radius: 50px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: #69b347;
+    font-size: 12pt;
+    padding: 1px 25px;
+    position: relative;
+    top:320px;
+    bottom: 50px;
+    right: 110px;
+    letter-spacing: 2px;
+    width: 50px;
+  }
+  
+  .button:hover {
+    padding: 5px 30px;
+    background-color: #151238;
+  }

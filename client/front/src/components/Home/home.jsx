@@ -25,7 +25,6 @@ export default function Home() {
       const token = await getAccessTokenSilently();
       localStorage.setItem("token", token);
     }
-
     if (isAuthenticated) {
       getToken();
       dispatch(
@@ -50,22 +49,7 @@ export default function Home() {
             </div>
             <Carousel />
             <div>
-            <OffertCarroussel/>
-            </div>
-            <div className={s.cardsH}>
-              <ProdHome id="7" name="Bromelia guzmania" s="0" />
-              <ProdHome id="8" name="Bromelia lindenii" s="1" />
-
-              {user ? (
-                <Link
-                  s={{ textDecoration: "none" }}
-                  to={"/wishlist"}
-                >
-                  <ShopHome />
-                </Link>
-              ) : (
-                ""
-              )}
+              <OffertCarroussel />
             </div>
             <div className={s.discount}>
               <Discount />
@@ -85,21 +69,8 @@ export default function Home() {
             <Navbar />
           </div>
           <Carousel />
-          <OffertCarroussel/>
-          <div className={s.cardsH}>
-            <ProdHome id="7" name="Bromelia guzmania" s="0" />
-            <ProdHome id="8" name="Bromelia lindenii" s="1" />
-
-            {user ? (
-              <Link
-                s={{ textDecoration: "none" }}
-                to={"/wishlist"}
-              >
-                <ShopHome />
-              </Link>
-            ) : (
-              ""
-            )}
+          <div>
+            <OffertCarroussel />
           </div>
           <div className={s.discount}>
             <Discount />
@@ -116,3 +87,4 @@ export default function Home() {
     </>
   );
 }
+

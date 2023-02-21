@@ -16,6 +16,9 @@ import {
   GET_FAVORITES,
   ADD_FAVORITES,
   DELETE_FAVORITES,
+  FILTER_BY_RATING,
+  GET_BLOGS,
+  GET_BLOG_BY_ID,
   GET_ALL_USERS,
   GET_ORDERS,
   GET_USER_REVIEWS,
@@ -35,6 +38,9 @@ export const initialState = {
   buyOrder: [],
   cart: [],
   orders: [],
+  allRatedProducts: [],
+  blogs: [],
+  blog: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -159,6 +165,30 @@ export default function reducer(state = initialState, action) {
         filterProducts: productsFilterByWeight,
         orderedChange: !state.orderedChange,
       };
+      
+    case FILTER_BY_RATING:
+      const ratedProducts = state.filterProducts.filter(p => typeof p.rating === "number")
+      console.log(ratedProducts)
+      const productsFilterByRating =
+        action.payload === "minRating"
+          ? ratedProducts.sort((a, b) => {
+              if (a.rating > b.rating) return 1;
+              if (a.rating < b.rating) return -1;
+              return 0;
+            
+          })
+          : ratedProducts.sort((a, b) => {
+            if (a.rating < b.rating) return 1;
+            if (a.rating > b.rating) return -1;
+            return 0;
+        
+          });
+
+      return {
+        ...state,
+        filterProducts: productsFilterByRating,
+        orderedChange: !state.orderedChange,
+      };
 
     // --limpia el state-- //
     case GET_CLEAN: {
@@ -228,7 +258,18 @@ export default function reducer(state = initialState, action) {
         ),
       };
     }
-
+    case GET_BLOGS: {
+      return {
+        ...state,
+        blogs: action.payload,
+      };
+    }
+    case GET_BLOG_BY_ID: {
+      return {
+        ...state,
+        blog: action.payload,
+      };
+    }
     case GET_REVIEW_BY_ID: {
       return {
         ...state,
@@ -257,7 +298,6 @@ export default function reducer(state = initialState, action) {
         userReviews: action.payload
       }
     }
-
     // --case default-- //
     default:
       return {

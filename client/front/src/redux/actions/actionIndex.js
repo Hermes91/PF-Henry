@@ -19,11 +19,13 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
+export const GET_BLOGS = "GET_BLOGS";
+export const GET_BLOG_BY_ID = "GET_BLOG_BY_ID";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const POST_ORDER = "POST_ORDER"
 export const GET_ORDERS = "GET_ORDERS";
 export const CREATE_CATEGORY = "CREATE_CATEGORY"
-
+export const FILTER_BY_RATING = "FILTER_BY_RATING";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -140,6 +142,15 @@ export const filterByWeight = (productWeight) => {
   };
 };
 
+export const filterByRating = (value) => {
+  return async function (dispatch) {
+    dispatch({
+      type: FILTER_BY_RATING,
+      payload: value,
+    });
+  };
+};
+
 export function getClean() {
   return {
     type: GET_CLEAN,
@@ -245,59 +256,88 @@ export function postReview(payload) {
   };
 }
 
-export const getAllUsers = () => {
+export function getBlogs() {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/users`);
-      dispatch({ type: GET_ALL_USERS, payload: response.data });
+      const response = await axios.get("http://localhost:3001/blogs");
+      dispatch({
+        type: GET_BLOGS,
+        payload: response.data,
+      });
     } catch (error) {
-      return "User not found";
+      console.log(error);
     }
   };
-};
-
-export const getReviewById = (payload) => {
-  return async function (dispatch) {
-    try {
-      const respose = await axios.get(`/reviews/?productId=${payload}`);
-      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
-    } catch (error) {
-      return "Review not found";
-    }
-  };
-};
-
-export const getOrders = () => {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(`/orders`);
-      dispatch({ type: GET_ORDERS, payload: response.data });
-    } catch (error) {
-      return "Order not found";
-    }
-  };
-};
-
-
-export const getUserReviews = (payload) => {
-  return async function (dispatch){
-    try{
-      const res = await axios.get(`/reviews/${payload}`)
-      dispatch({type: GET_USER_REVIEWS, payload: res.data})
-    }catch(error){
-      return "Error"
-    }
-  }
 }
 
-export const postOrder = (payload) => {
-  return async function () {
+export function getBlogById(id) {
+  return async function (dispatch) {
     try {
-      const resOrder = await axios.post("/orders", payload)
-      console.log(resOrder)
+      const response = await axios.get(`http://localhost:3001/blogs/${id}`);
+      console.log(response);
+      dispatch({
+        type: GET_BLOG_BY_ID,
+        payload: response.data,
+      });
     } catch (error) {
-      console.log(error)
-
+      console.log(error);
     }
   }
-}
+};
+
+  export const getAllUsers = () => {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`/users`);
+        dispatch({ type: GET_ALL_USERS, payload: response.data });
+      } catch (error) {
+        return "User not found";
+      }
+    };
+  };
+
+  export const getReviewById = (payload) => {
+    return async function (dispatch) {
+      try {
+        const respose = await axios.get(`/reviews/?productId=${payload}`);
+        dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
+      } catch (error) {
+        return "Review not found";
+      }
+    };
+  };
+
+  export const getOrders = () => {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`/orders`);
+        dispatch({ type: GET_ORDERS, payload: response.data });
+      } catch (error) {
+        return "Order not found";
+      }
+    };
+  };
+
+
+  export const getUserReviews = (payload) => {
+    return async function (dispatch) {
+      try {
+        const res = await axios.get(`/reviews/${payload}`)
+        dispatch({ type: GET_USER_REVIEWS, payload: res.data })
+      } catch (error) {
+        return "Error"
+      }
+    }
+  }
+
+  export const postOrder = (payload) => {
+    return async function () {
+      try {
+        const resOrder = await axios.post("/orders", payload)
+        console.log(resOrder)
+      } catch (error) {
+        console.log(error)
+
+      }
+    }
+  }

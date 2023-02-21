@@ -69,8 +69,7 @@ export default function GrillCard() {
               <Link
                 s={{ textDecoration: "none", color: "black" }}
                 to={`/products/${e.id}`}
-                key={e.id}
-              >
+                key={e.id}>
                 <ProductCard
                   key={e.id}
                   id={e.id}
