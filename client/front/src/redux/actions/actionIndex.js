@@ -24,6 +24,7 @@ export const GET_BLOG_BY_ID = "GET_BLOG_BY_ID";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const POST_ORDER = "POST_ORDER"
 export const GET_ORDERS = "GET_ORDERS";
+export const CREATE_CATEGORY = "CREATE_CATEGORY"
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
 
 export const getProducts = () => {
@@ -68,14 +69,42 @@ export const createProduct = (product) => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      dispatch({ type: CREATE_PRODUCT, payload: response });
+      if (response.status === 200){
+        dispatch({
+          type: CREATE_PRODUCT,
+          payload: response 
+        });
+        toast.success('Product created successfully')
+      } else if (response.status === 404){
+        console.error('Error creating new product')
+      }
     } catch (error) {
-      console.error(error.message);
+      console.error(error);
       dispatch({ type: CREATE_PRODUCT, payload: { data: [] } });
       toast.error("Could not create product");
     }
   };
 };
+
+export const createCategory = (category) => {
+  return async function (dispatch){
+    try {
+      const accessToken = localStorage.getItem('token')
+      const response = await axios.post('/categories', category, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      })
+      dispatch({
+        type: CREATE_CATEGORY,
+        payload: response
+      })
+    } catch (error) {
+      console.error(error)
+      toast.error('Could not create category')
+    }
+  }
+}
 
 export const filterByName = (productName) => {
   return async function (dispatch) {

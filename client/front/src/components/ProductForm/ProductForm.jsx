@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import validate from './validate'
-import { getCategories, createProduct } from '../../redux/actions/actionIndex.js'
+import { getCategories, createProduct, createCategory } from '../../redux/actions/actionIndex.js'
 import { toast } from 'react-toastify'
 import s from './ProductForm.module.css'
 
@@ -11,6 +11,7 @@ export default function ProductForm () {
     const categories = useSelector((state) => state.allCategories)
     const navigate = useNavigate()
     const [err, setErr] = useState({})
+    const [newCategory, setNewCategory] = useState('');
     const [input, setInput] = useState({
       name: "",
       description: "",
@@ -61,7 +62,26 @@ export default function ProductForm () {
         img: file
       }));
     };
+
+    function handleNewCategoryChange(e) {
+      setNewCategory(e.target.value);
+    }
   
+    function handleCreateCategory(e) {
+      e.preventDefault();
+      if (!newCategory) {
+        toast.warn('Please enter a category');
+        return;
+      }
+  
+      dispatch(createCategory(newCategory));
+      setInput({
+        ...input,
+        categories: [...input.categories, newCategory]
+      });
+      setNewCategory('');
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault()
       if (Object.keys(err).length) toast.warn('Please complete the form with the correct data')
@@ -77,7 +97,6 @@ export default function ProductForm () {
         category: [...input.categories]
       }
       dispatch(createProduct(newProduct))
-      toast.success('New product added successfully')
       setInput({
         name: "",
         description: "",
@@ -183,6 +202,16 @@ export default function ProductForm () {
                 </li>
               )}
             </ul>
+
+            <label>New Category:</label>
+            <input value={newCategory}
+            name='newCategory'
+            onChange={handleNewCategoryChange}
+            type='text'
+            placeholder='New category' />
+            <button type='button' onClick={handleCreateCategory}>Create category</button>
+            <br />
+
             <button disabled={isButtonDisabled()} type='submit'>Submit product</button>
           </form>
         </div>
