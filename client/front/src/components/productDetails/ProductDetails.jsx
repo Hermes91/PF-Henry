@@ -15,7 +15,7 @@ import {
   postReview,
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
-import { useParams, Link, json } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -95,14 +95,18 @@ const ProductDetails = () => {
     // };
   }, [dispatch, productId]);
 
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  }
+
+
   return (
     <>
       <Navbar />
-      <Link to={`/shop`}>
-        <div className={style.backButton}>
-          <h3>Back</h3>
-        </div>
-      </Link>
+      <div className={style.backButton} onClick={goBack}>
+        <h3>Back</h3>
+      </div>
 
       <div className={style.detailBody}>
         <div className={style.containerP}>
@@ -286,6 +290,7 @@ const ProductDetails = () => {
 
         </div>
         {reviews?.map((e) => (
+
           <Card key={e.id} className={style.cardContainer}>
             <Card.Header className={style.coomentHead}><span>{handleOwner(e.userId, allUsers)}</span></Card.Header>
             <Card.Body className={style.comments}>
