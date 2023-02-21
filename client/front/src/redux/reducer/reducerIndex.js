@@ -16,6 +16,7 @@ import {
   GET_FAVORITES,
   ADD_FAVORITES,
   DELETE_FAVORITES,
+  FILTER_BY_RATING,
   GET_BLOGS,
   GET_BLOG_BY_ID,
   GET_ALL_USERS,
@@ -36,6 +37,7 @@ export const initialState = {
   buyOrder: [],
   cart: [],
   orders: [],
+  allRatedProducts: [],
   blogs: [],
   blog: {},
 };
@@ -152,6 +154,30 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         filterProducts: productsFilterByWeight,
+        orderedChange: !state.orderedChange,
+      };
+      
+    case FILTER_BY_RATING:
+      const ratedProducts = state.filterProducts.filter(p => typeof p.rating === "number")
+      console.log(ratedProducts)
+      const productsFilterByRating =
+        action.payload === "minRating"
+          ? ratedProducts.sort((a, b) => {
+              if (a.rating > b.rating) return 1;
+              if (a.rating < b.rating) return -1;
+              return 0;
+            
+          })
+          : ratedProducts.sort((a, b) => {
+            if (a.rating < b.rating) return 1;
+            if (a.rating > b.rating) return -1;
+            return 0;
+        
+          });
+
+      return {
+        ...state,
+        filterProducts: productsFilterByRating,
         orderedChange: !state.orderedChange,
       };
 
