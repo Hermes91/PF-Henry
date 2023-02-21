@@ -12,7 +12,7 @@ export default function WishList(product) {
     const { user } = useAuth0()
     const productsWishlist = useSelector((state) => state.wishlistProducts);
     const [quantity] = useState(1);
-    const [setCart] = useLocalStorage("cart")
+    const [,setCart] = useLocalStorage("cart")
     const dispatch = useDispatch();
 
 
