@@ -67,8 +67,10 @@ export const createProduct = (product) => {
       const response = await axios.post("/products", product, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Algorithm: 'RS256' // tal vez haya que borrar o cambiar esto
         },
       });
+      console.log(accessToken)
       if (response.status === 200){
         dispatch({
           type: CREATE_PRODUCT,
@@ -101,7 +103,6 @@ export const createCategory = (category) => {
       })
     } catch (error) {
       console.error(error)
-      toast.error('Could not create category')
     }
   }
 }

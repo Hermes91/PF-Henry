@@ -77,7 +77,7 @@ export default function ProductForm () {
       dispatch(createCategory(newCategory));
       setInput({
         ...input,
-        categories: [...input.categories, newCategory]
+        categories: [newCategory, ...input.categories]
       });
       setNewCategory('');
     }
@@ -203,7 +203,7 @@ export default function ProductForm () {
               )}
             </ul>
 
-            <label>New Category:</label>
+            <label>New Category:</label> {/*en apariencia no funca del todo asi que saltear en la demo*/}
             <input value={newCategory}
             name='newCategory'
             onChange={handleNewCategoryChange}
