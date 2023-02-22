@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
 import Button from "@mui/material/Button";
 import DownloadIcon from "@mui/icons-material/Download";
-import BasicCard from "./BasicCard";
+import OrderCard from "./OrderCard";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -17,54 +17,6 @@ import { useDownloadExcel } from "react-export-table-to-excel";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getOrders } from "../../redux/actions/actionIndex";
-
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [
-  createData(
-    0,
-    "16 Mar, 2019",
-    "Elvis Presley",
-    "Tupelo, MS",
-    "VISA ⠀•••• 3719",
-    312.44
-  ),
-  createData(
-    1,
-    "16 Mar, 2019",
-    "Paul McCartney",
-    "London, UK",
-    "VISA ⠀•••• 2574",
-    866.99
-  ),
-  createData(
-    2,
-    "16 Mar, 2019",
-    "Tom Scholz",
-    "Boston, MA",
-    "MC ⠀•••• 1253",
-    100.81
-  ),
-  createData(
-    3,
-    "16 Mar, 2019",
-    "Michael Jackson",
-    "Gary, IN",
-    "AMEX ⠀•••• 2000",
-    654.39
-  ),
-  createData(
-    4,
-    "15 Mar, 2019",
-    "Bruce Springsteen",
-    "Long Branch, NJ",
-    "VISA ⠀•••• 5919",
-    212.79
-  ),
-];
 
 export default function Orders() {
   const style = {
@@ -146,7 +98,7 @@ export default function Orders() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <BasicCard
+          <OrderCard
             id={order.id}
             date={order.date}
             name={order.name}
