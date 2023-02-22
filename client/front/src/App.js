@@ -16,7 +16,7 @@ import Blogs from "./components/Blog/Blogs";
 import axios from "axios";
 import AdminGuard from "./components/PrivateRoutes/AdminAuth";
 
-axios.defaults.baseURL = 'https://pf-henry-production-7893.up.railway.app/';
+axios.defaults.baseURL = "https://pf-henry-production-7893.up.railway.app/";
 
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
           <Route path="/user" element={<AuthenticationGuard component={UserComponent} />} />
           <Route path="/admin" element={<AdminGuard component={Dashboard} />} />
           <Route path='/cart' element={<ShopCart />} />
-          <Route path="/blog/:blogId" element={<BlogDetails />} />
+          <Route path="/blogs/:blogId" element={<BlogDetails />} />
           <Route path="/blogs" element={<Blogs />} />
 
 

@@ -94,6 +94,7 @@ export const createCategory = (category) => {
       const response = await axios.post('/categories', category, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Algorithm: 'RS256'
         }
       })
       dispatch({
@@ -259,7 +260,7 @@ export function postReview(payload) {
 export function getBlogs() {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/blogs");
+      const response = await axios.get("/blogs");
       dispatch({
         type: GET_BLOGS,
         payload: response.data,
@@ -273,7 +274,7 @@ export function getBlogs() {
 export function getBlogById(id) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/blogs/${id}`);
+      const response = await axios.get(`/blogs/${id}`);
       console.log(response);
       dispatch({
         type: GET_BLOG_BY_ID,

@@ -48,7 +48,7 @@ export default function ProductForm () {
       }));
     };
   
-    const handleDeleteCategory = (cat) => {
+     const handleDeleteCategory = (cat) => {
       setInput({
         ...input,
         categories: input.categories.filter((c) => c !== cat)

@@ -22,22 +22,22 @@ export default function UserReviews() {
         console.log(user.email)
     }, [dispatch, userReviews, allProducts])
 
-    const handleProduct = (id, allProducts) =>{
-        for(let i = 0; i < allProducts.length; i++){
-          if(allProducts[i].id === id) return allProducts[i].name
+    const handleProduct = (id, allProducts) => {
+        for (let i = 0; i < allProducts.length; i++) {
+            if (allProducts[i].id === id) return allProducts[i].name
         }
-      }
+    }
 
     return (
         <>
             <div className={s.ReviewContainer}>
                 <div className={s.ReviewCard}>
-                    <h3>  MY REVIEWS</h3>
-                    {userReviews?.map((e) =>(
+                    <h3>  My Reviews</h3>
+                    {userReviews?.map((e) => (
                         <div className={s.favList} key={e.id}>
                             <ul className={s.favItem} key={e.id}>
                                 <li>{e.text}</li>
-                                <Link style={{textDecoration: "none"}} key={e.id} to={`/products/${e.productId}`}><li className={s.favPrice}>Product: {handleProduct(e.productId, allProducts)}</li></Link>
+                                <Link style={{ textDecoration: "none" }} key={e.id} to={`/products/${e.productId}`}><li className={s.favPrice}>Product: {handleProduct(e.productId, allProducts)}</li></Link>
                             </ul>
                         </div>
                     ))}
