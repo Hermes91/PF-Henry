@@ -77,7 +77,7 @@ export default function ProductForm () {
       dispatch(createCategory(newCategory));
       setInput({
         ...input,
-        categories: [newCategory, ...input.categories]
+        categories: [...input.categories, newCategory]
       });
       setNewCategory('');
     }

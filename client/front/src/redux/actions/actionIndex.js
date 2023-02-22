@@ -70,7 +70,6 @@ export const createProduct = (product) => {
           Algorithm: 'RS256' // tal vez haya que borrar o cambiar esto
         },
       });
-      console.log(accessToken)
       if (response.status === 200){
         dispatch({
           type: CREATE_PRODUCT,
@@ -95,6 +94,7 @@ export const createCategory = (category) => {
       const response = await axios.post('/categories', category, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          Algorithm: 'RS256'
         }
       })
       dispatch({
