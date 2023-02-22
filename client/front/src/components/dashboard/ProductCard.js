@@ -5,36 +5,27 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function BasicCard(props) {
-  const products = props.products.map((product) => {
-    return <div>{product.name}</div>;
-  });
-
+export default function ProductCard(props) {
   return (
     <Card sx={{ minWidth: 275, margin: 1 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {props.email}
+          ID: {props.id}
         </Typography>
         <Typography variant="h5" component="div">
           {props.name}
         </Typography>
         <Typography sx={{ mt: 1.5 }} color="text.secondary">
-          ID: {props.id}
+          Description: {props.description}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Date: {props.date}
+          {props.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Name: {props.name}
+          Stock: {props.stock}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Status: {props.status}
-        </Typography>
-        <Typography variant="body2">
-          Products:
-          {products}
-          <br />
+          Price: ${props.price}
         </Typography>
       </CardContent>
       <CardActions>
