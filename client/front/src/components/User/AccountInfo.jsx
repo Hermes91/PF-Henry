@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import s from './UserComponent.module.css';
 import { useParams } from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "../PrivateRoutes/Loading";
 import axios from 'axios';
 
 export default function AccountInfo() {
@@ -26,11 +27,8 @@ export default function AccountInfo() {
         return str.split('-').reverse().join('-');
     }
 
-    //console.log(usuario)
-    // console.log(user)
 
     return (
-
         isAuthenticated &&
         <>
             <div>{
@@ -54,7 +52,7 @@ export default function AccountInfo() {
                             </div>
                         </div>
                     </div > :
-                    "usuario no disponible"
+                    <div className={s.AccountInfo}><Loading /></div>
             } </div>
         </>
     )

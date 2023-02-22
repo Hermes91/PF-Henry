@@ -17,8 +17,8 @@ export default function Filters() {
   // --Handels-- //
 
   function handleClick(e) {
-    e.preventDefault(); 
-    dispatch(getProducts()); 
+    e.preventDefault();
+    dispatch(getProducts());
   }
 
 
@@ -43,50 +43,50 @@ export default function Filters() {
     <div className={style.content}>
       <div className={style.filterContainer}>
         <h2>Filters</h2>
+
         {/* -- BY NAME-- */}
         <select
           className={style.filters}
-          onChange={(e) => handleFilterByName(e)}
-        >
+          onChange={(e) => handleFilterByName(e)}>
           <option hidden>By Name</option>
           <option value="A-Z">By A-Z</option>
           <option value="Z-A">By Z-A</option>
         </select>
+
         {/* --BY PRICE-- */}
         <select
           className={style.filters}
-          onChange={(e) => handleFilterByPrice(e)}
-        >
+          onChange={(e) => handleFilterByPrice(e)}>
           <option hidden>By Price</option>
           <option value="maxPrice">Max-Min</option>
           <option value="minPrice">Min-Max</option>
         </select>
+
         {/* --BY WEIGHT*/}
         <select
           className={style.filters}
-          onChange={(e) => handleFilterByWeight(e)}
-        >
+          onChange={(e) => handleFilterByWeight(e)} >
           <option hidden>By Weight</option>
           <option value="maxWeight">Max-Min</option>
           <option value="minWeight">Min-Max</option>
         </select>
+
         {/* -- BY RATING-- */}
         <select
           className={style.filters}
-          onChange={(e) => handleFilterByRating(e)}
-        >
+          onChange={(e) => handleFilterByRating(e)}>
           <option hidden>By Rating</option>
           <option value="maxRating">Higher to lower</option>
           <option value="minRating">Lower to higher</option>
         </select>
         <button
-            className={style.refreshButton}
-            onClick={(e) => {
-              handleClick(e);
-            }}
-          >
-            <img className={style.reloader} src={reloader} alt="reload_BTN" />
-          </button>
+          className={style.refreshButton}
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          <img className={style.reloader} src={reloader} alt="reload_BTN" />
+        </button>
       </div>
     </div>
   );

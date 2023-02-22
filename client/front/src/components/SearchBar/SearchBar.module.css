@@ -1,7 +1,6 @@
 .backimg {
   display: flex;
   flex-direction: row;
-  background-image: url(../../assets/searchbar.jpg);
   background-size: cover;
   align-items: center;
   justify-content: center;
