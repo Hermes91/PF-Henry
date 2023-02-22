@@ -71,13 +71,13 @@ export const createProduct = (product) => {
         },
       });
       console.log(accessToken)
-      if (response.status === 200){
+      if (response.status === 201){
         dispatch({
           type: CREATE_PRODUCT,
           payload: response 
         });
         toast.success('Product created successfully')
-      } else if (response.status === 404){
+      } else if (response.status === 400){
         console.error('Error creating new product')
       }
     } catch (error) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import validate from './validate'
-import { getCategories, createProduct, createCategory } from '../../redux/actions/actionIndex.js'
+import { getCategories, createProduct } from '../../redux/actions/actionIndex.js'
 import { toast } from 'react-toastify'
 import s from './ProductForm.module.css'
 
@@ -11,16 +11,15 @@ export default function ProductForm () {
     const categories = useSelector((state) => state.allCategories)
     const navigate = useNavigate()
     const [err, setErr] = useState({})
-    const [newCategory, setNewCategory] = useState('');
     const [input, setInput] = useState({
       name: "",
       description: "",
-      height: 0,
-      weight: 0,
-      price: 0,
+      height: "",
+      weight: "",
+      price: "",
       img: "",
-      offert: 0,
-      stock: 0,
+      offert: "",
+      stock: "",
       categories: []
     })
 
@@ -42,44 +41,18 @@ export default function ProductForm () {
     const isButtonDisabled = () => (Object.keys(err).length > 0)
   
     const handleSelectCategory = (e) => {
-      setInput({
-        ...input,
-        categories: [...input.categories, e.target.value]
-      })
-    }
-  
-    const handleDeleteCategory = (e) => {
-      setInput({
-        ...input,
-        categories: input.categories.filter((c) => c !== e)
-      })
-    }
-
-    const handleChangeFile = (e) => {
-      const file = e.target.files[0];
-      setInput(prevInput => ({
+      const selCategory = e.target.value;
+      setInput((prevInput) => ({
         ...prevInput,
-        img: file
+        categories: [...prevInput.categories, selCategory]
       }));
     };
-
-    function handleNewCategoryChange(e) {
-      setNewCategory(e.target.value);
-    }
   
-    function handleCreateCategory(e) {
-      e.preventDefault();
-      if (!newCategory) {
-        toast.warn('Please enter a category');
-        return;
-      }
-  
-      dispatch(createCategory(newCategory));
+    const handleDeleteCategory = (cat) => {
       setInput({
         ...input,
-        categories: [newCategory, ...input.categories]
-      });
-      setNewCategory('');
+        categories: input.categories.filter((c) => c !== cat)
+      })
     }
 
     const handleSubmit = (e) => {
@@ -100,12 +73,12 @@ export default function ProductForm () {
       setInput({
         name: "",
         description: "",
-        height: 0,
-        weight: 0,
-        price: 0,
+        height: "",
+        weight: "",
+        price: "",
         img: "",
-        offert: 0,
-        stock: 0,
+        offert: "",
+        stock: "",
         categories: []
       })
       navigate('/admin')
@@ -117,14 +90,16 @@ export default function ProductForm () {
           <h1>Create a new product</h1>
           <h5>Complete all fields</h5>
   
-          <form onSubmit={handleSubmit} encType='multipart/form-data'>
+          <form onSubmit={handleSubmit}>
             <label>Name:</label>
             <input value={input.name}
             name='name'
             onChange={handleChange}
             type='text'
             placeholder='Name' />
+            
             {err.name && <p>{err.name}</p>}
+            <br />
             
             <label>Height:</label>
             <input value={input.height}
@@ -133,6 +108,7 @@ export default function ProductForm () {
             type='number' 
             placeholder='Height in cm' />
             {err.height && <p>{err.height}</p>}
+            <br />
 
             <label>Weight:</label>
             <input value={input.weight} 
@@ -141,14 +117,16 @@ export default function ProductForm () {
             type='number' 
             placeholder='Weight in liters' />
             {err.weight && <p>{err.weight}</p>}
+            <br />
 
             <label>Image:</label>
-            <input
-            name='img'
-            type='file'
-            onChange={handleChangeFile}
-            />
+            <input value={input.img} 
+            name='img' 
+            onChange={handleChange} 
+            type='text' 
+            placeholder='Image URL' />
             {err.img && <p>{err.img}</p>}
+            <br />
 
             <label>Description:</label>
             <textarea value={input.description} 
@@ -157,6 +135,7 @@ export default function ProductForm () {
             placeholder='Description'>
             </textarea>
             {err.description && <p>{err.description}</p>}
+            <br />
 
             <label>Price:</label>
             <input value={input.price} 
@@ -165,6 +144,7 @@ export default function ProductForm () {
             type='number' 
             placeholder='Price' />
             {err.price && <p>{err.price}</p>}
+            <br />
 
             <label>Stock:</label>
             <input value={input.stock} 
@@ -173,6 +153,7 @@ export default function ProductForm () {
             type='number' 
             placeholder='Stock units' />
             {err.stock && <p>{err.stock}</p>}
+            <br />
 
             <label>Discount:</label>
             <input value={input.offert} 
@@ -181,7 +162,8 @@ export default function ProductForm () {
             type='number' 
             placeholder='Discount in %' />
             {err.offert && <p>{err.offert}</p>}
-  
+            <br />
+
             <label>Category:</label>
             <select onChange={handleSelectCategory}>
               <option disabled selected>Select category</option>
@@ -196,21 +178,11 @@ export default function ProductForm () {
                   {category}
                   <button 
                   type='button'
-                  value={category} 
-                  onClick={handleDeleteCategory}
+                  onClick={() => handleDeleteCategory(category)}
                   >X</button>
                 </li>
               )}
             </ul>
-
-            <label>New Category:</label> {/*en apariencia no funca del todo asi que saltear en la demo*/}
-            <input value={newCategory}
-            name='newCategory'
-            onChange={handleNewCategoryChange}
-            type='text'
-            placeholder='New category' />
-            <button type='button' onClick={handleCreateCategory}>Create category</button>
-            <br />
 
             <button disabled={isButtonDisabled()} type='submit'>Submit product</button>
           </form>
