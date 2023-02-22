@@ -322,7 +322,7 @@ function DashboardContent() {
             <ListItemIcon>
               <AddIcon />
             </ListItemIcon>
-            <ListItemText primary="formProduct" />
+            <ListItemText primary="Create new product" />
             </ListItemButton>
             <ListItemButton>
             <ListItemIcon>
