@@ -70,7 +70,6 @@ export const createProduct = (product) => {
           Algorithm: 'RS256' // tal vez haya que borrar o cambiar esto
         },
       });
-      console.log(accessToken)
       if (response.status === 201){
         dispatch({
           type: CREATE_PRODUCT,
