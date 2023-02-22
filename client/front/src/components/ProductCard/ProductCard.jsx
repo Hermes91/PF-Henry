@@ -76,27 +76,30 @@ const ProductCard = (product) => {
             <div className={s.info2}>
               <div className={s.cardfoot}>
                 <span onClick={() => {
-                  const oldCart = JSON.parse(window.localStorage.getItem("cart"))
-                  const toCart = [{
+                let oldCart = JSON.parse(window.localStorage.getItem("cart"));
+                const toCart = [
+                  {
                     id: product.id,
                     name: product.name,
                     price: product.price,
-                    quantity: quantity
-                  }]
-                  if (oldCart === null) {
-                    const toCartStringify = [...toCart]
-                    console.log(toCartStringify)
-                    setCart(toCartStringify)
-                  } else {
-                    const toCartStringify = [...toCart].concat(oldCart)
-                    console.log(toCartStringify)
-                    console.log(JSON.parse(window.localStorage.getItem("cart")))
-                    setCart(toCartStringify)
+                    quantity: quantity,
+                  },
+                ];
+                const verify = oldCart !== null ? oldCart.filter(e => e.id === toCart[0].id) : []
+                if (oldCart === null) {
+                  const toCartStringify = [...toCart];
+                  //console.log(toCartStringify);
+                  setCart(toCartStringify);
+                } else if (verify.length > 0) {
+                    for(let i = 0; i < oldCart.length; i++){
+                      if(oldCart[i].id === toCart[0].id) {oldCart[i].quantity ++}
+                      setCart(oldCart)
                   }
-
-                  toast.success("Product added to cart!");
-
-                }}>
+                } else {
+                const toCartStringify = [...toCart].concat(oldCart);
+                setCart(toCartStringify);}
+                toast.info("Product added to cart!");
+              }}>
                   Add to cart
                 </span>
 
