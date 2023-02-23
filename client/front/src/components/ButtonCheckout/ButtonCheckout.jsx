@@ -64,7 +64,6 @@ const ButtonCheckout = (props) => {
           return await actions.reject();
 
         } else {
-          postOrder(purchaseData)
           return await actions.resolve();
 
         }
@@ -85,6 +84,8 @@ const ButtonCheckout = (props) => {
         const order = await actions.order.capture();
         console.log("order: ", order);
         handleApprove(data.orderID);
+        console.log(purchaseData)
+        dispatch(postOrder(purchaseData))
       }}
       onError={(error) => {
 
