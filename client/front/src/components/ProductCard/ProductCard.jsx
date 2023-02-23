@@ -42,7 +42,6 @@ const ProductCard = (product) => {
   }
 
   const handleIcon = (id) => {
-    dispatch(getFavorites(user.email))
     for(let i = 0; i < userFavs.length; i++){
       if(id === userFavs[i].id) return true
     }
