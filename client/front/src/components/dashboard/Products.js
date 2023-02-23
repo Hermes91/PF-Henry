@@ -18,7 +18,7 @@ import { useRef } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProducts, putProductState } from "../../redux/actions/actionIndex";
+import { getProducts, putProductState, getState } from "../../redux/actions/actionIndex";
 
 export default function Products() {
   const style = {
@@ -45,16 +45,11 @@ export default function Products() {
 
   const handleOnClik = (product) => {
     setProduct(product);
-    console.log(activeChanged);
-    console.log({
-      name: product.name,
-      activeProduct: !product.activeProduct,
-    });
     dispatch(
       putProductState({
         name: product.name,
         activeProduct: !product.activeProduct,
-      })
+      }),
     );
   };
 
@@ -65,8 +60,8 @@ export default function Products() {
   });
 
   useEffect(() => {
-    !products.length && dispatch(getProducts());
-  }, [products, activeChanged, product.activeProduct, dispatch]);
+    dispatch(getProducts());
+  }, [dispatch, activeChanged]);
 
   return (
     <React.Fragment>
@@ -96,30 +91,30 @@ export default function Products() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
-            <TableRow key={product.id}>
+          {products.map((p) => (
+            <TableRow key={p.id}>
               <TableCell>
                 <Button
                   onClick={() => {
-                    setProduct(product);
+                    setProduct(p);
                     handleOpen();
                   }}
                 >
-                  {product.id}
+                  {p.id}
                 </Button>
               </TableCell>
-              <TableCell>{product.name}</TableCell>
+              <TableCell>{p.name}</TableCell>
               <TableCell>
                 <Button
                   onClick={() => {
-                    handleOnClik(product);
+                    handleOnClik(p);
                   }}
                 >
-                  {product.activeProduct ? <CheckIcon /> : <CloseIcon />}
+                  {p.activeProduct ? <CheckIcon /> : <CloseIcon />}
                 </Button>
               </TableCell>
-              <TableCell>{product.stock}</TableCell>
-              <TableCell align="right">{`$${product.price}`}</TableCell>
+              <TableCell>{p.stock}</TableCell>
+              <TableCell align="right">{`$${p.price}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>
