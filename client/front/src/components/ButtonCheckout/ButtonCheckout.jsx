@@ -4,8 +4,12 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { toast } from 'react-toastify';
 import { useDispatch } from "react-redux";
 import { postOrder } from "../../redux/actions/actionIndex";
+import { useLocalStorage } from "../productDetails/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 const ButtonCheckout = (props) => {
+  const history = useNavigate()
+  const [cart, setCart] = useLocalStorage('cart')
   const { isAuthenticated, user } = useAuth0()
   const dispatch = useDispatch()
   const productsend = props.product;
@@ -17,9 +21,13 @@ const ButtonCheckout = (props) => {
     //We need to create and call here the action and reducer for setOrder in the DB :o
 
     setPaidFor(true); //If the payment was successfull
+
   };
 
   if (paidFor) {
+    setCart([])
+    setPaidFor(false)
+    history("/")
     toast.success("Your payment was accepted"); //Evaluate redirect page...
   }
 

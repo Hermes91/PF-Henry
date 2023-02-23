@@ -9,11 +9,10 @@ export default function Blog({ blog }) {
       style={{ backgroundImage: `url(${blog.img})` }}
     >
       <h3 className={s.blogName}>
-        {" "}
         <span className={s.blogSpan}>{blog.name}</span>
       </h3>
 
-      <Link to={`/blog/${blog.id}`}>
+      <Link to={`/blogs/${blog.id}`}>
         <div className={s.button}>
           <h4>Read More</h4>
         </div>

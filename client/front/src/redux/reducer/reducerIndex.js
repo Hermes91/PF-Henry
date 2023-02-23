@@ -24,6 +24,7 @@ import {
   GET_USER_REVIEWS,
   CREATE_CATEGORY, 
   EDIT_PRODUCT
+  PUT_PRODUCT_STATE,
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -36,6 +37,7 @@ export const initialState = {
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
+  productStateChage: false,
   buyOrder: [],
   cart: [],
   orders: [],
@@ -77,9 +79,8 @@ export default function reducer(state = initialState, action) {
         allProducts: [...state.allProducts, action.payload]
       };
 
-      
-      //  --crea una categoria nueva-- 
-      case CREATE_CATEGORY:
+    //  --crea una categoria nueva--
+    case CREATE_CATEGORY:
       return {
         ...state,
         allCategories: [...state.allCategories, action.payload],
@@ -98,15 +99,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByName =
         action.payload === "A-Z"
           ? state.filterProducts.sort((a, b) => {
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
-            return 0;
-          })
+              if (a.name > b.name) return 1;
+              if (a.name < b.name) return -1;
+              return 0;
+            })
           : state.filterProducts.sort((a, b) => {
-            if (a.name < b.name) return 1;
-            if (a.name > b.name) return -1;
-            return 0;
-          });
+              if (a.name < b.name) return 1;
+              if (a.name > b.name) return -1;
+              return 0;
+            });
 
       return {
         ...state,
@@ -119,15 +120,15 @@ export default function reducer(state = initialState, action) {
       const productsFilterByPrice =
         action.payload === "minPrice"
           ? state.filterProducts.sort((a, b) => {
-            if (a.price > b.price) return 1;
-            if (a.price < b.price) return -1;
-            return 0;
-          })
+              if (a.price > b.price) return 1;
+              if (a.price < b.price) return -1;
+              return 0;
+            })
           : state.filterProducts.sort((a, b) => {
-            if (a.price < b.price) return 1;
-            if (a.price > b.price) return -1;
-            return 0;
-          });
+              if (a.price < b.price) return 1;
+              if (a.price > b.price) return -1;
+              return 0;
+            });
 
       return {
         ...state,
@@ -153,39 +154,39 @@ export default function reducer(state = initialState, action) {
       const productsFilterByWeight =
         action.payload === "minWeight"
           ? state.filterProducts.sort((a, b) => {
-            if (a.weight > b.weight) return 1;
-            if (a.weight < b.weight) return -1;
-            return 0;
-          })
+              if (a.weight > b.weight) return 1;
+              if (a.weight < b.weight) return -1;
+              return 0;
+            })
           : state.filterProducts.sort((a, b) => {
-            if (a.weight < b.weight) return 1;
-            if (a.weight > b.weight) return -1;
-            return 0;
-          });
+              if (a.weight < b.weight) return 1;
+              if (a.weight > b.weight) return -1;
+              return 0;
+            });
 
       return {
         ...state,
         filterProducts: productsFilterByWeight,
         orderedChange: !state.orderedChange,
       };
-      
+
     case FILTER_BY_RATING:
-      const ratedProducts = state.filterProducts.filter(p => typeof p.rating === "number")
-      console.log(ratedProducts)
+      const ratedProducts = state.filterProducts.filter(
+        (p) => typeof p.rating === "number"
+      );
+      console.log(ratedProducts);
       const productsFilterByRating =
         action.payload === "minRating"
           ? ratedProducts.sort((a, b) => {
               if (a.rating > b.rating) return 1;
               if (a.rating < b.rating) return -1;
               return 0;
-            
-          })
+            })
           : ratedProducts.sort((a, b) => {
-            if (a.rating < b.rating) return 1;
-            if (a.rating > b.rating) return -1;
-            return 0;
-        
-          });
+              if (a.rating < b.rating) return 1;
+              if (a.rating > b.rating) return -1;
+              return 0;
+            });
 
       return {
         ...state,
@@ -208,17 +209,17 @@ export default function reducer(state = initialState, action) {
       let itemInCart = state.cart.find((i) => i.id === newItem.id);
       return itemInCart
         ? {
-          ...state,
-          cart: state.cart.map((item) =>
-            item.id === newItem.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        }
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          }
         : {
-          ...state,
-          cart: [...state.cart, { ...newItem, quantity: 1 }],
-        };
+            ...state,
+            cart: [...state.cart, { ...newItem, quantity: 1 }],
+          };
     }
 
     case REMOVE_FROM_CART: {
@@ -294,12 +295,18 @@ export default function reducer(state = initialState, action) {
         orders: action.payload,
       };
     }
-    
+    case PUT_PRODUCT_STATE: {
+      return {
+        ...state,
+        productStateChage: !state.productStateChage,
+      };
+    }
+
     case GET_USER_REVIEWS: {
       return {
         ...state,
-        userReviews: action.payload
-      }
+        userReviews: action.payload,
+      };
     }
   
     case EDIT_PRODUCT: 

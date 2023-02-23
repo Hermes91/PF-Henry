@@ -9,6 +9,7 @@ export default function ProductCard(props) {
   return (
     <Card sx={{ minWidth: 275, margin: 1 }}>
       <CardContent>
+        <img src={props.image} height="200px" width="100%" overflow="hidden" />
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           ID: {props.id}
         </Typography>

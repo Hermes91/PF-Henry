@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogById } from "../../redux/actions/actionIndex";
 import Navbar from "../NavBar/NavBar";
-import style from "../Blog/BlogDetails.module.css";
+import s from "../Blog/BlogDetails.module.css";
 import Footer from "../Footer/Footer";
 
 export default function BlogDetails() {
@@ -14,16 +14,29 @@ export default function BlogDetails() {
     dispatch(getBlogById(blogId));
   }, []);
   return (
-    <div className={style.blogBody}>
-      <Navbar />
-      <h1 className={style.tittle}>
-        <u>{blog.name}</u>
+    <>
+    <Navbar />
+    <div className={s.titleContent}>
+          <u>
+            Blogs
+          </u>
+      </div>
+      <Link to = '/blogs'>
+      <div className={s.backButton}>
+        <h3>Back</h3>
+      </div>
+      </Link>
+      <h1 className={s.tittle}>
+        <h2>{blog.name}</h2>
       </h1>
-      <div className={style.imagecontainer}>
+      <div className={s.blogBody}>
+      <div className={s.imagecontainer}>
         <img src={blog.img} alt="Img not found" />
       </div>
-      <p className={style.paragraph}>{blog.text}</p>
-      <Footer />
+     
+      <div className={s.paragraph}>{blog.text}</div>
     </div>
+    <Footer />
+    </>
   );
 }
