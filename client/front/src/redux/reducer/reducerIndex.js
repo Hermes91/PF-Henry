@@ -298,7 +298,7 @@ export default function reducer(state = initialState, action) {
     case PUT_PRODUCT_STATE: {
       return {
         ...state,
-        productStateChage: !state.productStateChage,
+        productStateChage: !state.orderedChange,
       };
     }
 
