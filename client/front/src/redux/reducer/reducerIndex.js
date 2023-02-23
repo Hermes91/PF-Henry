@@ -24,7 +24,7 @@ import {
   GET_USER_REVIEWS,
   CREATE_CATEGORY, 
   EDIT_PRODUCT
-  PUT_PRODUCT_STATE,
+  PUT_PRODUCT_STATE
 } from "../actions/actionIndex.js";
 
 export const initialState = {
