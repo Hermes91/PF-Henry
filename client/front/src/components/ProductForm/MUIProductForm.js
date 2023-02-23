@@ -5,7 +5,7 @@ import validate from './validate';
 import { getCategories, createProduct } from '../../redux/actions/actionIndex.js';
 import { toast } from 'react-toastify';
 import s from './ProductForm.module.css';
-import { TextField, Button, Select, MenuItem, InputLabel, FormControl, List, ListItem, ListItemText, IconButton, Typography } from '@material-ui/core';
+import { TextField, Button, Select, MenuItem, InputLabel, FormControl, List, ListItem, ListItemText, IconButton, Typography } from '@mui/material';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 // const useStyles = makeStyles({
