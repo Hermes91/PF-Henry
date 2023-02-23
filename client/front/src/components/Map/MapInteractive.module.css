@@ -1,4 +1,4 @@
-.map_container{
+.map_container {
   padding-top: 1rem;
   align-items: center;
   width: 90%;
@@ -8,21 +8,23 @@
 }
 
 .map {
-  
-    height: 45vh;
-  
-  }
-  .pictureHome{
-    width: 150px;
 
-  }
-  .title{
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    color: var(--letter-blue);
-  }
-  .navlink{
-    text-decoration: none;
-  }
- 
+  height: 45vh;
+
+}
+
+.pictureHome {
+  width: 150px;
+
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--letter-blue);
+}
+
+.navlink {
+  cursor: pointer;
+}
