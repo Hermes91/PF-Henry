@@ -7,6 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
 import Button from "@mui/material/Button";
 import OrderCard from "./OrderCard";
+import TablePagination from "@mui/material/TablePagination";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -15,6 +16,7 @@ import { Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllUsers, getOrders } from "../../redux/actions/actionIndex";
+import { useState } from "react";
 
 export default function RecentOrders() {
   const style = {
@@ -32,8 +34,17 @@ export default function RecentOrders() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
   const users = useSelector((state) => state.allUsers);
-  const [order, setOrder] = React.useState({});
-  const [user, setUser] = React.useState({});
+  const [order, setOrder] = useState({});
+  const [user, setUser] = useState({});
+  const [pg, setpg] = useState(0);
+  const [rpg, setrpg] = useState(5);
+    function handleChangePage(event, newpage) {
+    setpg(newpage);
+    }
+    function handleChangeRowsPerPage(event) {
+    setrpg(parseInt(event.target.value, 10));
+    setpg(0);
+    }
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -60,7 +71,7 @@ export default function RecentOrders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.slice(0, 3).map((order) => (
+          {orders.slice(pg * rpg, pg * rpg + rpg).map((order) => (
             <TableRow key={order.id}>
               <TableCell>
                 <Button
@@ -79,6 +90,15 @@ export default function RecentOrders() {
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+      rowsPerPageOptions={[5, 10, 25]}
+      component="div"
+      count={users.length}
+      rowsPerPage={rpg}
+      page={pg}
+      onPageChange={handleChangePage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+      />
       <Divider />
 
       <Modal
