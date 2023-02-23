@@ -27,6 +27,14 @@ export const POST_ORDER = "POST_ORDER";
 export const GET_ORDERS = "GET_ORDERS";
 export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
+export const EDIT_PRODUCT = "EDIT_PRODUCT";
+export const PUT_PRODUCT_STATE = "PUT_PRODUCT_STATE";
+
+export const getState = () => {
+  return function (dispatch) {
+    dispatch({ type: GET_PRODUCTS });
+  };
+};
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -71,13 +79,15 @@ export const createProduct = (product) => {
           Algorithm: "RS256", // tal vez haya que borrar o cambiar esto
         },
       });
-      if (response.status === 200) {
+
+      if (response.status === 201) {
         dispatch({
           type: CREATE_PRODUCT,
           payload: response,
         });
+
         toast.success("Product created successfully");
-      } else if (response.status === 404) {
+      } else if (response.status === 400) {
         console.error("Error creating new product");
       }
     } catch (error) {

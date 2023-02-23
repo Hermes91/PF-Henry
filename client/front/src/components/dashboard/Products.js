@@ -7,6 +7,8 @@ import TableRow from "@mui/material/TableRow";
 import Title from "./Title";
 import Button from "@mui/material/Button";
 import DownloadIcon from "@mui/icons-material/Download";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 import ProductCard from "./ProductCard";
 
 import Box from "@mui/material/Box";
@@ -16,7 +18,7 @@ import { useRef } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProducts } from "../../redux/actions/actionIndex";
+import { getProducts, putProductState, getState } from "../../redux/actions/actionIndex";
 
 export default function Products() {
   const style = {
@@ -35,10 +37,21 @@ export default function Products() {
   const products = useSelector((state) => state.allProducts);
   const tableRef = useRef(null);
   const [product, setProduct] = React.useState({});
+  const activeChanged = useSelector((state) => state.productStateChage);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleOnClik = (product) => {
+    setProduct(product);
+    dispatch(
+      putProductState({
+        name: product.name,
+        activeProduct: !product.activeProduct,
+      }),
+    );
+  };
 
   const { onDownload } = useDownloadExcel({
     currentTableRef: tableRef.current,
@@ -47,8 +60,8 @@ export default function Products() {
   });
 
   useEffect(() => {
-    !products.length && dispatch(getProducts());
-  }, [products, dispatch]);
+    dispatch(getProducts());
+  }, [dispatch, activeChanged]);
 
   return (
     <React.Fragment>
@@ -72,26 +85,36 @@ export default function Products() {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
+            <TableCell>State</TableCell>
             <TableCell>Stock</TableCell>
             <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
-            <TableRow key={product.id}>
+          {products.map((p) => (
+            <TableRow key={p.id}>
               <TableCell>
                 <Button
                   onClick={() => {
-                    setProduct(product);
+                    setProduct(p);
                     handleOpen();
                   }}
                 >
-                  {product.id}
+                  {p.id}
                 </Button>
               </TableCell>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>{product.stock}</TableCell>
-              <TableCell align="right">{`$${product.price}`}</TableCell>
+              <TableCell>{p.name}</TableCell>
+              <TableCell>
+                <Button
+                  onClick={() => {
+                    handleOnClik(p);
+                  }}
+                >
+                  {p.activeProduct ? <CheckIcon /> : <CloseIcon />}
+                </Button>
+              </TableCell>
+              <TableCell>{p.stock}</TableCell>
+              <TableCell align="right">{`$${p.price}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -111,7 +134,7 @@ export default function Products() {
             stock={product.stock}
             price={product.price}
             description={product.description}
-            image={product.image}
+            image={product.img}
             onClose={handleClose}
           />
         </Box>

@@ -24,6 +24,8 @@ import {
   GET_ORDERS,
   GET_USER_REVIEWS,
   CREATE_CATEGORY,
+  EDIT_PRODUCT,
+  PUT_PRODUCT_STATE,
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -36,6 +38,7 @@ export const initialState = {
   filterProducts: [],
   wishlistProducts: [],
   orderedChange: false,
+  productStateChage: false,
   buyOrder: [],
   cart: [],
   orders: [],
@@ -73,7 +76,8 @@ export default function reducer(state = initialState, action) {
     // --crea un producto-- //
     case CREATE_PRODUCT:
       return {
-        ...state, // <--------  BUSCA EL ERROR AQUI!!!!!
+        ...state,
+        allProducts: [...state.allProducts, action.payload],
       };
 
     //  --crea una categoria nueva--
@@ -283,6 +287,7 @@ export default function reducer(state = initialState, action) {
         blogs: [...state.blogs, action.payload],
       };
     }
+
     case GET_ALL_USERS: {
       return {
         ...state,
@@ -297,6 +302,12 @@ export default function reducer(state = initialState, action) {
         orders: action.payload,
       };
     }
+    case PUT_PRODUCT_STATE: {
+      return {
+        ...state,
+        productStateChage: !state.orderedChange,
+      };
+    }
 
     case GET_USER_REVIEWS: {
       return {
@@ -304,6 +315,11 @@ export default function reducer(state = initialState, action) {
         userReviews: action.payload,
       };
     }
+
+    case EDIT_PRODUCT:
+      return {
+        ...state,
+      };
     // --case default-- //
     default:
       return {

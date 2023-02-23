@@ -1,10 +1,9 @@
 export default function validate({ name, description, height, weight, price, offert, img, stock, categories }) {
-    const MAX_FILE_SIZE = 5 * 1024 * 1024
-    const ACCEPTABLE_FILE_TYPES = ['image/jpeg', 'image/png']
     const integers = /^\d*[1-9]\d*$/;
     const lettersAndSymbols = /^[a-zA-Z0-9\s,.'()"!?-]*$/;
     const lettersAndWhitespaces = /^[a-zA-Z\s]+$/;
     const discount = /^\d+$/;
+    const validLink = /(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(png|jpg)(\?[^\s[",><]*)?/g;
 
     const errors = {}
 
@@ -20,9 +19,8 @@ export default function validate({ name, description, height, weight, price, off
     if (weight > 150) errors.weight = 'Value cannot be higher than 150l'
 
     if (!img) errors.img = 'An image file is required'
-    if (!(img instanceof File)) errors.img = 'Invalid file type'
-    if (img.size > MAX_FILE_SIZE) errors.img = 'File size exceeds maximum allowed size of 5MB'
-    if (!ACCEPTABLE_FILE_TYPES.includes(img.type)) errors.img = 'Invalid file type (accepted file types: JPG, PNG)'
+    if (!validLink.test(img)) errors.img = 'Format is not valid'
+    if (img.length >= 300) errors.img = 'Link is too long'
 
     if (!description) errors.description = 'A description is required'
     if (!lettersAndSymbols.test(description)) errors.description = 'Description contains invalid characters'
@@ -39,7 +37,7 @@ export default function validate({ name, description, height, weight, price, off
     if (!stock) errors.stock = 'A stock value needs to be set'
     if (!integers.test(stock)) errors.stock = 'A positive integer number is required'
 
-    if (categories.length === 0) errors.categories = 'At least one category is required'
-console.log(errors)
+    if (!categories.length > 0) errors.categories = 'At least one category is required'
+    console.log(errors)
     return errors
 }

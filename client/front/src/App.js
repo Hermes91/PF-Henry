@@ -36,7 +36,7 @@ function App() {
           <Route path="/user" element={<AuthenticationGuard component={UserComponent} />} />
           <Route path="/admin" element={<AdminGuard component={Dashboard} />} />
           <Route path='/cart' element={<ShopCart />} />
-          <Route path="/blog/:blogId" element={<BlogDetails />} />
+          <Route path="/blogs/:blogId" element={<BlogDetails />} />
           <Route path="/blogs" element={<Blogs />} />
 
 
