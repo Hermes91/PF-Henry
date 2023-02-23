@@ -23,7 +23,6 @@
   } */
 
   .blogName{
-  
     text-transform:uppercase;
     justify-content: center;
     text-align: center;
@@ -32,10 +31,9 @@
    }
    
   .blogSpan{
-  
     color: #69b347;;
-    font-size: 1.7rem;
-    padding: 0.6rem;
+    font-size: 1.5rem;
+    padding: 0.3rem;
     border-radius: 1rem;
     background-color:#2a265f;
    }

@@ -29,6 +29,13 @@ export const FILTER_BY_RATING = "FILTER_BY_RATING";
 export const EDIT_PRODUCT = "EDIT_PRODUCT";
 export const PUT_PRODUCT_STATE = "PUT_PRODUCT_STATE";
 
+
+export const getState = () => {
+  return function(dispatch) {
+    dispatch({ type: GET_PRODUCTS});
+  }
+}
+
 export const getProducts = () => {
   return async function (dispatch) {
     const productsResponse = await axios.get("/products");
@@ -355,7 +362,7 @@ export const putProductState = ({ name, activeProduct }) => {
 
       dispatch({
         type: PUT_PRODUCT_STATE,
-        payload: adminRes.data ? true : false,
+        payload: activeProduct
       });
     } catch (error) {
       console.log(error);
