@@ -1,8 +1,8 @@
 import s from './grillWishlist.module.css'
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../Pagination/pagination";
-//import { getWishlistProducts } from "../../redux/actions/actionIndex";
-import { getFavorites, getProducts } from "../../redux/actions/actionIndex";
+
+import { getFavorites } from "../../redux/actions/actionIndex";
 import ProductCard from "../ProductCard/ProductCard";
 import Loading from "../PrivateRoutes/Loading";
 import { React, useState, useEffect } from "react";
@@ -16,7 +16,6 @@ export default function WishlistProducts() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const productsWishlist = useSelector((state) => state.wishlistProducts);
-  //  const productsWishlist = useSelector((state) => state.wishlistProducts);
   const [productsXPage] = useState(9);
   const dispatch = useDispatch();
 
