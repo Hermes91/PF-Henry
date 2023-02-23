@@ -23,6 +23,6 @@
     color: var(--letter-blue);
   }
   .navlink{
-    text-decoration: none;
+    cursor: pointer;
   }
  
