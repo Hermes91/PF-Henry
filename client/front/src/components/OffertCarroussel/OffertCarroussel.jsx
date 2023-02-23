@@ -14,11 +14,13 @@ import { getProducts } from "../../redux/actions/actionIndex"; //change to ofert
 function OffertCarroussel() {
 
   const dispatch = useDispatch();
-  const ofertProducts = useSelector((state) => state.allProducts) //change to ofertProducts
+  const allProducts = useSelector((state) => state.allProducts) //change to ofertProducts
+  const ofertProducts = allProducts.filter(p => p.activeProduct == true && p.offert != 0)
+  console.log(ofertProducts)
 
   useEffect(() => {
-    dispatch(getProducts()) //change to ofertProducts
-  }, [])
+    !allProducts.length && dispatch(getProducts()) //change to ofertProducts
+  }, [allProducts, dispatch])
 
   return (
     <div className="m-5">

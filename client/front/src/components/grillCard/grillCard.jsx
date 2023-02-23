@@ -10,13 +10,14 @@ import Footer from "../Footer/Footer";
 
 
 export default function GrillCard() {
-  const plants = useSelector((state) => state.filterProducts);
+  const products = useSelector((state) => state.filterProducts);
   const orderedChange = useSelector((state) => state.orderedChange);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsXPage] = useState(9);
 
+  const plants = products.filter(p => p.activeProduct === true)
   const iLastProduct = currentPage * productsXPage;
   const iFirstProduct = iLastProduct - productsXPage;
   const currentProducts = plants.slice(iFirstProduct, iLastProduct);
@@ -65,13 +66,13 @@ export default function GrillCard() {
       ) : (
         <div className={s.cardsGrid}>
           {currentProducts.map(
-            (e) => (
+            (e, idx) => (
               <Link
                 s={{ textDecoration: "none", color: "black" }}
                 to={`/products/${e.id}`}
-                key={e.id}>
+                key={idx}>
                 <ProductCard
-                  key={e.id}
+                  key={idx}
                   id={e.id}
                   img={e.img}
                   name={e.name}
