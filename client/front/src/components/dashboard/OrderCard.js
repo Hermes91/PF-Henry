@@ -26,9 +26,6 @@ export default function OrderCard(props) {
           Date: {props.date}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Name: {props.name}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Status: {props.status}
         </Typography>
         <Typography variant="body2">
