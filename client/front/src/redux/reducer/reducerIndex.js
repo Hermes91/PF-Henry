@@ -23,7 +23,7 @@ import {
   GET_ORDERS,
   GET_USER_REVIEWS,
   CREATE_CATEGORY, 
-  EDIT_PRODUCT
+  EDIT_PRODUCT,
   PUT_PRODUCT_STATE
 } from "../actions/actionIndex.js";
 
