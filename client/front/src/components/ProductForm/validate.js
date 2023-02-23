@@ -58,7 +58,8 @@ export default function validate({
   if (!integers.test(stock))
     errors.stock = "A positive integer number is required";
 
-  if (false) errors.categories = "At least one category is required";
+  if (categories.length == 0)
+    errors.categories = "At least one category is required";
   console.log(errors);
   return errors;
 }

@@ -101,7 +101,7 @@ export default function Products() {
               <TableCell>
                 <Button
                   onClick={() => {
-                    setProduct(product);
+                    setProduct(product.fullName);
                     handleOpen();
                   }}
                 >

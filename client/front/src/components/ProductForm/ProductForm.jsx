@@ -7,26 +7,13 @@ import {
   createProduct,
 } from "../../redux/actions/actionIndex.js";
 import { toast } from "react-toastify";
-import Title from "../dashboard/Title";
-import {
-  Box,
-  TextField,
-  Divider,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  Button,
-} from "@mui/material";
+import s from "./ProductForm.module.css";
 
 export default function ProductForm() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.allCategories);
   const navigate = useNavigate();
   const [err, setErr] = useState({});
-
-  const [categorySelected, setCategorySelected] = React.useState("");
-
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -44,23 +31,14 @@ export default function ProductForm() {
   }, [dispatch]);
 
   function handleChange(e) {
-    setInput((prevState) => {
-      const newState = {
-        ...prevState,
-        [e.target.name]: e.target.value,
-      };
-      setErr(validate(newState));
-      return newState;
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
     });
+    setErr(validate(input));
   }
 
-  const handleChangeCategory = (event) => {
-    setCategorySelected(event.target.value);
-    console.log(event.target.value);
-  };
-
   const isButtonDisabled = () => Object.keys(err).length > 0;
-  const dis = isButtonDisabled();
 
   const handleSelectCategory = (e) => {
     const selCategory = e.target.value;
@@ -108,189 +86,143 @@ export default function ProductForm() {
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "100%" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <Title>Create a new product</Title>
-      <Divider />
+    <div className={s.formCont}>
+      <div className={s.prodForm}>
+        <h1>Create a new product</h1>
+        <h5>Complete all fields</h5>
 
-      <form onSubmit={handleSubmit}>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "93ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            required
-            fullWidth
-            id="outlined-required"
-            label="Name:"
-            defaultValue="1"
-            value={input.name}
-            size="small"
-            name="name"
-            type="text"
-            onChange={handleChange}
-            helperText={err.name && <p>{err.name}</p>}
-          />
-        </Box>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "30ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            required
-            id="outlined-required"
-            label="Height:"
-            defaultValue="1"
-            value={input.height}
-            size="small"
-            name="height"
-            type="number"
-            onChange={handleChange}
-            helperText={err.height && <p>{err.height}</p>}
-          />
+        <form onSubmit={handleSubmit}>
+          <div className={s.fields}>
+            <label>Name:</label>
+            <input
+              value={input.name}
+              name="name"
+              onChange={handleChange}
+              type="text"
+              placeholder="Name"
+            />
+            {err.name && <p>{err.name}</p>}
+          </div>
+          <br />
 
-          <TextField
-            required
-            id="outlined-required"
-            label="Weight:"
-            defaultValue="1"
-            value={input.weight}
-            size="small"
-            name="weight"
-            type="number"
-            onChange={handleChange}
-            helperText={err.weight && <p>{err.weight}</p>}
-          />
+          <div className={s.fields}>
+            <label>Height:</label>
+            <input
+              value={input.height}
+              name="height"
+              onChange={handleChange}
+              type="number"
+              placeholder="Height in cm"
+            />
+            {err.height && <p>{err.height}</p>}
+            <br />
+          </div>
 
-          <TextField
-            required
-            fullWidth
-            id="outlined-required"
-            label="Image URL:"
-            defaultValue="/img.jpg"
-            value={input.img}
-            size="small"
-            name="img"
-            type="text"
-            onChange={handleChange}
-            helperText={err.img && <p>{err.img}</p>}
-          />
-        </Box>
+          <div className={s.fields}>
+            <label>Weight:</label>
+            <input
+              value={input.weight}
+              name="weight"
+              onChange={handleChange}
+              type="number"
+              placeholder="Weight in liters"
+            />
+            {err.weight && <p>{err.weight}</p>}
+            <br />
+          </div>
 
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "93ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            required
-            multiline
-            fullWidth
-            rows={3}
-            id="outlined-required"
-            label="Description:"
-            defaultValue="description"
-            value={input.description}
-            size="small"
-            name="description"
-            type="text"
-            onChange={handleChange}
-            helperText={err.description && <p>{err.description}</p>}
-          />
-        </Box>
+          <div className={s.fields}>
+            <label>Image:</label>
+            <input
+              value={input.img}
+              name="img"
+              onChange={handleChange}
+              type="text"
+              placeholder="Image URL"
+            />
+            {err.img && <p>{err.img}</p>}
+            <br />
+          </div>
 
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "30ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            required
-            id="outlined-required"
-            label="Price:"
-            defaultValue="1"
-            value={input.price}
-            size="small"
-            name="price"
-            type="number"
-            onChange={handleChange}
-            helperText={err.price && <p>{err.price}</p>}
-          />
+          <div className={s.fields}>
+            <label>Description:</label>
+            <textarea
+              value={input.description}
+              name="description"
+              onChange={handleChange}
+              placeholder="Description"
+            ></textarea>
+            {err.description && <p>{err.description}</p>}
+            <br />
+          </div>
 
-          <TextField
-            required
-            id="outlined-required"
-            label="Stock:"
-            defaultValue="1"
-            value={input.stock}
-            size="small"
-            name="stock"
-            type="number"
-            onChange={handleChange}
-            helperText={err.stock && <p>{err.stock}</p>}
-          />
+          <div className={s.fields}>
+            <label>Price:</label>
+            <input
+              value={input.price}
+              name="price"
+              onChange={handleChange}
+              type="number"
+              placeholder="Price"
+            />
+            {err.price && <p>{err.price}</p>}
+            <br />
+          </div>
 
-          <TextField
-            required
-            id="outlined-required"
-            label="Discount:"
-            defaultValue="1"
-            value={input.offert}
-            size="small"
-            name="offert"
-            type="number"
-            onChange={handleChange}
-            helperText={err.offert && <p>{err.offert}</p>}
-          />
-        </Box>
+          <div className={s.fields}>
+            <label>Stock:</label>
+            <input
+              value={input.stock}
+              name="stock"
+              onChange={handleChange}
+              type="number"
+              placeholder="Stock units"
+            />
+            {err.stock && <p>{err.stock}</p>}
+            <br />
+          </div>
 
-        <FormControl sx={{ m: 1, minWidth: 265 }}>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            fullWidth
-            defaultValue="Cactus"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={categorySelected}
-            label="Category"
-            onChange={handleChangeCategory}
-          >
+          <div className={s.fields}>
+            <label>Discount:</label>
+            <input
+              value={input.offert}
+              name="offert"
+              onChange={handleChange}
+              type="number"
+              placeholder="Discount in %"
+            />
+            {err.offert && <p>{err.offert}</p>}
+            <br />
+          </div>
+
+          <label>Category:</label>
+          <select onChange={handleSelectCategory}>
+            <option disabled selected>
+              Select category
+            </option>
             {categories?.map(
-              (c) => c.length > 0 && <MenuItem value={c}>{c}</MenuItem>
+              (c) => c.length > 0 && <option value={c}>{c}</option>
             )}
-          </Select>
-        </FormControl>
+          </select>
+          <ul>
+            {input.categories?.map((category, id) => (
+              <li key={id}>
+                {category}
+                <button
+                  type="button"
+                  onClick={() => handleDeleteCategory(category)}
+                >
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
 
-        <Button
-          sx={{ "& button": { m: 1 } }}
-          variant="contained"
-          size="large"
-          disabled={() => isButtonDisabled()}
-          type="submit"
-        >
-          Submit product
-        </Button>
-      </form>
-    </Box>
+          <button disabled={isButtonDisabled()} type="submit">
+            Submit product
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
