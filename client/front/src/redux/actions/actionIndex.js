@@ -1,8 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
-export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID"
+export const GET_USER_REVIEWS = "GET_USER_REVIEWS";
+export const GET_REVIEW_BY_ID = "GET_REVIEW_BY_ID";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
@@ -21,10 +21,11 @@ export const ADD_FAVORITES = "ADD_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES";
 export const GET_BLOGS = "GET_BLOGS";
 export const GET_BLOG_BY_ID = "GET_BLOG_BY_ID";
+export const CREATE_BLOG = "CREATE_BLOG";
 export const GET_ALL_USERS = "GET_ALL_USERS";
-export const POST_ORDER = "POST_ORDER"
+export const POST_ORDER = "POST_ORDER";
 export const GET_ORDERS = "GET_ORDERS";
-export const CREATE_CATEGORY = "CREATE_CATEGORY"
+export const CREATE_CATEGORY = "CREATE_CATEGORY";
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
 
 export const getProducts = () => {
@@ -67,17 +68,17 @@ export const createProduct = (product) => {
       const response = await axios.post("/products", product, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          Algorithm: 'RS256' // tal vez haya que borrar o cambiar esto
+          Algorithm: "RS256", // tal vez haya que borrar o cambiar esto
         },
       });
-      if (response.status === 200){
+      if (response.status === 200) {
         dispatch({
           type: CREATE_PRODUCT,
-          payload: response 
+          payload: response,
         });
-        toast.success('Product created successfully')
-      } else if (response.status === 404){
-        console.error('Error creating new product')
+        toast.success("Product created successfully");
+      } else if (response.status === 404) {
+        console.error("Error creating new product");
       }
     } catch (error) {
       console.error(error);
@@ -88,24 +89,24 @@ export const createProduct = (product) => {
 };
 
 export const createCategory = (category) => {
-  return async function (dispatch){
+  return async function (dispatch) {
     try {
-      const accessToken = localStorage.getItem('token')
-      const response = await axios.post('/categories', category, {
+      const accessToken = localStorage.getItem("token");
+      const response = await axios.post("/categories", category, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          Algorithm: 'RS256'
-        }
-      })
+          Algorithm: "RS256",
+        },
+      });
       dispatch({
         type: CREATE_CATEGORY,
-        payload: response
-      })
+        payload: response,
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
-}
+  };
+};
 
 export const filterByName = (productName) => {
   return async function (dispatch) {
@@ -283,62 +284,74 @@ export function getBlogById(id) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+}
+
+export const postBlog = (payload) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/blogs", payload);
+      dispatch({
+        type: CREATE_BLOG,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
-  export const getAllUsers = () => {
-    return async function (dispatch) {
-      try {
-        const response = await axios.get(`/users`);
-        dispatch({ type: GET_ALL_USERS, payload: response.data });
-      } catch (error) {
-        return "User not found";
-      }
-    };
-  };
-
-  export const getReviewById = (payload) => {
-    return async function (dispatch) {
-      try {
-        const respose = await axios.get(`/reviews/?productId=${payload}`);
-        dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
-      } catch (error) {
-        return "Review not found";
-      }
-    };
-  };
-
-  export const getOrders = () => {
-    return async function (dispatch) {
-      try {
-        const response = await axios.get(`/orders`);
-        dispatch({ type: GET_ORDERS, payload: response.data });
-      } catch (error) {
-        return "Order not found";
-      }
-    };
-  };
-
-
-  export const getUserReviews = (payload) => {
-    return async function (dispatch) {
-      try {
-        const res = await axios.get(`/reviews/${payload}`)
-        dispatch({ type: GET_USER_REVIEWS, payload: res.data })
-      } catch (error) {
-        return "Error"
-      }
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/users`);
+      dispatch({ type: GET_ALL_USERS, payload: response.data });
+    } catch (error) {
+      return "User not found";
     }
-  }
+  };
+};
 
-  export const postOrder = (payload) => {
-    return async function () {
-      try {
-        const resOrder = await axios.post("/orders", payload)
-        console.log(resOrder)
-      } catch (error) {
-        console.log(error)
-
-      }
+export const getReviewById = (payload) => {
+  return async function (dispatch) {
+    try {
+      const respose = await axios.get(`/reviews/?productId=${payload}`);
+      dispatch({ type: GET_REVIEW_BY_ID, payload: respose.data });
+    } catch (error) {
+      return "Review not found";
     }
-  }
+  };
+};
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/orders`);
+      dispatch({ type: GET_ORDERS, payload: response.data });
+    } catch (error) {
+      return "Order not found";
+    }
+  };
+};
+
+export const getUserReviews = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/reviews/${payload}`);
+      dispatch({ type: GET_USER_REVIEWS, payload: res.data });
+    } catch (error) {
+      return "Error";
+    }
+  };
+};
+
+export const postOrder = (payload) => {
+  return async function () {
+    try {
+      const resOrder = await axios.post("/orders", payload);
+      console.log(resOrder);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

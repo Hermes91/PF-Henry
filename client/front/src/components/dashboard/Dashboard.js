@@ -24,7 +24,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import RecentOrders from "./RecentOrders";
@@ -33,6 +33,8 @@ import Clients from "./Clients";
 import Products from "./Products";
 import LogoutButton from "../Logout/Logout";
 import ProductForm from "../ProductForm/ProductForm";
+import Blog from "./Blog";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 
 function Copyright(props) {
   return (
@@ -108,8 +110,9 @@ function DashboardContent() {
   const [ordersShow, setordersShow] = useState(false);
   const [clientsShow, setClientsShow] = useState(false);
   const [productsShow, setproductsShow] = useState(false);
-  const [productFormShow, setProductFormShow] = useState(false)
-  const [logoutShow, setLogoutShow] = useState(false)
+  const [productFormShow, setProductFormShow] = useState(false);
+  const [logoutShow, setLogoutShow] = useState(false);
+  const [blogShow, setBlogShow] = useState(false);
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -193,6 +196,14 @@ function DashboardContent() {
     </Grid>
   );
 
+  const formBlog = (
+    <Grid item xs={12}>
+      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+        <Blog />
+      </Paper>
+    </Grid>
+  );
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -238,8 +249,8 @@ function DashboardContent() {
               alignItems: "center",
               justifyContent: "flex-end",
               px: [1],
-            }}>
-
+            }}
+          >
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -254,7 +265,8 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(false);
                 setproductsShow(false);
-                setProductFormShow(false)
+                setProductFormShow(false);
+                setBlogShow(false);
               }}
             >
               <ListItemIcon>
@@ -270,7 +282,8 @@ function DashboardContent() {
                 setordersShow(true);
                 setClientsShow(false);
                 setproductsShow(false);
-                setProductFormShow(false)
+                setProductFormShow(false);
+                setBlogShow(false);
               }}
             >
               <ListItemIcon>
@@ -286,7 +299,8 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(true);
                 setproductsShow(false);
-                setProductFormShow(false)
+                setProductFormShow(false);
+                setBlogShow(false);
               }}
             >
               <ListItemIcon>
@@ -302,7 +316,8 @@ function DashboardContent() {
                 setordersShow(false);
                 setClientsShow(false);
                 setproductsShow(true);
-                setProductFormShow(false)
+                setProductFormShow(false);
+                setBlogShow(false);
               }}
             >
               <ListItemIcon>
@@ -310,25 +325,46 @@ function DashboardContent() {
               </ListItemIcon>
               <ListItemText primary="Products" />
             </ListItemButton>
-            <ListItemButton onClick={() => {
+            <ListItemButton
+              onClick={() => {
                 setGraphShow(false);
                 setdepositShow(false);
                 setrecentShow(false);
                 setordersShow(false);
                 setClientsShow(false);
                 setproductsShow(false);
-                setProductFormShow(true)
-              }}>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Create new product" />
+                setProductFormShow(true);
+                setBlogShow(false);
+              }}
+            >
+              <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary="Create new product" />
             </ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                setGraphShow(false);
+                setdepositShow(false);
+                setrecentShow(false);
+                setordersShow(false);
+                setClientsShow(false);
+                setproductsShow(false);
+                setProductFormShow(false);
+                setBlogShow(true);
+              }}
+            >
+              <ListItemIcon>
+                <PostAddIcon />
+              </ListItemIcon>
+              <ListItemText primary="Create new blog" />
+            </ListItemButton>
+
             <ListItemButton>
-            <ListItemIcon>
-              <LogoutButton />
-            </ListItemIcon>
-            <ListItemText primary="Logout"/>
+              <ListItemIcon>
+                <LogoutButton />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
             </ListItemButton>
 
             <Divider sx={{ my: 1 }} />
@@ -361,6 +397,8 @@ function DashboardContent() {
               {clientsShow && clients}
               {/* Products */}
               {productsShow && products}
+              {/* {Blogs} */}
+              {blogShow && formBlog}
               {/* {Create product} */}
               {productFormShow && formProduct}
               {/*Logout*/}
