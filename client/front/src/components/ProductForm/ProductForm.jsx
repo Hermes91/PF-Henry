@@ -48,7 +48,7 @@ export default function ProductForm () {
       }));
     };
   
-     const handleDeleteCategory = (cat) => {
+    const handleDeleteCategory = (cat) => {
       setInput({
         ...input,
         categories: input.categories.filter((c) => c !== cat)
@@ -86,21 +86,24 @@ export default function ProductForm () {
 
   
     return (
+      <div className={s.formCont}>
         <div className={s.prodForm}>
           <h1>Create a new product</h1>
           <h5>Complete all fields</h5>
   
           <form onSubmit={handleSubmit}>
+          <div className={s.fields}>  
             <label>Name:</label>
             <input value={input.name}
             name='name'
             onChange={handleChange}
             type='text'
             placeholder='Name' />
-            
             {err.name && <p>{err.name}</p>}
+            </div>
             <br />
-            
+
+            <div className={s.fields}>
             <label>Height:</label>
             <input value={input.height}
             name='height' 
@@ -109,7 +112,9 @@ export default function ProductForm () {
             placeholder='Height in cm' />
             {err.height && <p>{err.height}</p>}
             <br />
+            </div>
 
+            <div className={s.fields}> 
             <label>Weight:</label>
             <input value={input.weight} 
             name='weight' 
@@ -118,7 +123,9 @@ export default function ProductForm () {
             placeholder='Weight in liters' />
             {err.weight && <p>{err.weight}</p>}
             <br />
+            </div>  
 
+            <div className={s.fields}>
             <label>Image:</label>
             <input value={input.img} 
             name='img' 
@@ -127,7 +134,9 @@ export default function ProductForm () {
             placeholder='Image URL' />
             {err.img && <p>{err.img}</p>}
             <br />
+            </div>
 
+            <div className={s.fields}>
             <label>Description:</label>
             <textarea value={input.description} 
             name='description' 
@@ -136,7 +145,9 @@ export default function ProductForm () {
             </textarea>
             {err.description && <p>{err.description}</p>}
             <br />
+            </div>
 
+            <div className={s.fields}>
             <label>Price:</label>
             <input value={input.price} 
             name='price' 
@@ -145,7 +156,9 @@ export default function ProductForm () {
             placeholder='Price' />
             {err.price && <p>{err.price}</p>}
             <br />
+            </div>
 
+            <div className={s.fields}>
             <label>Stock:</label>
             <input value={input.stock} 
             name='stock' 
@@ -154,7 +167,9 @@ export default function ProductForm () {
             placeholder='Stock units' />
             {err.stock && <p>{err.stock}</p>}
             <br />
+            </div>
 
+            <div className={s.fields}>
             <label>Discount:</label>
             <input value={input.offert} 
             name='offert' 
@@ -163,6 +178,7 @@ export default function ProductForm () {
             placeholder='Discount in %' />
             {err.offert && <p>{err.offert}</p>}
             <br />
+            </div>
 
             <label>Category:</label>
             <select onChange={handleSelectCategory}>
@@ -186,6 +202,7 @@ export default function ProductForm () {
 
             <button disabled={isButtonDisabled()} type='submit'>Submit product</button>
           </form>
+        </div>
         </div>
     );
   }
