@@ -71,14 +71,18 @@ export const createProduct = (product) => {
           Algorithm: "RS256", // tal vez haya que borrar o cambiar esto
         },
       });
-      if (response.status === 200) {
+
+      if (response.status === 201){
+
         dispatch({
           type: CREATE_PRODUCT,
           payload: response,
         });
-        toast.success("Product created successfully");
-      } else if (response.status === 404) {
-        console.error("Error creating new product");
+
+        toast.success('Product created successfully')
+      } else if (response.status === 400){
+        console.error('Error creating new product')
+
       }
     } catch (error) {
       console.error(error);

@@ -1,10 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-//import { useHistory } from "react-router-dom";
 import style from "./ProductDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
 import Rating from "@mui/material/Rating";
 import Card from 'react-bootstrap/Card';
 import {
@@ -15,7 +12,7 @@ import {
   postReview,
 } from "../../redux/actions/actionIndex.js";
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -93,7 +90,7 @@ const ProductDetails = () => {
     // return () => {
     //   dispatch(getClean());
     // };
-  }, [dispatch, productId]);
+  }, [dispatch, productId, reviews]);
 
   const navigate = useNavigate();
   const goBack = () => {
@@ -209,13 +206,14 @@ const ProductDetails = () => {
                   //console.log(toCartStringify);
                   setCart(toCartStringify);
                 } else if (verify.length > 0) {
-                    for(let i = 0; i < oldCart.length; i++){
-                      if(oldCart[i].id === toCart[0].id) {oldCart[i].quantity ++}
-                      setCart(oldCart)
+                  for (let i = 0; i < oldCart.length; i++) {
+                    if (oldCart[i].id === toCart[0].id) { oldCart[i].quantity++ }
+                    setCart(oldCart)
                   }
                 } else {
-                const toCartStringify = [...toCart].concat(oldCart);
-                setCart(toCartStringify);}
+                  const toCartStringify = [...toCart].concat(oldCart);
+                  setCart(toCartStringify);
+                }
                 toast.info("Product added to cart!");
               }}
               className={style.myBtn}
@@ -292,9 +290,8 @@ const ProductDetails = () => {
 
         </div>
         {reviews?.map((e) => (
-
           <Card key={e.id} className={style.cardContainer}>
-            <Card.Header className={style.coomentHead}><span>{handleOwner(e.userId, allUsers)}</span></Card.Header>
+            <Card.Header className={style.coomentHead}><span>{handleOwner(e.userId, allUsers)}</span> <span><Rating name="read-only" value={e.rating} readOnly /></span></Card.Header>
             <Card.Body className={style.comments}>
               <Card.Text>
                 {e.text}

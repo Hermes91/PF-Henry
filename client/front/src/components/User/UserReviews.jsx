@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "@mui/material/Rating";
 import s from './UserComponent.module.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -34,10 +35,11 @@ export default function UserReviews() {
                 <div className={s.ReviewCard}>
                     <h3>  My Reviews</h3>
                     {userReviews?.map((e) => (
-                        <div className={s.favList} key={e.id}>
-                            <ul className={s.favItem} key={e.id}>
-                                <li>{e.text}</li>
-                                <Link style={{ textDecoration: "none" }} key={e.id} to={`/products/${e.productId}`}><li className={s.favPrice}>Product: {handleProduct(e.productId, allProducts)}</li></Link>
+                        <div className={s.rewList} key={e.id}>
+                            <ul className={s.rewItem} key={e.id}>
+                                <li>"{e.text}"</li>
+                                <Rating name="read-only" value={e.rating} readOnly />
+                                <Link style={{ textDecoration: "none" }} key={e.id} to={`/products/${e.productId}`}><li className={s.favPrice}> {handleProduct(e.productId, allProducts)}</li></Link>
                             </ul>
                         </div>
                     ))}
