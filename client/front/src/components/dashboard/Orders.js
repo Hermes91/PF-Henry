@@ -16,7 +16,7 @@ import { useRef } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getOrders } from "../../redux/actions/actionIndex";
+import { getAllUsers, getOrders } from "../../redux/actions/actionIndex";
 
 export default function Orders() {
   const style = {
@@ -33,11 +33,21 @@ export default function Orders() {
 
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
+  const users = useSelector((state) => state.allUsers);
+  console.log(
+    users.filter((u) => {
+      return u.id === 12;
+    })
+  );
   const tableRef = useRef(null);
   const [order, setOrder] = React.useState({});
+  const [user, setUser] = React.useState({});
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    console.log(user);
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   const { onDownload } = useDownloadExcel({
@@ -48,7 +58,8 @@ export default function Orders() {
 
   useEffect(() => {
     !orders.length && dispatch(getOrders());
-  }, [orders, dispatch]);
+    !users.length && dispatch(getAllUsers());
+  }, [orders, dispatch, users]);
 
   return (
     <React.Fragment>
@@ -72,7 +83,6 @@ export default function Orders() {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
             <TableCell>Status</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>
@@ -80,9 +90,17 @@ export default function Orders() {
         <TableBody>
           {orders.map((order) => (
             <TableRow key={order.id}>
-              <TableCell>{order.id}</TableCell>
+              <TableCell>
+                <Button
+                  onClick={() => {
+                    setUser(order.userId);
+                    handleOpen();
+                  }}
+                >
+                  {order.id}
+                </Button>
+              </TableCell>
               <TableCell>{order.date}</TableCell>
-              <TableCell>{order.name}</TableCell>
               <TableCell>{order.status}</TableCell>
               <TableCell align="right">{`$${order.totalAmount}`}</TableCell>
             </TableRow>
