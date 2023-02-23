@@ -22,8 +22,9 @@ import {
   GET_ALL_USERS,
   GET_ORDERS,
   GET_USER_REVIEWS,
-  CREATE_CATEGORY,
-  PUT_PRODUCT_STATE,
+  CREATE_CATEGORY, 
+  EDIT_PRODUCT,
+  PUT_PRODUCT_STATE
 } from "../actions/actionIndex.js";
 
 export const initialState = {
@@ -74,7 +75,8 @@ export default function reducer(state = initialState, action) {
     // --crea un producto-- //
     case CREATE_PRODUCT:
       return {
-        ...state, // <--------  BUSCA EL ERROR AQUI!!!!!
+        ...state, 
+        allProducts: [...state.allProducts, action.payload]
       };
 
     //  --crea una categoria nueva--
@@ -112,9 +114,9 @@ export default function reducer(state = initialState, action) {
         filterProducts: productsFilterByName,
         orderedChange: !state.orderedChange,
       };
-
-    // --filtrado por precio de mayor a menor y al revés-- //
-    case FILTER_BY_PRICE:
+      
+      // --filtrado por precio de mayor a menor y al revés-- //
+      case FILTER_BY_PRICE:
       const productsFilterByPrice =
         action.payload === "minPrice"
           ? state.filterProducts.sort((a, b) => {
@@ -257,7 +259,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         wishlistProducts: state.wishlistProducts.filter(
           (fav) => fav.productId !== action.payload.productId
-        ),
+          ),
       };
     }
     case GET_BLOGS: {
@@ -278,7 +280,7 @@ export default function reducer(state = initialState, action) {
         productReview: action.payload,
       };
     }
-
+    
     case GET_ALL_USERS: {
       return {
         ...state,
@@ -286,14 +288,13 @@ export default function reducer(state = initialState, action) {
         orderedChange: !state.orderedChange,
       };
     }
-
+    
     case GET_ORDERS: {
       return {
         ...state,
         orders: action.payload,
       };
     }
-
     case PUT_PRODUCT_STATE: {
       return {
         ...state,
@@ -307,10 +308,16 @@ export default function reducer(state = initialState, action) {
         userReviews: action.payload,
       };
     }
+  
+    case EDIT_PRODUCT: 
+      return {
+        ...state,
+      }
     // --case default-- //
     default:
       return {
         ...state,
       };
+    }
   }
-}
+  
