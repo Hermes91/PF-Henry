@@ -13,11 +13,10 @@ export default function Deposits() {
 
   useEffect(() => {
     !orders.length && dispatch(getOrders());
-    totalRevenewSet();
   }, [orders, dispatch, totalRevenew]);
 
-  const totalRevenewSet = () => {
-    for (let i in orders) {
+  const totalRevenewSet = (orders) => {
+    for (let i = 0; i < orders.length; i++) {
       totalRevenew = totalRevenew + orders[i].totalAmount;
     }
     console.log(totalRevenew);
@@ -30,11 +29,11 @@ export default function Deposits() {
       <Typography component="p" variant="h4">
         {orders.length}
       </Typography>
-      <p></p>
+      
 
       <Title>Total revenew</Title>
       <Typography component="p" variant="h4">
-        {totalRevenew}
+      {`$${totalRevenewSet(orders)}`}
       </Typography>
     </React.Fragment>
   );
