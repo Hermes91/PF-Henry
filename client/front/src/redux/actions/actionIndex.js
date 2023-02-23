@@ -26,6 +26,7 @@ export const POST_ORDER = "POST_ORDER"
 export const GET_ORDERS = "GET_ORDERS";
 export const CREATE_CATEGORY = "CREATE_CATEGORY"
 export const FILTER_BY_RATING = "FILTER_BY_RATING";
+export const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -86,6 +87,7 @@ export const createProduct = (product) => {
     }
   };
 };
+
 
 export const createCategory = (category) => {
   return async function (dispatch){
@@ -296,7 +298,7 @@ export function getBlogById(id) {
       }
     };
   };
-
+  
   export const getReviewById = (payload) => {
     return async function (dispatch) {
       try {
@@ -307,7 +309,7 @@ export function getBlogById(id) {
       }
     };
   };
-
+  
   export const getOrders = () => {
     return async function (dispatch) {
       try {
@@ -318,8 +320,8 @@ export function getBlogById(id) {
       }
     };
   };
-
-
+  
+  
   export const getUserReviews = (payload) => {
     return async function (dispatch) {
       try {
@@ -330,7 +332,7 @@ export function getBlogById(id) {
       }
     }
   }
-
+  
   export const postOrder = (payload) => {
     return async function () {
       try {
@@ -338,7 +340,18 @@ export function getBlogById(id) {
         console.log(resOrder)
       } catch (error) {
         console.log(error)
-
+      }
+    }
+  }
+  
+  export const editProduct = (product) => {
+    return async function(dispatch) {
+      try {
+        const response = axios.put("/products", product);
+        dispatch({ type: CREATE_PRODUCT, payload: response });
+      } catch (error) {
+        console.log(error)
+        toast.error("Could not edit product");
       }
     }
   }
