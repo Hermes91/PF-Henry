@@ -7,12 +7,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useLocalStorage } from "./../productDetails/useLocalStorage";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postFavorite, deleteFavorites } from "../../redux/actions/actionIndex"
+import { postFavorite, deleteFavorites, getFavorites } from "../../redux/actions/actionIndex"
 import { toast } from 'react-toastify'
 
 const ProductCard = (product) => {
-  const { user } = useAuth0();
-  const [isFav, setIsFav] = useState(false);
+
+  const userFavs = useSelector((state) => state.wishlistProducts)
+  const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = useLocalStorage("cart")
@@ -21,21 +22,35 @@ const ProductCard = (product) => {
   const handleFavorite = () => {
     if (user.email) {
       const payload = { productId: product.id, email: user.email }
-      if (isFav) {
+      const isFav = () => {for(let i = 0; i < userFavs.length; i++){
+        if(product.id === userFavs[i].id) {return true} else{return false}
+      }
+      }
+
+      if (isFav() === true) {
         dispatch(deleteFavorites(payload))
-        setIsFav(false)
-        setHearth(faHeart)
+        dispatch(getFavorites(user.email))
         toast.info("Product was removed from your wishlist")
       } else {
         dispatch(postFavorite(payload))
-        setIsFav(true)
-        setHearth(faHeartS)
+        dispatch(getFavorites(user.email))
         toast.info("Product was added to your wishlist")
       }
     } else {
       toast.warn('You must be logged in to add products to your wishlist')
     }
   }
+
+  const handleIcon = (id) => {
+    for(let i = 0; i < userFavs.length; i++){
+      if(id === userFavs[i].id) return true
+    }
+    return false
+  }
+
+  useEffect(()=>{
+  isAuthenticated && dispatch(getFavorites(user.email))
+  }, [dispatch])
 
   return (
     <div className={s.container}>
@@ -45,7 +60,7 @@ const ProductCard = (product) => {
             to={`/shop`}
           >
             <div className={s.topCard}>
-              <FontAwesomeIcon icon={hearth} className={s.icon} onClick={() => {
+              <FontAwesomeIcon icon={handleIcon(product.id) === true ? faHeartS : faHeart} className={s.icon} onClick={() => {
                 if (!user) {
                   toast.warn("You must be logged in to add products to the wishlist")
                 } else {
